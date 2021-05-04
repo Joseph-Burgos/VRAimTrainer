@@ -26,8 +26,6 @@ public class HighscoreTable : MonoBehaviour
 
 
 
-
-
 /*
  * Will create a table of entries
  * highscoreEntry is the score to add
@@ -67,4 +65,5 @@ private class HighscoreEntry
 {
     public int score;
     public string name;
+    public float time;
 }
