@@ -24,11 +24,12 @@ public static class SaveManager
         {
             Directory.CreateDirectory(dir);
         }
-
+        //load list
+        scoreboard sb = Load();
         //add into list
-        scores.Add(ss);
+        sb.scores.Add(ss);
         //create a scoreboard object to save
-        scoreboard sb = new scoreboard { scores = scores };
+        //scoreboard sb = new scoreboard { scores = scores };
         //parse save object into json string format
         string json = JsonUtility.ToJson(sb);
 
