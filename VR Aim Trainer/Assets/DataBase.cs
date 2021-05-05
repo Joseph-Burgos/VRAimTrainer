@@ -10,8 +10,11 @@ public static class DataBase
 
     public static void Savedata(Score newscore)
     {
+        //created a binary formatter
         BinaryFormatter formatter = new BinaryFormatter();
-        string path = Application.persistentDataPath + "/player.txt";
+        //gets a constant path
+        string path = Application.persistentDataPath + "/player.json";
+        //filestream to path
         FileStream stream = new FileStream(path, FileMode.Create);
 
         
