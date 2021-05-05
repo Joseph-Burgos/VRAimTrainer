@@ -18,6 +18,7 @@ public class SaveScore : MonoBehaviour
         if (Input.GetKeyDown("up"))
         {
             //save data
+            Debug.Log(Application.dataPath);
             SaveManager.addScore(score);
             Debug.Log("Saved");
         }

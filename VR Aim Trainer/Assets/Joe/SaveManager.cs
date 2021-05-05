@@ -4,17 +4,21 @@ using UnityEngine;
 using System.IO;
 
 //THIS IS THE SAVE MANAGER. THIS FILE IS MADE TO HANDLE LOADING AND SAVING THE FILE
+//game manager must load the save file on awake() so it doesnt overwrite with an empty list
 public static class SaveManager 
 {
-    public static string directory = "/SaveData/";
+    //make file directory specifically save into assets folder -- i specifically chose joe folder for testing
+    public static string directory = "/Joe/SaveData/";
+    //file name
     public static string fileName =  "MyData.txt";
+    //create an empty list to add onto
     public static List<PlayerScore> scores = new List<PlayerScore>();
 
-    // add a given score to the lsit of files
+    // add a given score to the list of files
     public static void addScore(PlayerScore ss)
     {
         //get directory of file
-        string dir = Application.persistentDataPath + directory;
+        string dir = Application.dataPath + directory;
         //check if exists
         if (!Directory.Exists(dir))
         {
@@ -34,8 +38,8 @@ public static class SaveManager
 
     public static scoreboard Load()
     {
-        //get file path
-        string fullPath = Application.persistentDataPath + directory + fileName;
+        //get file path 
+        string fullPath = Application.dataPath + directory + fileName;
         //creates a new player score board
         scoreboard sb = new scoreboard();
         //PlayerScore ss = new PlayerScore();
