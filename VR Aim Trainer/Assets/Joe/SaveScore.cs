@@ -18,7 +18,7 @@ public class SaveScore : MonoBehaviour
         if (Input.GetKeyDown("up"))
         {
             //save data
-            Debug.Log(Application.dataPath);
+            //Debug.Log(Application.dataPath);
             SaveManager.addScore(score);
             Debug.Log("Saved");
         }
@@ -27,9 +27,13 @@ public class SaveScore : MonoBehaviour
         {
             //load data
             scores = SaveManager.Load().scores;
-            //print
-            Debug.Log("Scores:");
-            foreach (PlayerScore score in scores) {Debug.Log(score.ToString()); }
+            //print if exists
+            if (scores != null)
+            {
+                Debug.Log("Scores:");
+                foreach (PlayerScore score in scores) { Debug.Log(score.ToString()); }
+            }
+            
 
         }
     }
