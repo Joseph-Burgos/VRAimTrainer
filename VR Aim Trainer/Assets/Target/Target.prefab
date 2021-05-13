@@ -108,4 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 444ddb80ba9119d46a00c4e5ce83e6bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
   burst: {fileID: 8851961140035495971, guid: 802269b4ed8a30f40a9b0f89016bf7dc, type: 3}

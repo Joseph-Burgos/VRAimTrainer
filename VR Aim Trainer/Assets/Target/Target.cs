@@ -6,6 +6,9 @@ using UnityEngine;
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : MonoBehaviour
 {
+    //audio source to play when target is destroyed
+    [Tooltip("audio source to play when target is destroyed")]
+    public AudioClip hitSound;
     //particle explosion effect to spawn
     [Tooltip("effect on destroyed object")]
     public GameObject burst;
@@ -41,8 +44,11 @@ public class Target : MonoBehaviour
         Debug.Log("time: " + this.time);
         //add target to list
         TargetManager.addTarget(this);
+        //play audio
+        AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
         //create a particle
         GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
+        //destroy particle upon complete
         Destroy(burstObject, 1f);
     }
 
