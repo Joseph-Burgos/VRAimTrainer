@@ -26,7 +26,9 @@ public class TargetManager : MonoBehaviour
 
     //object to spawn
     [Tooltip("Target Object to spawn")]
-    public GameObject gameObj;
+    public GameObject target;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +59,8 @@ public class TargetManager : MonoBehaviour
         currentTargets = currentTargets - 1;
         //destroy object
         Destroy(target.gameObject);
-        Debug.Log(targets.Count);
+        //Debug.Log(targets.Count);
+        
     }
 
     public void spawnTarget()
@@ -65,7 +68,7 @@ public class TargetManager : MonoBehaviour
         //create new random position within the size of the square
         Vector3 newPos = center.position + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
         //create a target at the new position
-        Instantiate(gameObj, newPos, Quaternion.identity);
+        Instantiate(target, newPos, Quaternion.identity);
         //update amount of targets on screen
         currentTargets = currentTargets + 1;
     }

@@ -6,7 +6,9 @@ using UnityEngine;
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : MonoBehaviour
 {
-
+    //particle explosion effect to spawn
+    [Tooltip("effect on destroyed object")]
+    public GameObject burst;
     //turn off timer when necessary
     protected bool timerActive = true;
     //is hit
@@ -39,6 +41,9 @@ public class Target : MonoBehaviour
         Debug.Log("time: " + this.time);
         //add target to list
         TargetManager.addTarget(this);
+        //create a particle
+        GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
+        Destroy(burstObject, 1f);
     }
 
 
