@@ -1,28 +1,68 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Valve.VR;
+using Valve.VR.InteractionSystem;
 
 public class SHOOTTEST : MonoBehaviour
 {
+    public GameObject laser;
+    public SteamVR_Action_Boolean fireAction;
     public float range = 100f;
-    public Camera cam;
+    public Transform muzzle;
+    public bool useLaser = true;
+
+    private bool isActive = false;
+    private Interactable interactable;
     // Start is called before the first frame update
     void Start()
     {
-        
+        laser.SetActive(false);
+        interactable = GetComponent<Interactable>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-            shoot();
+        //check if gun is being held
+        if (interactable.attachedToHand != null)
+        {
+            //if laser is off, turn on
+            if (!isActive)
+            {
+                Debug.Log("Turn On");
+                toggleLaser(true);
+            }
+            //access which hand is holding
+            SteamVR_Input_Sources source = interactable.attachedToHand.handType;
+            //check id pressing down fire button
+            if (fireAction[source].stateDown)
+            {
+                shoot();
+            }
+        }
+        //checked if gun is being held AND laser is visible
+        else if(interactable.attachedToHand == null && isActive)
+        {
+            Debug.Log("=====================LET GO====================================");
+            toggleLaser(false);
+        }
+    }
+
+    private void toggleLaser(bool toggle)
+    {
+        if (useLaser)
+        {
+            isActive = toggle;
+            laser.SetActive(toggle);
+        }
     }
 
     private void shoot()
     {
+        //store raycast information
         RaycastHit hit;
-        if(Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, range))
+        if(Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, range))
         {
             //Debug.Log(hit.transform.name);
             //store target component thats been hit
@@ -34,6 +74,8 @@ public class SHOOTTEST : MonoBehaviour
             }
         }
         //show debug of where its shooting
-        Debug.DrawLine(cam.transform.position, cam.transform.position + cam.transform.forward * 100, Color.green ,3f);
+        Debug.DrawLine(muzzle.transform.position, muzzle.transform.position + muzzle.transform.forward * 100, Color.green ,3f);
     }
+
+
 }

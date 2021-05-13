@@ -9,7 +9,7 @@ using UnityEngine;
 public class TargetManager : MonoBehaviour
 {
     //max amount of targets that can be on screen
-    public static int maxTargets = 3;
+    public int maxTargets;
     //current number of targets on scene
     public static int currentTargets = 0;
     //list of targets to calculate score
@@ -29,7 +29,7 @@ public class TargetManager : MonoBehaviour
     public GameObject target;
 
 
-
+    public bool keepUpdating = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,11 +38,17 @@ public class TargetManager : MonoBehaviour
 
     void Update()
     {
-        //if the number of targets in level is less than 3, spawn more targetrs
-        if (currentTargets < 3){
-            spawnTarget();
-            //Debug.Log(targets.Count);
+        //only spawn more if game manager wants to keep spawning more
+        if (keepUpdating)
+        {
+            //if the number of targets in level is less than max targets allowed, spawn more targetrs
+            if (currentTargets < maxTargets)
+            {
+                spawnTarget();
+                //Debug.Log(targets.Count);
+            }
         }
+
 
     }
 
