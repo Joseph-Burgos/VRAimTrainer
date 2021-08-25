@@ -126,7 +126,7 @@ Material:
     - _ZTest: 8
     - _ZWrite: 1
     - g_flCornerAdjust: 0.5
-    - g_flOutlineWidth: 0.01094
+    - g_flOutlineWidth: 0.00625
     m_Colors:
     - Color_B9F825DD: {r: 1, g: 0.93979645, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
