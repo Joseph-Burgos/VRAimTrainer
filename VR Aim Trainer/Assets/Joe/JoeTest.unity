@@ -178,6 +178,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11465950, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
 --- !u!1 &922349283
@@ -306,7 +310,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score:
-    gameMode: Reaction
+    gameMode: flargh
     score: 481
     time: 54
 --- !u!65 &1172510324
@@ -397,13 +401,18 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1224879108}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b2784f75029c09b41b0bc78b14b052ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  laser: {fileID: 0}
+  fireAction:
+    actionPath: 
+    needsReinit: 0
   range: 100
-  cam: {fileID: 1998235072}
+  muzzle: {fileID: 0}
+  useLaser: 1
 --- !u!1 &1698864167
 GameObject:
   m_ObjectHideFlags: 0
@@ -529,9 +538,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c949b17df261f4f4384a1e80457871a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxTargets: 0
   center: {fileID: 1723714028}
   size: {x: 1, y: 5, z: 10}
-  gameObj: {fileID: 3488593011251704199, guid: 294e3294036a2fe44b4c298a5b172b7f, type: 3}
+  target: {fileID: 0}
+  keepUpdating: 1
 --- !u!4 &1723714028
 Transform:
   m_ObjectHideFlags: 0
@@ -546,8 +557,3 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!20 &1998235072 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2083460, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
-  m_PrefabInstance: {fileID: 26221537}
-  m_PrefabAsset: {fileID: 0}
