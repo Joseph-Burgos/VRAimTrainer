@@ -11,6 +11,7 @@ public class SHOOTTEST : MonoBehaviour
     public float range = 100f;
     public Transform muzzle;
     public bool useLaser = true;
+    public bool constantFire = false;
 
     private bool isActive = false;
     private Interactable interactable;
@@ -34,8 +35,14 @@ public class SHOOTTEST : MonoBehaviour
             }
             //access which hand is holding
             SteamVR_Input_Sources source = interactable.attachedToHand.handType;
-            //check id pressing down fire button
-            if (fireAction[source].stateDown)
+
+            //check if constant fire is true
+            //else if pressing down fire button
+            if (constantFire)
+            {
+                StartCoroutine("ShootEveryFrame");
+            }
+            else if (fireAction[source].stateDown)
             {
                 shoot();
             }
@@ -76,5 +83,9 @@ public class SHOOTTEST : MonoBehaviour
         Debug.DrawLine(muzzle.transform.position, muzzle.transform.position + muzzle.transform.forward * 100, Color.green ,3f);
     }
 
-
+    IEnumerator ShootEveryFrame()
+    {
+        shoot();
+        yield return null;
+    }
 }
