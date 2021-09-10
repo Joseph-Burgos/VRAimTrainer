@@ -28,7 +28,7 @@ public class TargetManager : MonoBehaviour
     [Tooltip("Target Object to spawn")]
     public GameObject target;
 
-
+    [Tooltip("If ON: taret manager will continuously update")]
     public bool keepUpdating = true;
     // Start is called before the first frame update
     void Start()
@@ -38,6 +38,7 @@ public class TargetManager : MonoBehaviour
 
     void Update()
     {
+        
         //only spawn more if game manager wants to keep spawning more
         if (keepUpdating)
         {

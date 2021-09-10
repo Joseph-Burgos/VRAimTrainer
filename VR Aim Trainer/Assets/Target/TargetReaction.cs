@@ -4,11 +4,26 @@ using UnityEngine;
 
 public class TargetReaction : Target
 {
+    MeshRenderer targetMeshRenderer;
+    //color that we want
+    [Tooltip("Color that we want to change to")]
+    public Color newColor;
+    float lerpTime;
     // Start is called before the first frame update
+
+    float currentTime = 0f;
     void Start()
     {
+        currentTime += Time.deltaTime;
+        lerpTime = this.maxLife - 1.0f;
+        targetMeshRenderer = GetComponent<MeshRenderer>();
         //execute a code snippet after a time finishes
         Invoke("expire", this.maxLife);
+    }
+
+    private void Update()
+    {
+        targetMeshRenderer.material.color = Color.Lerp(targetMeshRenderer.material.color, newColor, currentTime / lerpTime);
     }
 
 

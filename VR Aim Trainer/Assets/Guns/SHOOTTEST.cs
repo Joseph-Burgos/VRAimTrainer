@@ -20,7 +20,6 @@ public class SHOOTTEST : MonoBehaviour
         laser.SetActive(false);
         interactable = GetComponent<Interactable>();
     }
-
     // Update is called once per frame
     void Update()
     {
