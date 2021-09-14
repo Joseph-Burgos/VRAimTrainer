@@ -11,7 +11,7 @@ public class HighscoreTable : MonoBehaviour
     private Transform entryTemplate;
     private HttpClient client; // FIXME should this be 'static' and 'readonly'???
 
-    private async Task AwakeAsync()
+    private async Task Awake()
     {
         Debug.Log("Starting the leaderboard retrieval process");
         client = new HttpClient();
