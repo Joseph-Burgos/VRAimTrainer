@@ -2,15 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 public class HighscoreTable : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate;
+    private HttpClient client; // FIXME should this be 'static' and 'readonly'???
 
-    private void Awake()
+    private async Task AwakeAsync()
     {
-        Debug.Log("Starting the leaderboard save process");
+        Debug.Log("Starting the leaderboard retrieval process");
+        client = new HttpClient();
+        string responseString = await client.GetStringAsync("http://localhost:3456/scores");
+
+        //HttpResponseMessage response = await client.GetAsync("http://www.contoso.com/");
+        //response.EnsureSuccessStatusCode();
+        //string responseBody = await response.Content.ReadAsStringAsync();
+        Debug.Log(responseString);
+        // asdf 
+        Debug.Log("Successfully loaded the leaderboard");
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
