@@ -21,7 +21,7 @@ public class HighscoreTable : MonoBehaviour
         //response.EnsureSuccessStatusCode();
         //string responseBody = await response.Content.ReadAsStringAsync();
         Debug.Log(responseString);
-        sb = JsonUtility.FromJson<Scoreboard>(responseString);
+        //sb = JsonUtility.FromJson<Scoreboard>(responseString);
         Debug.Log("Retrieved objects from server successfully");
         // asdf 
         Debug.Log("Successfully loaded the leaderboard");
@@ -64,11 +64,7 @@ public class Scoreboard
 
 [System.Serializable]
 public class Score {
-    public string _id;
-    public string userID;
+    public string name;
+    public int points;
     public string gameMode;
-    public string date;
-    public string createdAt;
-    public string updatedAt;
-    public string __v;
 }
