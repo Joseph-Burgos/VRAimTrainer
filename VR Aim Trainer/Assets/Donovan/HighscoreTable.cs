@@ -9,7 +9,7 @@ public class HighscoreTable : MonoBehaviour
     private Transform entryContainer;
     private Transform entryTemplate;
     private HttpClient client; // FIXME should this be 'static' and 'readonly'???
-    private List<Score> scores;
+    private Scoreboard sb;
 
     private async Task Awake()
     {
@@ -55,6 +55,11 @@ public class HighscoreTable : MonoBehaviour
     }
 }
 
+//create a class of scores so we can save it
+public class Scoreboard
+{
+    public List<Score> scores;
+}
 
 [System.Serializable]
 public class Score {
