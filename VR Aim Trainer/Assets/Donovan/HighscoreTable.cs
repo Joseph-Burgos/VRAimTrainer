@@ -2,12 +2,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web.Script.Serialization;
+using System.Collections.Generic;
+//using System.Web.Script.Serialization;
 public class HighscoreTable : MonoBehaviour
 {
     private Transform entryContainer;
     private Transform entryTemplate;
     private HttpClient client; // FIXME should this be 'static' and 'readonly'???
+    private List<Score> scores;
 
     private async Task Awake()
     {
@@ -51,4 +53,12 @@ public class HighscoreTable : MonoBehaviour
             entryTransform.Find("nameText").GetComponent<Text>().text = name;
         }
     }
+}
+
+
+[System.Serializable]
+public class Score {
+    public string name;
+    public int points;
+    public string gameMode;
 }
