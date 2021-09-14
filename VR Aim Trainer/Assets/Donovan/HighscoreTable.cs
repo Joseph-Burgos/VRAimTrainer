@@ -20,8 +20,12 @@ public class HighscoreTable : MonoBehaviour
         //HttpResponseMessage response = await client.GetAsync("http://www.contoso.com/");
         //response.EnsureSuccessStatusCode();
         //string responseBody = await response.Content.ReadAsStringAsync();
+        Debug.Log("original response");
         Debug.Log(responseString);
-        sb = JsonUtility.FromJson<Scoreboard>(responseString);
+        string formattedResponse = "{\"scores\":" + responseString + "}";
+        Debug.Log("formatted response");
+        Debug.Log(formattedResponse);
+        sb = JsonUtility.FromJson<Scoreboard>(formattedResponse);
         Debug.Log("Retrieved objects from server successfully");
         // asdf 
         Debug.Log("Successfully loaded the leaderboard");
