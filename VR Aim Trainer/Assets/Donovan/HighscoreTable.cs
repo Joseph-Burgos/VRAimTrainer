@@ -27,6 +27,8 @@ public class HighscoreTable : MonoBehaviour
         Debug.Log(formattedResponse);
         sb = JsonUtility.FromJson<Scoreboard>(formattedResponse);
         Debug.Log("Retrieved objects from server successfully");
+        Debug.Log(sb.ToString());
+
         // asdf 
         Debug.Log("Successfully loaded the leaderboard");
         entryContainer = transform.Find("highscoreEntryContainer");
@@ -64,6 +66,16 @@ public class HighscoreTable : MonoBehaviour
 public class Scoreboard
 {
     public List<Score> scores;
+
+    public override string ToString()
+    {
+        string sbout = "";
+        foreach (Score score in scores) {
+            string scorerep = $"{score.userID} {score.gameMode} {score.points}\n";
+            sbout = sbout + scorerep;
+        }
+        return sbout;
+    }
 }
 
 [System.Serializable]
@@ -71,6 +83,7 @@ public class Score {
     public string _id;
     public string userID;
     public string gameMode;
+    public string points;
     public string date;
     public string createdAt;
     public string updatedAt;
