@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
-
+using System.Web.Script.Serialization;
 public class HighscoreTable : MonoBehaviour
 {
     private Transform entryContainer;
@@ -20,10 +19,7 @@ public class HighscoreTable : MonoBehaviour
         //response.EnsureSuccessStatusCode();
         //string responseBody = await response.Content.ReadAsStringAsync();
         Debug.Log(responseString);
-        var objects = JArray.Parse(responseString);
-        foreach (JObject obj in objects) {
-            Debug.Log(obj);
-        }
+        
         // asdf 
         Debug.Log("Successfully loaded the leaderboard");
         entryContainer = transform.Find("highscoreEntryContainer");
