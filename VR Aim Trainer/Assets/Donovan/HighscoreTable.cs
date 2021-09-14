@@ -21,7 +21,8 @@ public class HighscoreTable : MonoBehaviour
         //response.EnsureSuccessStatusCode();
         //string responseBody = await response.Content.ReadAsStringAsync();
         Debug.Log(responseString);
-        
+        //sb = JsonUtility.FromJson<Scoreboard>(responseString);
+        Debug.Log("Retrieved objects from server successfully");
         // asdf 
         Debug.Log("Successfully loaded the leaderboard");
         entryContainer = transform.Find("highscoreEntryContainer");
