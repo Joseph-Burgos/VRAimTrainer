@@ -15,7 +15,7 @@ public class HighscoreTable : MonoBehaviour
     {
         Debug.Log("Starting the leaderboard retrieval process");
         client = new HttpClient();
-        string responseString = await client.GetStringAsync("http://localhost:3456/scores");
+        string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=2");
 
         //HttpResponseMessage response = await client.GetAsync("http://www.contoso.com/");
         //response.EnsureSuccessStatusCode();
