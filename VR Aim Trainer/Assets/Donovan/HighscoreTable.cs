@@ -45,7 +45,7 @@ public class HighscoreTable : MonoBehaviour
             string rankString;
             switch (rank)
             {
-                default: rankString = rank + "TH"; break;
+                default: rankString = rank + "th"; break;
                 case 1: rankString = "1st"; break;
                 case 2: rankString = "2nd"; break;
                 case 3: rankString = "3rd"; break;
