@@ -17,9 +17,6 @@ public class HighscoreTable : MonoBehaviour
         client = new HttpClient();
         string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=2");
 
-        //HttpResponseMessage response = await client.GetAsync("http://www.contoso.com/");
-        //response.EnsureSuccessStatusCode();
-        //string responseBody = await response.Content.ReadAsStringAsync();
         Debug.Log("original response");
         Debug.Log(responseString);
         string formattedResponse = "{\"scores\":" + responseString + "}";
@@ -29,7 +26,6 @@ public class HighscoreTable : MonoBehaviour
         Debug.Log("Retrieved objects from server successfully");
         Debug.Log(sb.ToString());
 
-        // asdf 
         Debug.Log("Successfully loaded the leaderboard");
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
@@ -71,7 +67,7 @@ public class Scoreboard
     {
         string sbout = "";
         foreach (Score score in scores) {
-            string scorerep = $"{score.userID} {score.gameMode} {score.points}\n";
+            string scorerep = $"{score.userName} {score.gameMode} {score.points}\n";
             sbout = sbout + scorerep;
         }
         return sbout;
@@ -80,12 +76,8 @@ public class Scoreboard
 
 [System.Serializable]
 public class Score {
-    public string _id;
-    public string userID;
+    public string userName;
     public string gameMode;
     public string points;
     public string date;
-    public string createdAt;
-    public string updatedAt;
-    public string __v;
 }
