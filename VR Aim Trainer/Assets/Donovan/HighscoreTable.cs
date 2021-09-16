@@ -33,7 +33,7 @@ public class HighscoreTable : MonoBehaviour
         entryTemplate = entryContainer.Find("highscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
 
-        float templateHeight = 20f;
+        float templateHeight = 30f;
         for(int i = 0; i < highScores.Count; i++)
         {
             Transform entryTransform = Instantiate(entryTemplate, entryContainer);
