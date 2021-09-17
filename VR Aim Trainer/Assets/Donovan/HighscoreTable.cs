@@ -32,8 +32,12 @@ public class HighscoreTable : MonoBehaviour
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("HighscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
-        
-        float templateHeight = 0.5f;
+
+        float templateX = -0.6f;
+        float templateZ = 0.5f;
+        float templateY = -0.2f;
+        float Yinterval = -0.5f;
+
         for(int i = 0; i < highScores.Count; i++)
         {
             
@@ -43,7 +47,9 @@ public class HighscoreTable : MonoBehaviour
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
             Debug.Log("about to get a new vector to move");
             Debug.Log(entryRectTransform);
-            entryRectTransform.anchoredPosition3D = new Vector3(0f, -templateHeight * i, 0f);
+            
+            entryRectTransform.anchoredPosition3D = new Vector3(templateX, templateY, templateZ);
+            templateY = templateY + Yinterval;
             Debug.Log("the vector seemed to work");
             entryTransform.gameObject.SetActive(true);
             Debug.Log(string.Format("Successfully loaded the leaderboard {0}", i));
