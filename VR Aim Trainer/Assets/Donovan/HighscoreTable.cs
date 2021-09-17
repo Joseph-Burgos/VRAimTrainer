@@ -28,18 +28,25 @@ public class HighscoreTable : MonoBehaviour
 
         List<Score> highScores = sb.scores;
 
-        //Debug.Log("Successfully loaded the leaderboard");
+        
         entryContainer = transform.Find("highscoreEntryContainer");
-        entryTemplate = entryContainer.Find("highscoreEntryTemplate");
+        entryTemplate = entryContainer.Find("HighscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
-
+        
         float templateHeight = 30f;
         for(int i = 0; i < highScores.Count; i++)
         {
+            
+            
             Transform entryTransform = Instantiate(entryTemplate, entryContainer);
+            Debug.Log(entryTransform);
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-            entryRectTransform.anchoredPosition = new Vector2(0, -templateHeight * i);
+            Debug.Log("about to get a new vector to move");
+            Debug.Log(entryRectTransform);
+            entryRectTransform.anchoredPosition3D = new Vector3(0f, -templateHeight * i, 0f);
+            Debug.Log("the vector seemed to work");
             entryTransform.gameObject.SetActive(true);
+            Debug.Log(string.Format("Successfully loaded the leaderboard {0}", i));
 
             int rank = i + 1;
             string rankString;
@@ -53,13 +60,14 @@ public class HighscoreTable : MonoBehaviour
 
             Score currentScore = highScores[i];
 
-            entryTransform.Find("postText").GetComponent<Text>().text = rankString;
+            //entryTransform.Find("postText").GetComponent<Text>().text = rankString;
             int score = currentScore.points;
             entryTransform.Find("scoreText").GetComponent<Text>().text = score.ToString();
-            string mode = currentScore.gameMode;
-            entryTransform.Find("gameText").GetComponent<Text>().text = mode.ToString();
+            //string mode = currentScore.gameMode;
+            //entryTransform.Find("gameText").GetComponent<Text>().text = mode.ToString();
             string name = currentScore.userName;
             entryTransform.Find("nameText").GetComponent<Text>().text = name;
+            entryTransform.Find("timeText").GetComponent<Text>().text = "12:34";
         }
     }
 }
