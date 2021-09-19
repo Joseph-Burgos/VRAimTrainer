@@ -72,7 +72,7 @@ public class SHOOTTEST : MonoBehaviour
         {
             //Debug.Log(hit.transform.name);
             //store target component thats been hit
-            Target currentTarget = hit.transform.GetComponent<Target>();
+            Target_Parent currentTarget = hit.transform.GetComponent<Target_Parent>();
             //check if we hit an object that actually had a target component
             if(currentTarget != null)
             {
