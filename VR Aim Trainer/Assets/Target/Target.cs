@@ -4,23 +4,8 @@ using UnityEngine;
 
 
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
-public class Target : MonoBehaviour
+public class Target : Target_Parent
 {
-    //audio source to play when target is destroyed
-    [Tooltip("audio source to play when target is destroyed")]
-    public AudioClip hitSound;
-    //particle explosion effect to spawn
-    [Tooltip("effect on destroyed object")]
-    public GameObject burst;
-    //turn off timer when necessary
-    protected bool timerActive = true;
-    //is hit
-    protected bool isHit = false;
-    //max lifetime of target
-    protected int maxLife = 5;
-    //lifetime of target when being added for score
-    protected float time = 0;
-
     // Update is called once per frame
     void Update()
     {
@@ -37,7 +22,7 @@ public class Target : MonoBehaviour
 
 
     //if hit by player weapon, add the target
-    public void hit()
+  public override void hit()  
     {
         //stop timer from recording
         timerActive = false;
