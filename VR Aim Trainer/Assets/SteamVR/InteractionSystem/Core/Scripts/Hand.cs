@@ -20,6 +20,14 @@ namespace Valve.VR.InteractionSystem
     //-------------------------------------------------------------------------
     public class Hand : MonoBehaviour
     {
+        public bool ObjectInHand(){
+            if (attachedObjects.Count > 0){
+                return true;
+            }
+            return false;
+        }
+
+
         // The flags used to determine how an object is attached to the hand.
         [Flags]
         public enum AttachmentFlags
