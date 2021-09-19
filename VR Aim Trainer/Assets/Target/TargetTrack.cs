@@ -28,10 +28,18 @@ public class TargetTrack : Target_Parent
 
     void Update()
     {
+<<<<<<< HEAD
         if(!repeatable){
             float currentDuration = (Time.time - startTime) * speed;
             float journeyFraction = currentDuration / totalDistance;
             this.transform.position = Vector3.Lerp(startPos.position, endPos.position, journeyFraction);
+=======
+        
+        if(totalCount >= 20){
+            Time.timeScale = 0;
+            float timer = hitCount/totalCount;
+            Debug.Log("Accuracy is " + timer);
+>>>>>>> c0880a9be230bf852c21f7f2fcd504d2aa9b71c1
         }
         totalCount+= Time.deltaTime;
 
