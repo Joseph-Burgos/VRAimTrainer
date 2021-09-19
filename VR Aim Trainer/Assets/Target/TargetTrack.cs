@@ -20,7 +20,7 @@ public class TargetTrack : Target_Parent
         if(totalCount >= 20){
             Time.timeScale = 0;
             float timer = hitCount/totalCount;
-            Debug.Log("Accuracy is ", timer);
+            Debug.Log("Accuracy is " + timer);
         }
         totalCount+= Time.deltaTime;
         //Debug.Log("Total Timer: " + totalCount);
