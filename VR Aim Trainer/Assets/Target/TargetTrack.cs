@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TargetTrack : Target_Parent
 {
-    public float hitCount = 3.0f;
-    public float totalCount = 3.0f;
+    public float hitCount = 2.0f;
+    public float totalCount = 2.0f;
 
     public Transform startPos, endPos;
     public bool repeatable = false;
@@ -41,9 +41,10 @@ public class TargetTrack : Target_Parent
         }
     }
     public void StopGame(){
-        float avg = hitCount / totalCount;
-        Debug.Log("Average: " + (avg * 100));
         Time.timeScale = 0;
+        float avg = hitCount / totalCount;
+        Debug.Log("Average: " + (avg * 100) + "%");
+        
     }
     public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time){
         float i = 0.0f;
