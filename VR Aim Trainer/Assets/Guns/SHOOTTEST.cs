@@ -66,6 +66,8 @@ public class SHOOTTEST : MonoBehaviour
 
     private void shoot()
     {
+        FindObjectOfType<AudioManager>().Play("GlockShot");
+
         //store raycast information
         RaycastHit hit;
         if(Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, range))
