@@ -14,9 +14,6 @@ public class PhysicsButton : MonoBehaviour
     private Vector3 _startPos;
     private ConfigurableJoint _joint;
 
-    // Used to change Scenes
-    public string loadLevel;
-
     public UnityEvent onPressed, onReleased;
     // Start is called before the first frame update
     void Start(){
@@ -29,12 +26,11 @@ public class PhysicsButton : MonoBehaviour
     void Update(){
         // checks if button is pressed
         if (!_isPressed && GetValue() + threshold >= 1){
-            // Pressed();
-            SceneManager.LoadScene(loadLevel);
+            Pressed();
         }
         // checks if button is released
         if (_isPressed && GetValue() - threshold <= 0){
-            // Released();
+            Released();
         }
     }
 
