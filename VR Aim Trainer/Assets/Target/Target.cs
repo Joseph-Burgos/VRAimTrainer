@@ -6,6 +6,8 @@ using UnityEngine;
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : Target_Parent
 {
+    // private AudioManager m_AudioManager = FindObjectOfType<AudioManager>();
+
     // Update is called once per frame
     void Update()
     {
@@ -22,15 +24,20 @@ public class Target : Target_Parent
 
 
     //if hit by player weapon, add the target
-  public override void hit()  
+public override void hit()
     {
         //stop timer from recording
         timerActive = false;
-        Debug.Log("time: " + this.time);
+        // Debug.Log("time: " + this.time);
         //add target to list
         TargetManager.addTarget(this);
+
+
         //play audio
-        AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
+        FindObjectOfType<AudioManager>().Play("MetalHit 1");
+        // AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
+
+
         //create a particle
         GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
         //destroy particle upon complete
