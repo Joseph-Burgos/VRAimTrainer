@@ -12,9 +12,11 @@ GameObject:
   - component: {fileID: 8117452460587595483}
   - component: {fileID: 4717064301547638138}
   - component: {fileID: 4318371509310410442}
-  - component: {fileID: -3542403746363413301}
+  - component: {fileID: 4906183823892873408}
+  - component: {fileID: 8953084145861418086}
+  - component: {fileID: 5255246951355923921}
   m_Layer: 0
-  m_Name: TargetTrack
+  m_Name: NavMesh Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +98,29 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-3542403746363413301
+--- !u!195 &4906183823892873408
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488593011251704199}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 69
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 500
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!114 &8953084145861418086
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,14 +129,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 3488593011251704199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32bdb832847e14641a530575eb0af806, type: 3}
+  m_Script: {fileID: 11500000, guid: 7483bd384eb27f34a9bd3162db2fae41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2.7
+--- !u!114 &5255246951355923921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488593011251704199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f38088f91a780147a3f3171e0d3dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
   burst: {fileID: 0}
-  hitCount: 3
-  totalCount: 3
-  startPos: {fileID: 1539818816112561096, guid: f53d0e4e7b0a1e847b124a4e3d03241b, type: 3}
-  endPos: {fileID: 778925274400913174, guid: df907e15273fb984eaa394d2157fb90d, type: 3}
-  repeatable: 1
-  speed: 3
+  hitCount: 1
+  totalCount: 1
+  repeatable: 0
+  speed: 2.77

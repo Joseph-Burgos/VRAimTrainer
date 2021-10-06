@@ -5,32 +5,49 @@ using UnityEngine.Audio;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer audioMixer; 
+    public AudioMixer audioMixer;
 
-    public void IncreaseVolume(){
-        float value;
-        bool result = audioMixer.GetFloat("MasterVolume", out value);
-        if(result){
-            if (value < 20f){
-                audioMixer.SetFloat("MasterVolume", value + 5f);
-            }
-        }        
+    private string m_MasterVolume = "MasterVolume";
+    private float volumeValue;
+
+    void Start(){
+        SetVolume( PlayerPrefs.GetFloat(m_MasterVolume, 0) );
+    }
+
+    private void SaveAudioPref(float volume){
+        PlayerPrefs.SetFloat(m_MasterVolume, volume);
+        PlayerPrefs.Save();
+    }
+
+    public void IncreaseVolume(){ 
+        if (volumeValue < 20f){
+            SetVolume(volumeValue + 5f);
+            Debug.Log(GetVolume());
+        }
     }
 
     public void DecreaseVolume(){
-        float value;
-        bool result = audioMixer.GetFloat("MasterVolume", out value);
-        if(result){
-            if (value > -80f){
-                audioMixer.SetFloat("MasterVolume", value - 5f);
-                Debug.Log(GetVolume());
-            }
+        if (volumeValue > -80f){
+            SetVolume(volumeValue - 5f);
+            Debug.Log(GetVolume());
         }
     }
 
     private float GetVolume(){
         float value;
-        audioMixer.GetFloat("MasterVolume", out value);
+        audioMixer.GetFloat(m_MasterVolume, out value);
         return value;
+    }
+
+    private void SetVolume(float volume){
+        volumeValue = volume;
+
+        audioMixer.SetFloat(m_MasterVolume, volume);
+
+        float value;
+        audioMixer.GetFloat(m_MasterVolume, out value);
+        Debug.Log("Set Volume value: " + value);
+
+        SaveAudioPref(volume);
     }
 }
