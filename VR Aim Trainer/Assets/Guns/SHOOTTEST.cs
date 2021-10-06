@@ -12,6 +12,7 @@ public class SHOOTTEST : MonoBehaviour
     public Transform muzzle;
     public bool useLaser = true;
     public bool constantFire = false;
+    public ParticleSystem muzzleFlash = null;
 
     private bool isActive = false;
     private Interactable interactable;
@@ -66,8 +67,10 @@ public class SHOOTTEST : MonoBehaviour
 
     private void shoot()
     {
+        //play audio
         FindObjectOfType<AudioManager>().Play("GlockShot");
-
+        //play muzzle particle
+        muzzleFlash.Play();
         //store raycast information
         RaycastHit hit;
         if(Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, range))

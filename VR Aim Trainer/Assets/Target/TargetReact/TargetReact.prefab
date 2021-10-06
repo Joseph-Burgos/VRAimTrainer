@@ -109,5 +109,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
-  burst: {fileID: 8851961140035495971, guid: 802269b4ed8a30f40a9b0f89016bf7dc, type: 3}
-  newColor: {r: 1, g: 0, b: 0, a: 1}
+  burst: {fileID: 8851961140035495971, guid: bf79698a7b60b394bb961bb95ae6d626, type: 3}
