@@ -1,12 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.Events;
 
+
+[System.Serializable]
+public class OnHitEvent : UnityEvent<int>
+{
+}
 
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : Target_Parent
 {
-    // private AudioManager m_AudioManager = FindObjectOfType<AudioManager>();
+    public OnHitEvent onHit;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +33,8 @@ public class Target : Target_Parent
     //if hit by player weapon, add the target
 public override void hit()
     {
+        onHit.Invoke(1);
+
         //stop timer from recording
         timerActive = false;
         // Debug.Log("time: " + this.time);
