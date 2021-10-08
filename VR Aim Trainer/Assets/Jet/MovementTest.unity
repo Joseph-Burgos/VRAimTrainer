@@ -3527,6 +3527,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 11465950, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
 --- !u!1 &947095314
@@ -4023,10 +4027,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b2bc231b421428cf923c12bbd0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHead: {fileID: 1547861165}
   input:
     actionPath: /actions/default/in/Move
     needsReinit: 0
-  speed: 1
+  speed: 2
+  gravityMultiplier: 0.7
 --- !u!143 &1128890011
 CharacterController:
   m_ObjectHideFlags: 0
@@ -4044,7 +4050,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.5, z: 0}
+  m_Center: {x: 0, y: 0.58, z: 0}
 --- !u!1 &1340050663
 GameObject:
   m_ObjectHideFlags: 0
@@ -4675,6 +4681,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1547861165 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 429506, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 814398324}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1628234964
 GameObject:
   m_ObjectHideFlags: 0
