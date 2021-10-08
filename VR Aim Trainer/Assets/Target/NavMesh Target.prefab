@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 4318371509310410442}
   - component: {fileID: 4906183823892873408}
   - component: {fileID: 8953084145861418086}
-  - component: {fileID: 5255246951355923921}
   m_Layer: 0
   m_Name: NavMesh Target
   m_TagString: Untagged
@@ -132,22 +131,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7483bd384eb27f34a9bd3162db2fae41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 2.7
---- !u!114 &5255246951355923921
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3488593011251704199}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f38088f91a780147a3f3171e0d3dcf0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
+  hitSound: {fileID: 0}
   burst: {fileID: 0}
-  hitCount: 1
-  totalCount: 1
-  repeatable: 0
-  speed: 2.77
+  hitCount: 2
+  totalCount: 2
+  repeatable: 1
+  speed: 3.94
+  radius: 3.1

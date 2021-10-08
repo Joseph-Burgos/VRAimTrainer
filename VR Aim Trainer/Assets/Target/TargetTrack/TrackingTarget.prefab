@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8117452460587595483}
   - component: {fileID: 4717064301547638138}
   - component: {fileID: 4318371509310410442}
-  - component: {fileID: 6518608822240652973}
+  - component: {fileID: -6265580978470395249}
   m_Layer: 0
-  m_Name: Target
+  m_Name: TrackingTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -96,7 +96,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6518608822240652973
+--- !u!114 &-6265580978470395249
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -105,8 +105,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 3488593011251704199}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 444ddb80ba9119d46a00c4e5ce83e6bd, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f38088f91a780147a3f3171e0d3dcf0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
-  burst: {fileID: 8851961140035495971, guid: 802269b4ed8a30f40a9b0f89016bf7dc, type: 3}
+  hitSound: {fileID: 0}
+  burst: {fileID: 0}
+  hitCount: 1
+  totalCount: 1
+  startPos: {fileID: 8365054290769710418, guid: a920067c997a26444819aa3355dbe55c, type: 3}
+  endPos: {fileID: 8882011070405903032, guid: 1953ac3197098a0468dc5ce989d7924e, type: 3}
+  repeatable: 1
+  speed: 2.77

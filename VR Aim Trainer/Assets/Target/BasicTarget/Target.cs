@@ -34,7 +34,7 @@ public override void hit()
 
 
         //play audio
-        FindObjectOfType<AudioManager>().Play("MetalHit 1");
+        //FindObjectOfType<AudioManager>().Play("MetalHit 1");
         // AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
 
 
