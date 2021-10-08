@@ -12,19 +12,22 @@ public class ScoreManager : MonoBehaviour
         // initialize scoreboard to 0
         m_Score = 0;
         CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
+        Debug.Log("AddToScore - current START score is " + CurrentScore);
         //Debug.Log("Start - exit");
     }
 
    
 
     public void AddToScore(int scoreToBeAdded){
+        CurrentScore = GameObject.Find("Score");
         //Debug.Log("AddToScore - enter");
         if (scoreToBeAdded > 0){
             m_Score += scoreToBeAdded;
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }
-        //Debug.Log("AddToScore - current score is " + m_Score.ToString());
-        //Debug.Log("AddToScore - exit");
+        Debug.Log("AddToScore - current  OBJECT score is " + CurrentScore);
+        Debug.Log("AddToScore - current score is " + m_Score.ToString());
+        Debug.Log("AddToScore - exit");
 
     }
 }
