@@ -25,12 +25,10 @@ public static class SaveManager
             Debug.Log("Save file does not exist, creating");
             Directory.CreateDirectory(dir);
         }
-
         //creates a new player score board
         scoreboard sb = new scoreboard { scores = scores };
         //load old scoreboard
         scoreboard oldSB = Load();
-   
         //check if old scoreboard empty
         if (oldSB != null )
         {
@@ -39,10 +37,8 @@ public static class SaveManager
         }
         //add into list
         sb.scores.Add(ss);
-
         //parse save object into json string format
         string json = JsonUtility.ToJson(sb);
-
         //save
         File.WriteAllText(dir + fileName, json);
     }
@@ -54,7 +50,6 @@ public static class SaveManager
         //creates a new player score board
         scoreboard sb = new scoreboard();
         //PlayerScore ss = new PlayerScore();
-
         if (File.Exists(fullPath))
         {
             string json = File.ReadAllText(fullPath);
@@ -65,10 +60,20 @@ public static class SaveManager
             Debug.Log("SAVE FILE DOES NOT EXIST, RETUNRING NULL");
             return null;
         }
-        
         return sb;
-
     }
+
+    public static void saveScore (int score, string name, int time, string mode) {
+        PlayerScore newScore = new PlayerScore 
+        {
+            gameMode = mode;
+            score = score;
+            time = time;
+            userName = name;
+        }
+        // TODO write to disk
+        // TODO send scores to backend server
+    }    
 }
 
 //create a class of scores so we can save it
