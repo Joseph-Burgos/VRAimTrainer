@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//THIS IS A PLAYERSCORE CLASS. IT CAN BE USED TO CREATE A TEXT FILE
-
-//lets class be savable to a file
+// Allows class be savable to a file. It can also be used to create a text file.
 [System.Serializable]
 public class PlayerScore
 {
@@ -12,9 +10,12 @@ public class PlayerScore
     public string gameMode;
     public int score;
     public int time;
+    public float hits;
+    public int misses;
+    public float accuracy;
 
     public override string ToString()
     {
-        return "GameMode: " + gameMode + "Score: " + score + "Time: " + time;
+        return "Username: " + userName + "GameMode: " + gameMode + "Score: " + score + "Time: " + time;
     }
 }

@@ -13,12 +13,14 @@ public class GameflowManager : MonoBehaviour {
     private Timer timer;
     private ScoreManager scoreManager;
     private TargetManager targetManager;
+    private PlaytimeHistory playtimeHistory;
 
     void Awake () {
         Debug.log("GameflowManager: Awake()");
         state = NOTSTARTED;
         timer = otherGameObject.GetComponent<Timer>();
         targetManager = otherGameObject.GetComponent<TargetManager>();
+        playtimeHistory = otherGameObject.GetComponent<playtimeHistory>();
     }
 
     void Start () {
@@ -33,6 +35,9 @@ public class GameflowManager : MonoBehaviour {
             state = FINISHED;
             saveGameData(); // save game data to server and disk
             // TODO signal target manager that game is finished
+            PlaytimeHistory.calculatePlaytimeHistory();
+            var scoreHistory = PlaytimeHistory.generateScoreData();
+            var accHistory = PlaytimeHistory.generateAccuracyData();
             // TODO expose post game display and menus to player
         }
     }
