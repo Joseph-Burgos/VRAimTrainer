@@ -8,6 +8,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerScore
 {
+    public string userName;
     public string gameMode;
     public int score;
     public int time;
