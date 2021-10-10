@@ -30,4 +30,6 @@ public class ScoreManager : MonoBehaviour
         Debug.Log("AddToScore - exit");
 
     }
+
+    public int getScore() { return m_Score; }
 }
