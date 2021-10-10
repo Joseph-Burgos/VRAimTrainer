@@ -8,27 +8,29 @@ using System.IO;
 public static class SaveManager 
 {
     //make file directory specifically save into assets folder -- i specifically chose joe folder for testing
-    public static string directory = "/Joe/SaveData/";
+    public static string directory = "/SaveData/";
     //file name
-    public static string fileName =  "MyData.txt";
-    //create an empty list to add onto
-    public static List<PlayerScore> scores = new List<PlayerScore>();
+    public static string fileName =  "SavedData.txt";
+    // history of each score on machine
+    public static List<PlayerScore> scoreHistory = new List<PlayerScore>();
+    // API endpoint
+    private static APIendpoint = "https://localhost:9000/score/add";
 
     // add a given score to the list of files
-    public static void addScore(PlayerScore ss)
+    public static void RetrieveAndAddScore(PlayerScore ss)
     {
         //get directory of file
         string dir = Application.dataPath + directory;
-        //check if exists
+        //check if exists, if not create it
         if (!Directory.Exists(dir))
         {
             Debug.Log("Save file does not exist, creating");
             Directory.CreateDirectory(dir);
         }
         //creates a new player score board
-        scoreboard sb = new scoreboard { scores = scores };
+        Scoreboard sb = new Scoreboard { scores = scores };
         //load old scoreboard
-        scoreboard oldSB = Load();
+        Scoreboard oldSB = Load();
         //check if old scoreboard empty
         if (oldSB != null )
         {
@@ -37,18 +39,19 @@ public static class SaveManager
         }
         //add into list
         sb.scores.Add(ss);
+        scores = sb.scores;
         //parse save object into json string format
         string json = JsonUtility.ToJson(sb);
-        //save
+        //save back to disk
         File.WriteAllText(dir + fileName, json);
     }
 
-    public static scoreboard Load()
+    public static scoreboard LoadScores()
     {
         //get file path 
         string fullPath = Application.dataPath + directory + fileName;
         //creates a new player score board
-        scoreboard sb = new scoreboard();
+        Scoreboard sb = new Scoreboard();
         //PlayerScore ss = new PlayerScore();
         if (File.Exists(fullPath))
         {
@@ -57,10 +60,23 @@ public static class SaveManager
         }
         else
         {
-            Debug.Log("SAVE FILE DOES NOT EXIST, RETUNRING NULL");
+            Debug.Log("SAVE FILE DOES NOT EXIST, RETURNING NULL");
             return null;
         }
         return sb;
+    }
+
+    public static List<PlayerScore> getScoreHistory() { return scores; }
+
+    public static void sendScore(PlayerScore newPlayerScore) {
+        client = new HttpClient();
+        string request = API + "?" + "user=" + newPlayerScore.userName + "&score=" + 
+            newPlayerScore.score + "&time=" + newPlayerScore.time + "&mode=" + newPlayerScore.gameMode;
+        string responseString = await client.GetStringAsync(); // TODO handle no connection
+        if (!responseString) {
+            Debug.log("An error occurred contacting server. Scores were not saved.")
+        }
+
     }
 
     public static void saveScore (int score, string name, int time, string mode) {
@@ -71,13 +87,13 @@ public static class SaveManager
             time = time;
             userName = name;
         }
-        // TODO write to disk
-        // TODO send scores to backend server
+        RetrieveAndAddScore(newScore); // write to disk
+        sendScore(newScore);
     }    
 }
 
 //create a class of scores so we can save it
-public class scoreboard
+public class Scoreboard
 {
     public List<PlayerScore> scores;
 }
