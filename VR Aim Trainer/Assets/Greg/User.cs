@@ -40,4 +40,8 @@ public static class User
     // returns necessary user data, will require a pin
 
     // TODO method to generate a random name
+
+    // TODO method to load user data from disk
+
+    // TODO method to write user data to disk
 }
