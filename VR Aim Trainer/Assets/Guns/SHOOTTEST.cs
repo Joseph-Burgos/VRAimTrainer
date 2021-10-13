@@ -87,12 +87,6 @@ public class SHOOTTEST : MonoBehaviour
 
     private void shoot()
     {
-<<<<<<< HEAD
-        //play audio
-        //FindObjectOfType<AudioManager>().Play("GlockShot");
-        //play muzzle particle
-        muzzleFlash.Play();
-=======
         //run if constant fire is off
         if (!constantFire)
         {  
@@ -111,7 +105,6 @@ public class SHOOTTEST : MonoBehaviour
             }
         }
   
->>>>>>> b01096f5ce626d4ed4d8e97afc16b758a356bea7
         //store raycast information
         RaycastHit hit;
         if(Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, RayCastRange))
