@@ -8,7 +8,8 @@ public class PlayerController : MonoBehaviour
 {
     public Transform playerHead; 
     public SteamVR_Action_Vector2 input;
-    public float speed = 1;
+    public float walkSpeed = 1;
+    public float runSpeed = 2;
     public float gravityMultiplier = 1;
     private CharacterController characterController;
 
@@ -28,6 +29,7 @@ public class PlayerController : MonoBehaviour
         // calculate gravity
         Vector3 gravity = new Vector3(0, 9.81f, 0) * Time.deltaTime * gravityMultiplier;
         // apply direction and gravity to the character controller
+        float speed = walkSpeed;
         characterController.Move(speed * Time.deltaTime * Vector3.ProjectOnPlane(moveDirection, Vector3.up) - gravity);
         // FIXME: Hands collide with the playerController
     }
