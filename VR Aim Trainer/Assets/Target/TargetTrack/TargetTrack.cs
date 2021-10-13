@@ -20,6 +20,8 @@ public class TargetTrack : Target_Parent
     public float hitCount = 2.0f;
     public float totalCount = 2.0f;
 
+<<<<<<< HEAD
+=======
     //public Transform startPos, endPos;
     public bool repeatable = false;
     public float speed = 1.0f;
@@ -32,6 +34,7 @@ public class TargetTrack : Target_Parent
     //         yield return RepeatLerp(endPos.position, startPos.position, 3.0f);
     //     }
     // }
+>>>>>>> b01096f5ce626d4ed4d8e97afc16b758a356bea7
 
     void Start()
     {
@@ -41,12 +44,16 @@ public class TargetTrack : Target_Parent
     }
     void Update()
     {
+<<<<<<< HEAD
+        
+=======
         if (!repeatable)
         {
         float currentDuration = (Time.time - startTime) * speed;
         float journeyFraction = currentDuration / totalDistance;
         // this.transform.position = Vector3.Lerp(startPos.position, endPos.position, journeyFraction);
         }
+>>>>>>> b01096f5ce626d4ed4d8e97afc16b758a356bea7
         totalCount+= Time.deltaTime;
 
         if(totalCount >= 200)
@@ -117,6 +124,8 @@ public class TargetTrack : Target_Parent
         Debug.Log("Average: " + (avg * 100) + "%");
         
     }
+<<<<<<< HEAD
+=======
     // public IEnumerator RepeatLerp(Vector3 a, Vector3 b, float time){
     //     float i = 0.0f;
     //     float rate = (1.0f / time) * speed;
@@ -131,5 +140,6 @@ public class TargetTrack : Target_Parent
     {
         Current_Mat.color = c;
     }
+>>>>>>> b01096f5ce626d4ed4d8e97afc16b758a356bea7
     
 }
