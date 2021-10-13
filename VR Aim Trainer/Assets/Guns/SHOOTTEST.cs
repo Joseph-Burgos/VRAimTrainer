@@ -68,7 +68,7 @@ public class SHOOTTEST : MonoBehaviour
     private void shoot()
     {
         //play audio
-        FindObjectOfType<AudioManager>().Play("GlockShot");
+        //FindObjectOfType<AudioManager>().Play("GlockShot");
         //play muzzle particle
         muzzleFlash.Play();
         //store raycast information

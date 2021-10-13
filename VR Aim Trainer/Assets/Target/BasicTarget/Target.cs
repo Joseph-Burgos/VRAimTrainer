@@ -44,7 +44,7 @@ public override void hit()
 
         //play audio
         //FindObjectOfType<AudioManager>().Play("MetalHit 1");
-        // AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
+        //AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
 
 
         //create a particle
