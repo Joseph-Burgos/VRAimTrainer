@@ -33,8 +33,6 @@ public class Target : Target_Parent
     //if hit by player weapon, add the target
 public override void hit()
     {
-        onHit.Invoke(1);
-
         //stop timer from recording
         timerActive = false;
         // Debug.Log("time: " + this.time);
@@ -51,6 +49,8 @@ public override void hit()
         GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
         //destroy particle upon complete
         Destroy(burstObject, 1f);
+
+        onHit.Invoke(100);
     }
 
 
