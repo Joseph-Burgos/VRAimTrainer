@@ -6,36 +6,39 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    bool active = true;
-    float currentTime = 0f;
-    float defaultInitialTime = 10f; // TODO take as parameter
+    bool active = true; // Indicates timer is running (game has been started and is not paused or finished)
+    float currentTime = 0f; // Time that will be displayed in the timer
 
-    [SerializeField] GameObject timerDisplay;
-    TextMeshProUGUI countdownText;
-    [SerializeField] float initialTime;
+    [SerializeField] GameObject timerDisplay; // object containing TMPro component 
+    [SerializeField] float initialTime = 10f; // FIXME can this be a parameter somehow?
 
     void Awake() {
-        // retrieve the timerDisplay object and the countdownText
+        Debug.Log("Timer: Awake()");
+        active = false; // FIXME delete, for debug
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        initialTime = defaultInitialTime;
-        currentTime = initialTime; // TODO fix me this is bad
-        // retrieve   
+        Debug.Log("Timer: Start()");
+        currentTime = initialTime;
+        // retrieve the countdownText from the timerDisplay and update it
+        timerDisplay.GetComponent<TMPro.TextMeshPro>().text = "fooz";
+        // currentTime.ToString("0");
     }
 
     // Update is called once per frame
     void Update()
     {
+        // Debug.Log("Timer: Update()");
         if (active) {
-            currentTime -= 1 * Time.deltaTime;
-            timerText.text = currentTime.ToString("0");
+            currentTime -= 1 * Time.deltaTime; // decrement timer
+            timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0"); 
 
             if (currentTime <= 0)
             {
                 currentTime = 0;
+                active = false;  // Game is over
             }
         }
     }

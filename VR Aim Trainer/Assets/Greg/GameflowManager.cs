@@ -31,7 +31,7 @@ public class GameflowManager : MonoBehaviour {
     }
 
     void Update () {
-        Debug.Log("Update()");
+        // Debug.Log("GameflowManager: Update()");
         // if (!timer.timeLeft()) {
             // Debug.log("GameflowManager: Update(): Game Over!");
             // state = FINISHED;
