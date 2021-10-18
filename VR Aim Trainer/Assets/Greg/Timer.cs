@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class Timer : MonoBehaviour
 {
@@ -14,26 +15,27 @@ public class Timer : MonoBehaviour
 
     void Awake() {
         Debug.Log("Timer: Awake()");
-        active = false; // FIXME delete, for debug
+        // active = false; // FIXME delete, for debug
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Timer: Start()");
-        currentTime = initialTime;
+        Debug.Log("Timer: Start()" + Convert.ToString(initialTime));
+        currentTime = initialTime; // set the length of game
         // retrieve the countdownText from the timerDisplay and update it
-        timerDisplay.GetComponent<TMPro.TextMeshPro>().text = "fooz";
+        timerDisplay.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(currentTime);
         // currentTime.ToString("0");
+        Debug.Log("Timer - Start(): current time is " + Convert.ToString(currentTime));
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Debug.Log("Timer: Update()");
+        Debug.Log("Timer - Update(): current time is " + Convert.ToString(currentTime));
         if (active) {
             currentTime -= 1 * Time.deltaTime; // decrement timer
-            timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0"); 
+            timerDisplay.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(currentTime); 
 
             if (currentTime <= 0)
             {

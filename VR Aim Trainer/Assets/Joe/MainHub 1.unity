@@ -11678,7 +11678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerDisplay: {fileID: 1114401957}
-  initialTime: 0
+  initialTime: 100
 --- !u!114 &1339540875
 MonoBehaviour:
   m_ObjectHideFlags: 0
