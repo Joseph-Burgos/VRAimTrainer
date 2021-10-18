@@ -14,7 +14,6 @@ public class Timer : MonoBehaviour
 
     void Awake() {
         Debug.Log("Timer: Awake()");
-        // active = false; // FIXME delete, for debug
     }
 
     // Start is called before the first frame update
@@ -59,7 +58,7 @@ public class Timer : MonoBehaviour
 
     public void Stop () { active = false; }
 
-    public void Resume () { active = true; }
+    public void Start () { active = true; }
 
 
 }
