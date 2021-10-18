@@ -22,22 +22,23 @@ public static class User
     // METHODS
     // getter for username
     public static string getUsername() { return userName; }
+    
     // setter for username
-    // TODO handle exceptions here
     private static void setUsername(string newName) { userName = newName; }
+    
     // getter for auth token or simple PIN
     public static string getToken() { return userToken; }
+    
     // setter for auth token or simple PIN
-    // TODO handle exceptions here
     private static void setToken(string newToken) { userToken = newToken; }
+    
     // getter for userID
     public static string getUserID() { return userID; }
+    
     // setter for auth token or simple PIN
-    // TODO handle exceptions here
     private static void setUserID(string newUserID) { userToken = newToken; }
 
-    // TODO contact server to request sign-in
-    // returns necessary user data, will require a pin
+    // TODO contact server to request sign-in returns necessary user data, will require a pin
 
     // TODO method to generate a random name
 

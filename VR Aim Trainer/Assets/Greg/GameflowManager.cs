@@ -24,8 +24,9 @@ public class GameflowManager : MonoBehaviour {
     }
 
     void Start () {
-        // TODO add and start a countdown timer
+        // add and start a countdown timer
         Debug.log("GameflowManager: Start()");
+        timer.Resume();
         state = RUNNING;
     }
 
@@ -34,7 +35,7 @@ public class GameflowManager : MonoBehaviour {
             Debug.log("GameflowManager: Update(): Game Over!");
             state = FINISHED;
             saveGameData(); // save game data to server and disk
-            // TODO signal target manager that game is finished
+            // signal target manager that game is finished
             PlaytimeHistory.calculatePlaytimeHistory();
             var scoreHistory = PlaytimeHistory.generateScoreData();
             var accHistory = PlaytimeHistory.generateAccuracyData();
