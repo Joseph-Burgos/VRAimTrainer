@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CountdownTimer : MonoBehaviour
+public class Timer : MonoBehaviour
 {
     bool active = true;
     float currentTime = 0f;
