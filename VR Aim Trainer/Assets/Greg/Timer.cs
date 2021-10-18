@@ -6,7 +6,7 @@ using TMPro;
 
 public class Timer : MonoBehaviour
 {
-    bool active = true; // Indicates timer is running (game has been started and is not paused or finished)
+    bool active = false; // Indicates timer is running (game has been started and is not paused or finished)
     float currentTime = 0f; // Time that will be displayed in the timer
 
     [SerializeField] GameObject timerDisplay; // object containing TMPro component 

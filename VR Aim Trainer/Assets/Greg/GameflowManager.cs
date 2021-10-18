@@ -30,6 +30,7 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("GameflowManager: Start() - grabbing timer");
         // Get the timer from the GameSystem object
         timer = GameSystem.GetComponent<Timer>();
+        timer.StartTimer();
         Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         // state = RUNNING;
     }
