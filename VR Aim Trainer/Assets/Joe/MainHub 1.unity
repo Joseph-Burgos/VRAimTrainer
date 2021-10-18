@@ -11666,6 +11666,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherGameObject: {fileID: 0}
+  GameSystem: {fileID: 1339540872}
 --- !u!114 &1339540874
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,8 +10,9 @@ using UnityEngine;
 
 public class GameflowManager : MonoBehaviour {
     // private StateType state;
-    // public GameObject otherGameObject;
-    // private Timer timer;
+    public GameObject otherGameObject;
+    [SerializeField] GameObject GameSystem;
+    private Timer timer;
     // private ScoreManager scoreManager;
     // private TargetManager targetManager;
     // private PlaytimeHistory playtimeHistory;
@@ -19,14 +20,17 @@ public class GameflowManager : MonoBehaviour {
     void Awake () {
         Debug.Log("GameflowManager: Awake()");
         // state = NOTSTARTED;
-        // timer = otherGameObject.GetComponent<Timer>();
+        
         // targetManager = otherGameObject.GetComponent<TargetManager>();
         // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
     }
 
     void Start () {
         // TODO add and start a countdown timer
-        Debug.Log("GameflowManager: Start()");
+        Debug.Log("GameflowManager: Start() - grabbing timer");
+        // Get the timer from the GameSystem object
+        timer = GameSystem.GetComponent<Timer>();
+        Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         // state = RUNNING;
     }
 
