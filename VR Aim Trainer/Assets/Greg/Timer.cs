@@ -8,7 +8,7 @@ public class CountdownTimer : MonoBehaviour
 {
     bool active = true;
     float currentTime = 0f;
-    float defaultInitialTime = 10f; 
+    float defaultInitialTime = 10f; // TODO take as parameter
 
     [SerializeField] Text countdownText;
     [SerializeField] float initialTime;
