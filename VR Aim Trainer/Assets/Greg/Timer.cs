@@ -56,9 +56,9 @@ public class Timer : MonoBehaviour
         return initialTime;
     }
 
-    public void Stop () { active = false; }
+    public void StopTimer () { active = false; }
 
-    public void Start () { active = true; }
+    public void StartTimer () { active = true; }
 
 
 }
