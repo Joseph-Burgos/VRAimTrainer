@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
 public class Timer : MonoBehaviour
 {
@@ -21,21 +20,19 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Timer: Start()" + Convert.ToString(initialTime));
+        Debug.Log("Timer: Start()" + currentTime.ToString("0"));
         currentTime = initialTime; // set the length of game
         // retrieve the countdownText from the timerDisplay and update it
-        timerDisplay.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(currentTime);
-        // currentTime.ToString("0");
-        Debug.Log("Timer - Start(): current time is " + Convert.ToString(currentTime));
+        timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0");
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Timer - Update(): current time is " + Convert.ToString(currentTime));
+        Debug.Log("Timer - Update(): current time is " + currentTime.ToString("0"));
         if (active) {
             currentTime -= 1 * Time.deltaTime; // decrement timer
-            timerDisplay.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(currentTime); 
+            timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0"); 
 
             if (currentTime <= 0)
             {
