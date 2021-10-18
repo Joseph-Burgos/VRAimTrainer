@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Timer : MonoBehaviour
 {
@@ -9,14 +10,20 @@ public class Timer : MonoBehaviour
     float currentTime = 0f;
     float defaultInitialTime = 10f; // TODO take as parameter
 
-    [SerializeField] Text countdownText;
+    [SerializeField] GameObject timerDisplay;
+    TextMeshProUGUI countdownText;
     [SerializeField] float initialTime;
+
+    void Awake() {
+        // retrieve the timerDisplay object and the countdownText
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         initialTime = defaultInitialTime;
-        currentTime = initialTime;   
+        currentTime = initialTime; // TODO fix me this is bad
+        // retrieve   
     }
 
     // Update is called once per frame
@@ -24,7 +31,7 @@ public class Timer : MonoBehaviour
     {
         if (active) {
             currentTime -= 1 * Time.deltaTime;
-            countdownText.text = currentTime.ToString("0");
+            timerText.text = currentTime.ToString("0");
 
             if (currentTime <= 0)
             {

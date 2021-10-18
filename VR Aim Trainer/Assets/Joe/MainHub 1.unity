@@ -8297,7 +8297,7 @@ GameObject:
   - component: {fileID: 1114401960}
   - component: {fileID: 1114401959}
   m_Layer: 0
-  m_Name: Time
+  m_Name: TimeDisplay
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11653,6 +11653,32 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6363470064638221326, guid: 0435810d721f859448227823fb6ed184, type: 3}
   m_PrefabInstance: {fileID: 6363470064774482055}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1339540873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339540872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 330ce17d8f4964d46ab077e2a81c6174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1339540874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339540872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d88a1dcd91a34285987849e26d087ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timerContainer: {fileID: 2134101528}
+  initialTime: 0
 --- !u!114 &1339540875
 MonoBehaviour:
   m_ObjectHideFlags: 0
