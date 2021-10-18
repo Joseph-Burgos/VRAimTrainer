@@ -13,13 +13,13 @@ public class Timer : MonoBehaviour
     [SerializeField] float initialTime = 10f; // FIXME can this be a parameter somehow?
 
     void Awake() {
-        Debug.Log("Timer: Awake()");
+        // Debug.Log("Timer: Awake()");
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("Timer: Start()" + currentTime.ToString("0"));
+        // Debug.Log("Timer: Start()" + currentTime.ToString("0"));
         currentTime = initialTime; // set the length of game
         // retrieve the countdownText from the timerDisplay and update it
         timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0");
@@ -28,7 +28,7 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Timer - Update(): current time is " + currentTime.ToString("0"));
+        // Debug.Log("Timer - Update(): current time is " + currentTime.ToString("0"));
         if (active) {
             currentTime -= 1 * Time.deltaTime; // decrement timer
             timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0"); 
