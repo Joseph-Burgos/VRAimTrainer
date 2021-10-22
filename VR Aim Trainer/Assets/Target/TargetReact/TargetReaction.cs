@@ -12,8 +12,6 @@ public class TargetReaction : Target
         Invoke("expire", maxLife);
     }
 
-
-
     //when time runs out, add target with the max amount of time
     private void expire()
     {
