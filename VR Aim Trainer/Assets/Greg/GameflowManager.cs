@@ -66,12 +66,12 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("We are in the Pause() function. Game state is " + state);
         if (state == StateType.RUNNING) {
             state = StateType.PAUSED;
-            // timer.Stop();
+            timer.StopTimer();
         //     targetManager.pause(); 
             // TODO pause targets
         } else if (state == StateType.PAUSED) {
             state = StateType.RUNNING;
-            // timer.Resume();
+            timer.StartTimer();
             // targetManager.Resume();
             // TODO unpause targets
         }
