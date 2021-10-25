@@ -13,8 +13,9 @@ public class GameflowManager : MonoBehaviour {
     public StateType state;
     public GameObject otherGameObject;
     [SerializeField] GameObject GameSystem;
+    [SerializeField] GameObject TargetManager;
     private Timer timer;
-    // private TargetManager targetManager;
+    private TargetManager targetManager;
     // private ScoreManager scoreManager;
     
     // private PlaytimeHistory playtimeHistory;
@@ -23,7 +24,6 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("GameflowManager: Awake()");
         state = StateType.NOTSTARTED;
         
-        // targetManager = otherGameObject.GetComponent<TargetManager>();
         // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
     }
 
@@ -32,6 +32,8 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("GameflowManager: Start() - grabbing timer");
         // Get the timer from the GameSystem object
         timer = GameSystem.GetComponent<Timer>();
+        // Get the target manager from the GameManager object
+        targetManager = TargetManager.GetComponent<TargetManager>();
         timer.StartTimer();
         Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         state = StateType.RUNNING;
