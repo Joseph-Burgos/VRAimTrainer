@@ -1,15 +1,22 @@
 using UnityEngine;
-// using System;
+using System.Collections;
 
-// public enum StateType {
-//     NOTSTARTED, // Game hasn't yet started
-//     RUNNING, // Game is active, time remains on the clock, and we are not PAUSED
-//     PAUSED, // Player has activated the PAUSED mode, time is suspended, as are targets
-//     FINISHED // Game is over, time has expired
-// }
+
 
 public class GameflowManager : MonoBehaviour {
-    // private StateType state;
+    public enum StateType {
+        NOTSTARTED, 
+        RUNNING, 
+        PAUSED, 
+        FINISHED
+    };
+    // public enum StateType {
+    //     NOTSTARTED, // Game hasn't yet started
+    //     RUNNING, // Game is active, time remains on the clock, and we are not PAUSED
+    //     PAUSED, // Player has activated the PAUSED mode, time is suspended, as are targets
+    //     FINISHED // Game is over, time has expired
+    // }
+    public StateType state;
     public GameObject otherGameObject;
     [SerializeField] GameObject GameSystem;
     private Timer timer;
@@ -19,7 +26,7 @@ public class GameflowManager : MonoBehaviour {
 
     void Awake () {
         Debug.Log("GameflowManager: Awake()");
-        // state = NOTSTARTED;
+        state = StateType.NOTSTARTED;
         
         // targetManager = otherGameObject.GetComponent<TargetManager>();
         // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
@@ -32,7 +39,7 @@ public class GameflowManager : MonoBehaviour {
         timer = GameSystem.GetComponent<Timer>();
         timer.StartTimer();
         Debug.Log("GameflowManager: Start() - successfully grabbed timer");
-        // state = RUNNING;
+        state = StateType.RUNNING;
     }
 
     void Update () {
@@ -51,17 +58,17 @@ public class GameflowManager : MonoBehaviour {
 
     void Pause () {
         Debug.Log("We are in the Pause() function.");
-        // if (state == RUNNING) {
-        //     state = PAUSED;
-        //     timer.Stop();
+        if (state == StateType.RUNNING) {
+            state = StateType.PAUSED;
+            // timer.Stop();
         //     targetManager.pause(); 
-        //     // TODO pause targets
-        // } else if (state == PAUSED) {
-        //     state = RUNNING;
-        //     timer.Resume();
-        //     targetManager.Resume();
-        //     // TODO unpause targets
-        // }
+            // TODO pause targets
+        } else if (state == StateType.PAUSED) {
+            state = StateType.RUNNING;
+            // timer.Resume();
+            // targetManager.Resume();
+            // TODO unpause targets
+        }
     }
 
     public void saveGameData () {
