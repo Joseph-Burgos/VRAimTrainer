@@ -11,7 +11,6 @@ public class GameflowManager : MonoBehaviour {
         FINISHED // Game is over, time has expired
     };
     public StateType state;
-    public GameObject otherGameObject;
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
     private Timer timer;
