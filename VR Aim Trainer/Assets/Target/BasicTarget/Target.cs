@@ -31,7 +31,7 @@ public class Target : Target_Parent
 
 
     //if hit by player weapon, add the target
-public override void hit()
+    public override void hit()
     {
         //stop timer from recording
         timerActive = false;
@@ -53,7 +53,14 @@ public override void hit()
         onHit.Invoke(100);
     }
 
-
+    public void pause() 
+    {
+        if (timerActive) {
+            timerActive = false;
+        } else {
+            timerActive = true;
+        }
+    }
 
     ////when target is no longer needed, add to array in target  manager for score
     //protected void addTarget()
