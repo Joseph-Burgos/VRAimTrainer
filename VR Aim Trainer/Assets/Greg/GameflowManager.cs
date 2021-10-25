@@ -5,23 +5,18 @@ using System.Collections;
 
 public class GameflowManager : MonoBehaviour {
     public enum StateType {
-        NOTSTARTED, 
-        RUNNING, 
-        PAUSED, 
-        FINISHED
+        NOTSTARTED, // Game hasn't yet started
+        RUNNING, // Game is active, time remains on the clock, and we are not PAUSED
+        PAUSED, // Player has activated the PAUSED mode, time is suspended, as are targets
+        FINISHED // Game is over, time has expired
     };
-    // public enum StateType {
-    //     NOTSTARTED, // Game hasn't yet started
-    //     RUNNING, // Game is active, time remains on the clock, and we are not PAUSED
-    //     PAUSED, // Player has activated the PAUSED mode, time is suspended, as are targets
-    //     FINISHED // Game is over, time has expired
-    // }
     public StateType state;
     public GameObject otherGameObject;
     [SerializeField] GameObject GameSystem;
     private Timer timer;
-    // private ScoreManager scoreManager;
     // private TargetManager targetManager;
+    // private ScoreManager scoreManager;
+    
     // private PlaytimeHistory playtimeHistory;
 
     void Awake () {
@@ -47,11 +42,12 @@ public class GameflowManager : MonoBehaviour {
         if (!timer.timeLeft()) {
             Debug.Log("GameflowManager: Update(): Game Over!");
             state = StateType.FINISHED;
-            // saveGameData(); // save game data to server and disk
+            
             // TODO signal target manager that game is finished
             // PlaytimeHistory.calculatePlaytimeHistory();
             // var scoreHistory = PlaytimeHistory.generateScoreData();
             // var accHistory = PlaytimeHistory.generateAccuracyData();
+            // saveGameData(); // TODO save game data to server and disk
             // TODO expose post game display and menus to player
         }
 
