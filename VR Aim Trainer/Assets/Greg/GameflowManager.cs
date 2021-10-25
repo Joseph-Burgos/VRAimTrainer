@@ -44,20 +44,26 @@ public class GameflowManager : MonoBehaviour {
 
     void Update () {
         // Debug.Log("GameflowManager: Update()");
-        // if (!timer.timeLeft()) {
-            // Debug.log("GameflowManager: Update(): Game Over!");
-            // state = FINISHED;
+        if (!timer.timeLeft()) {
+            Debug.Log("GameflowManager: Update(): Game Over!");
+            state = StateType.FINISHED;
             // saveGameData(); // save game data to server and disk
             // TODO signal target manager that game is finished
             // PlaytimeHistory.calculatePlaytimeHistory();
             // var scoreHistory = PlaytimeHistory.generateScoreData();
             // var accHistory = PlaytimeHistory.generateAccuracyData();
             // TODO expose post game display and menus to player
-        // }
+        }
+
+        // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS
+        if (Input.GetKeyDown(KeyCode.P)) {
+            Pause();
+
+        }
     }
 
     void Pause () {
-        Debug.Log("We are in the Pause() function.");
+        Debug.Log("We are in the Pause() function. Game state is " + state);
         if (state == StateType.RUNNING) {
             state = StateType.PAUSED;
             // timer.Stop();
@@ -79,4 +85,5 @@ public class GameflowManager : MonoBehaviour {
         // int time = timer.getInitialTime();
         // SaveManager.saveScore(score, userName, time, mode);
     }
+
 }
