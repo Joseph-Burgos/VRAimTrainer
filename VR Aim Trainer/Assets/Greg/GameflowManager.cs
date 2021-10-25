@@ -13,6 +13,8 @@ public class GameflowManager : MonoBehaviour {
     public StateType state;
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
+
+    [SerializeField] GameObject VisualFeedback; 
     private Timer timer;
     private TargetManager targetManager;
     // private ScoreManager scoreManager;
@@ -51,6 +53,7 @@ public class GameflowManager : MonoBehaviour {
             // var accHistory = PlaytimeHistory.generateAccuracyData();
             // saveGameData(); // TODO save game data to server and disk
             // TODO expose post game display and menus to player
+            VisualFeedback.SetActive(true);
         }
 
         // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS
