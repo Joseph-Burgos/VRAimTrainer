@@ -44,7 +44,8 @@ public class GameflowManager : MonoBehaviour {
             Debug.Log("GameflowManager: Update(): Game Over!");
             state = StateType.FINISHED;
             
-            // TODO signal target manager that game is finished
+            // signal target manager that game is finished
+            targetManager.keepUpdating = false;
             // PlaytimeHistory.calculatePlaytimeHistory();
             // var scoreHistory = PlaytimeHistory.generateScoreData();
             // var accHistory = PlaytimeHistory.generateAccuracyData();
