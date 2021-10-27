@@ -23,6 +23,15 @@ public class SHOOTTEST : MonoBehaviour
     public bool useLaser = true;
     public bool constantFire = false;
 
+    [Header("game environment objects")]
+    [SerializeField] GameObject GameSystem;
+    private ScoreManager scoreManager;
+
+    private void Awake()
+    {
+        scoreManager = GameSystem.GetComponent<ScoreManager>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -87,6 +96,7 @@ public class SHOOTTEST : MonoBehaviour
 
     private void shoot()
     {
+        scoreManager.AddToShots();
         //run if constant fire is off
         if (!constantFire)
         {  
