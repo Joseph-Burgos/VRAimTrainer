@@ -12,8 +12,9 @@ public static class SaveManager
     //file name with saved data
     public static string savefileName =  "MyData.txt";
     //create an empty list to add onto
-    public static List<PlayerScore> playerScoreList = null;
     public static SavedDataObject savedDataObject = null;
+    public static List<PlayerScore> playerScoreList = null;
+    
 
     // Saves a playerscore to disk.
     public static void addScore(PlayerScore ss)
