@@ -25,14 +25,14 @@ public class SaveScore : MonoBehaviour
         //if down, load the score file
         if (Input.GetKeyDown("down"))
         {
-            //load data
-            scores = SaveManager.Load().scores;
-            //print if exists
-            if (scores != null)
-            {
-                Debug.Log("Scores:");
-                foreach (PlayerScore score in scores) { Debug.Log(score.ToString()); }
-            }
+            // //load data
+            // scores = SaveManager.Load().scores;
+            // //print if exists
+            // if (scores != null)
+            // {
+            //     Debug.Log("Scores:");
+            //     foreach (PlayerScore score in scores) { Debug.Log(score.ToString()); }
+            // }
             
 
         }
