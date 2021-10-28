@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+// using UnityEngine.IO;
 
 /* 
 * This class is based on a feature developed by Code Monkey.
@@ -21,18 +22,25 @@ public class Graph : MonoBehaviour {
 
     private List<GameObject> gameObjectList; 
     private void Awake() {
-        graphContainer = transform.Find("graphContainer").GetComponent<RectTransform>();
-        labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
-        labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
-        dashTemplateX = graphContainer.Find("dashTemplateX").GetComponent<RectTransform>();
-        dashTemplateY = graphContainer.Find("dashTemplateY").GetComponent<RectTransform>();
+        Debug.Log("Graph is awake!");
+        graphContainer = transform.Find("GraphContainer").GetComponent<RectTransform>();
+        Debug.Log("Graph container is found!");
+        // labelTemplateX = graphContainer.Find("labelTemplateX").GetComponent<RectTransform>();
+        // labelTemplateY = graphContainer.Find("labelTemplateY").GetComponent<RectTransform>();
+        // dashTemplateX = graphContainer.Find("dashTemplateX").GetComponent<RectTransform>();
+        // dashTemplateY = graphContainer.Find("dashTemplateY").GetComponent<RectTransform>();
 
-        gameObjectList = new List<GameObject>();
-        List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17 };
-        ShowGraph(valueList, (int _i) => "Game " + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));
+        // gameObjectList = new List<GameObject>();
+        // List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17 };
+        // ShowGraph(valueList, (int _i) => "Game " + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));
+
+        // Testing
+        CreateCircle(new Vector2(200, 200));
+        Debug.Log("We created a new circle!!!");
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition) {
+        Debug.Log("Entering create circle");
         GameObject gameObject = new GameObject("circle", typeof(Image));
         gameObject.transform.SetParent(graphContainer, false);
         gameObject.GetComponent<Image>().sprite = circleSprite;
@@ -41,6 +49,7 @@ public class Graph : MonoBehaviour {
         rectTransform.sizeDelta = new Vector2(11, 11);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
+        Debug.Log("LEaving create circle");
         return gameObject;
     }
 
