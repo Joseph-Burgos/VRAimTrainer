@@ -12,7 +12,7 @@ public class ScoreManager : MonoBehaviour
         CurrentScore = GameObject.Find("Score");
         // initialize scoreboard to 0
         m_Score = 0;
-        m_Misses = 0;
+        m_Shots = 0;
         CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         Debug.Log("AddToScore - current START score is " + CurrentScore);
         //Debug.Log("Start - exit");
