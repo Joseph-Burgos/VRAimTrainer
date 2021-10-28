@@ -51,11 +51,11 @@ public class Graph : MonoBehaviour {
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         Vector2 dir = (dotPositionB - dotPositionA).normalized;
         float distance = Vector2.Distance(dotPositionA, dotPositionB);
-        rectTransform.anchorMin = new Vector2(0, 0);
+        rectTransform.anchorMin = new Vector2(0, 0); 
         rectTransform.anchorMax = new Vector2(0, 0);
         rectTransform.sizeDelta = new Vector2(distance, 3f);
-        rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f;
-        rectTransform.localEulerAngles = new Vector3(0, 0, UtilsClass.GetAngleFromVectorFloat(dir));
+        rectTransform.anchoredPosition = dotPositionA + dir * distance * .5f; // anchored position is halfway point in line
+        rectTransform.localEulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(dir));
         return gameObject;
     }
 
@@ -140,4 +140,6 @@ public class Graph : MonoBehaviour {
             gameObjectList.Add(dashY.gameObject);
         }
     } // end showgraph
+    int GetAngleFromVectorFloat(Vector2 dir) { return -1; }
+
 }
