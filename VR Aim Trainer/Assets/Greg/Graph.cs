@@ -1,5 +1,8 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /* 
 * This class is based on a feature developed by Code Monkey.
@@ -26,7 +29,7 @@ public class Graph : MonoBehaviour {
 
         gameObjectList = new List<GameObject>();
         List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17 };
-        ShowGraph(valueList, (int _i) => "Day " + (_i + 1), (float _f) => "$" + Mathf.RoundToInt(_f));
+        ShowGraph(valueList, (int _i) => "Game " + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition) {
