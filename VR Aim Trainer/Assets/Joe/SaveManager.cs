@@ -7,18 +7,19 @@ using System.IO;
 //game manager must load the save file on awake() so it doesnt overwrite with an empty list
 public static class SaveManager 
 {
-    //make file directory specifically save into assets folder -- i specifically chose joe folder for testing
-    public static string directory = "/Joe/SaveData/";
-    //file name
-    public static string fileName =  "MyData.txt";
+    //make file saveDirectory specifically save into assets folder -- i specifically chose joe folder for testing
+    public static string saveDirectory = "/Joe/SaveData/";
+    //file name with saved data
+    public static string savefileName =  "MyData.txt";
     //create an empty list to add onto
     public static List<PlayerScore> scores = new List<PlayerScore>();
+    public static PlayerScoreList playerScoreList = null;
 
-    // add a given score to the list of files
+    // Saves a playerscore to disk.
     public static void addScore(PlayerScore ss)
     {
-        //get directory of file
-        string dir = Application.dataPath + directory;
+        //get saveDirectory of file
+        string dir = Application.dataPath + saveDirectory;
         //check if exists
         if (!Directory.Exists(dir))
         {
@@ -27,52 +28,47 @@ public static class SaveManager
         }
 
         //creates a new player score board
-        scoreboard sb = new scoreboard { scores = scores };
-        //load old scoreboard
-        scoreboard oldSB = Load();
+        PlayerScoreList scoresList = new PlayerScoreList { scores = scores };
+        //load old PlayerScoreList
+        PlayerScoreList oldscoresList = Load();
    
-        //check if old scoreboard empty
-        if (oldSB != null )
+        //check if old PlayerScoreList empty
+        if (oldscoresList != null )
         {
-            //store the old scoreboard into the current scoreboard
-            sb = oldSB;
+            //store the old PlayerScoreList into the current PlayerScoreList
+            scoresList = oldscoresList;
         }
         //add into list
-        sb.scores.Add(ss);
+        scoresList.scores.Add(ss);
 
         //parse save object into json string format
-        string json = JsonUtility.ToJson(sb);
+        string json = JsonUtility.ToJson(scoresList);
 
         //save
-        File.WriteAllText(dir + fileName, json);
+        File.WriteAllText(dir + savefileName, json);
     }
 
-    public static scoreboard Load()
+    public static void Load()
     {
-        //get file path 
-        string fullPath = Application.dataPath + directory + fileName;
-        //creates a new player score board
-        scoreboard sb = new scoreboard();
-        //PlayerScore ss = new PlayerScore();
+        // absolute path to data file 
+        string absDataPath = Application.dataPath + saveDirectory + savefileName;
 
-        if (File.Exists(fullPath))
+        if (File.Exists(absDataPath))
         {
-            string json = File.ReadAllText(fullPath);
-            sb = JsonUtility.FromJson<scoreboard>(json);
+            string json = File.ReadAllText(absDataPath);
+            playerScoreList = JsonUtility.FromJson<PlayerScoreList>(json);
         }
         else
         {
             Debug.Log("SAVE FILE DOES NOT EXIST, RETUNRING NULL");
-            return null;
         }
-        
-        return sb;
-
     }
+
+    public static PlayerScoreList GetPlayerScoreList() { return playerScoreList; }
 }
 
 //create a class of scores so we can save it
-public class scoreboard
+public class PlayerScoreList
 {
     public List<PlayerScore> scores;
 }
