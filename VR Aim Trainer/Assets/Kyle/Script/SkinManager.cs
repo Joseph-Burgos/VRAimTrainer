@@ -68,4 +68,9 @@ public class SkinManager : MonoBehaviour
         PlayerPrefs.SetString("GlockSkin", m_SkinPref);
         PlayerPrefs.Save();
     }
+
+    public int getIndex()
+    {
+        return indexOfCurrentSkin;
+    }
 }
