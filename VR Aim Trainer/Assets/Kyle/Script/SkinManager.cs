@@ -15,20 +15,27 @@ public class SkinManager : MonoBehaviour
         m_SkinPref = PlayerPrefs.GetString("GlockSkin", "G26");
 
 
+        bool skinIsActive = false;
         int children = glockSkins.childCount;
         for (int i = 0; i < children; ++i){
             GameObject skinObject = glockSkins.GetChild(i).gameObject;
-            skinObject.SetActive(false);
+            // skinObject.SetActive(true);
 
             m_Skins.Add(skinObject);
 
             if (skinObject.name.Equals(m_SkinPref)){
                 skinObject.SetActive(true);
+                skinIsActive = true;
             }
             else{
                 skinObject.SetActive(false);
             }
         }
+
+        if (!skinIsActive){
+            m_Skins[0].SetActive(true);
+        }
+
     }
 
     public void SetNextSkin(){
@@ -67,5 +74,9 @@ public class SkinManager : MonoBehaviour
         m_SkinPref = m_Skins[indexOfCurrentSkin].name;
         PlayerPrefs.SetString("GlockSkin", m_SkinPref);
         PlayerPrefs.Save();
+    }
+
+    public int GetIndexOfCurrentSkin(){
+        return indexOfCurrentSkin
     }
 }

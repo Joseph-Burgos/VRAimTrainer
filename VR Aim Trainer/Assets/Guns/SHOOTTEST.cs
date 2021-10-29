@@ -94,15 +94,15 @@ public class SHOOTTEST : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("GlockShot");
 
             //play muzzle particle
-            if (GameManager.Instance.useVFX)
-            {
-                //make sure not already running
-                if (muzzleFlash.isPlaying)
-                {
-                    muzzleFlash.Stop();
-                }
-                muzzleFlash.Play();
-            }
+            // if (GameManager.Instance.useVFX)
+            // {
+            //     //make sure not already running
+            //     if (muzzleFlash.isPlaying)
+            //     {
+            //         muzzleFlash.Stop();
+            //     }
+            //     muzzleFlash.Play();
+            // }
         }
   
         //store raycast information
