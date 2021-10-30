@@ -77,6 +77,6 @@ public class SkinManager : MonoBehaviour
     }
 
     public int GetIndexOfCurrentSkin(){
-        return indexOfCurrentSkin
+        return indexOfCurrentSkin;
     }
 }

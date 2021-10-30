@@ -17,4 +17,15 @@ public class magazineScript : MonoBehaviour
     {
         
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Magazine collided with: " + collision.gameObject.name);
+
+        // FIXME
+        // set the ammo of the gun to water the ammo count is.
+        if(collision.gameObject.name == "Magazine Collider")
+        {
+        }
+    }
 }

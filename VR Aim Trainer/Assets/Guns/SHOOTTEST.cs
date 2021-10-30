@@ -8,6 +8,7 @@ public class SHOOTTEST : MonoBehaviour
 {
 
     private bool isActive = false;
+    readonly int ammo = 0;
     private Interactable interactable;
     Transform SkinsTransform; 
 
@@ -87,8 +88,6 @@ public class SHOOTTEST : MonoBehaviour
             laser.SetActive(toggle);
         }
     }
-
-
 
     private void shoot()
     {
