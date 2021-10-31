@@ -45,10 +45,12 @@ public class Graph : MonoBehaviour {
         gameObject.transform.SetParent(graphContainer, false);
         gameObject.GetComponent<Image>().sprite = circleSprite;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = anchoredPosition;
-        rectTransform.sizeDelta = new Vector2(0.1, 0.1);
-        rectTransform.anchorMin = new Vector2(0, 0);
-        rectTransform.anchorMax = new Vector2(0, 0);
+        rectTransform.anchoredPosition = new Vector3(-0.45f, 0.07f, -0.95f);
+        double horizontalSize = 0.1;
+        double verticalSize = 0.1;
+        rectTransform.sizeDelta = new Vector2(0.1f, 0.1f);
+        rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
+        rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
         Debug.Log("LEaving create circle");
         return gameObject;
     }
