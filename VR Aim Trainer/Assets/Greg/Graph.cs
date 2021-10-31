@@ -35,7 +35,7 @@ public class Graph : MonoBehaviour {
         // ShowGraph(valueList, (int _i) => "Game " + (_i + 1), (float _f) => "" + Mathf.RoundToInt(_f));
 
         // Testing
-        CreateCircle(new Vector2(200, 200));
+        CreateCircle(new Vector2(200, 200)); //3(-0.45, 0.07, -0.95));
         Debug.Log("We created a new circle!!!");
     }
 
@@ -46,7 +46,7 @@ public class Graph : MonoBehaviour {
         gameObject.GetComponent<Image>().sprite = circleSprite;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = anchoredPosition;
-        rectTransform.sizeDelta = new Vector2(11, 11);
+        rectTransform.sizeDelta = new Vector2(0.1, 0.1);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
         Debug.Log("LEaving create circle");
