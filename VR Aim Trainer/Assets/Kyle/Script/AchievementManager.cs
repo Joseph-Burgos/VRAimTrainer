@@ -59,11 +59,10 @@ public class AchievementManager : MonoBehaviour
         }
 
         CheckMainHubScore();
+        CheckTrackingScore();
         UpdateTargetsHitTMP();
 
-        if (m_TrackingScoreAchieved == 1){
-            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nCompleted";
-        }
+        
     }
 
     public void IncreaseTargetsHit(){
@@ -79,6 +78,7 @@ public class AchievementManager : MonoBehaviour
 
         UpdateTargetsHitTMP();
         CheckMainHubScore();
+        CheckTrackingScore();
     }
 
     private void UpdateTargetsHitTMP(){
@@ -89,11 +89,12 @@ public class AchievementManager : MonoBehaviour
 
             m_TargetsHitAchieved = 1;
             PlayerPrefs.SetInt("TargetsHit", m_TargetsHitAchieved);
+            PlayerPrefs.Save();
         }
         else{
             // Goal is incomplete
             string tempString = "Hit " + m_TargetsHitGoal + " Targets: " + m_TargetsHit + " / " + m_TargetsHitGoal;
-            GameObject.Find("Hit X targets").GetComponent<TMPro.TextMeshProUGUI>().text = tempString;
+            GameObject.Find("Targets Hit TMP").GetComponent<TMPro.TextMeshProUGUI>().text = tempString;
         }
     }
 
@@ -108,8 +109,33 @@ public class AchievementManager : MonoBehaviour
             GameObject.Find("MainHub Score TMP").GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a score of " + m_MainHubScoreGoal + " in the main hub: Completed";
             m_MainHubScoreAchieved = 1;
             PlayerPrefs.SetInt("MainHubScore", m_MainHubScoreAchieved);
+            PlayerPrefs.Save();
         }
     }
 
-    // Targets hit achieved method
+    // still needs to update score variable when in tracking scene
+    private void CheckTrackingScore(){
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name.Equals("Tracking"))
+        {
+            // check and update score                                          FIX ME
+            m_TrackingScore = 0;
+
+            if (m_TrackingScore >= m_TrackingScoreGoal) {
+                PlayerPrefs.SetInt("TrackingScore", 1 );
+                PlayerPrefs.Save();
+            }
+        }
+        else if (!currentScene.name.Equals("MainHub 1"))
+        {
+            return;
+        }
+
+        if (m_TrackingScoreAchieved == 1){
+            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nCompleted";
+        }
+        else{
+            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nIncomplete";
+        }
+    }
 }
