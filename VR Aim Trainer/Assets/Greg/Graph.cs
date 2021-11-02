@@ -51,6 +51,7 @@ public class Graph : MonoBehaviour {
         rectTransform.sizeDelta = new Vector2(0.1f, 0.1f);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
+        // rectTransform.pivot = new Vector2(0, 0);
         Debug.Log("LEaving create circle");
         return gameObject;
     }
