@@ -1599,7 +1599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &267615776
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18213,12 +18213,12 @@ GameObject:
   - component: {fileID: 1738410100}
   - component: {fileID: 1738410101}
   m_Layer: 0
-  m_Name: HorizontalDivision
+  m_Name: HorizontalGridMarkerTemplate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1738410100
 RectTransform:
   m_ObjectHideFlags: 0
