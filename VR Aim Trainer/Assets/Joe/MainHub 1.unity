@@ -2772,7 +2772,7 @@ GameObject:
   - component: {fileID: 398005794}
   - component: {fileID: 398005795}
   m_Layer: 0
-  m_Name: Line
+  m_Name: YAxis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2839,7 +2839,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 1, z: 0}
+  - {x: 0, y: 0.8083, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -17596,7 +17596,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 3, y: 0, z: 0}
+  - {x: 2.6827, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
@@ -19954,7 +19954,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 3, y: 1, z: 0}
+  - {x: 2.6827, y: 0.8083, z: 0}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.1
