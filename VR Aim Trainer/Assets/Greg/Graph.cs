@@ -6,14 +6,15 @@ using UnityEngine.UI;
 // using UnityEngine.IO;
 
 /* 
-* This class is based on a feature developed by Code Monkey.
-* unitycodemonkey.com
+* This class is based on a feature developed by Code Monkey (unitycodemonkey.com).
 */
 public class Graph : MonoBehaviour {
     [SerializeField] private Sprite circleSprite; // node 
-    // parent object
-    private RectTransform graphContainer; 
+    // parent objects
+    private GameObject graphContainer;
+    private RectTransform graphContainerTransform; 
     // References to graph elements
+    private LineRenderer horizontalGridMarkerTemplate;
 
     // data for generating graph
     private float xLength;
@@ -22,7 +23,9 @@ public class Graph : MonoBehaviour {
 
     private void Awake() {
         // Retrieve references to necessary game objects
-        graphContainer = transform.Find("GraphContainer").GetComponent<RectTransform>();
+        graphContainer = transform.Find("GraphContainer");
+        graphContainerTransform = graphContainer.GetComponent<RectTransform>();
+        // horizontalGridMarkerTemplate = 
         // set values
         initializeGraphData();
         // Testing
@@ -35,8 +38,8 @@ public class Graph : MonoBehaviour {
     }
 
     private void initializeGraphData() {
-        xLength = graphContainer.sizeDelta.x;
-        yLength = graphContainer.sizeDelta.y;
+        xLength = graphContainerTransform.sizeDelta.x;
+        yLength = graphContainerTransform.sizeDelta.y;
     }
 
     private void setDividers(int xDividers, int yDividers) {
@@ -46,7 +49,7 @@ public class Graph : MonoBehaviour {
     private GameObject CreateCircle(Vector2 anchoredPosition) {
         Debug.Log("Entering create circle");
         GameObject gameObject = new GameObject("circle", typeof(Image));
-        gameObject.transform.SetParent(graphContainer, false);
+        gameObject.transform.SetParent(graphContainerTransform, false);
         gameObject.GetComponent<Image>().sprite = circleSprite;
         RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
         rectTransform.anchoredPosition = anchoredPosition;
