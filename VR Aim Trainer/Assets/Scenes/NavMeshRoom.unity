@@ -625,7 +625,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5464560992039356987, guid: 294e3294036a2fe44b4c298a5b172b7f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.059614837
+      value: 0.059614778
       objectReference: {fileID: 0}
     - target: {fileID: 5464560992039356987, guid: 294e3294036a2fe44b4c298a5b172b7f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8662d158a1b2ec2489b57ab9eb04de45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 7.52
+  Range: 6.6
 --- !u!4 &732984422
 Transform:
   m_ObjectHideFlags: 0
@@ -1714,10 +1714,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6a0b2bc231b421428cf923c12bbd0da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHead: {fileID: 1861928966}
   input:
     actionPath: /actions/default/in/Move
     needsReinit: 0
-  speed: 1
+  walkSpeed: 1
+  runSpeed: 2
+  gravityMultiplier: 1
 --- !u!1 &814654736
 GameObject:
   m_ObjectHideFlags: 0
@@ -3823,6 +3826,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 122.9, y: 133.5, z: -58.5}
+--- !u!4 &1861928966 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 429506, guid: dc06161b6d97feb419f45f03b62e14b9, type: 3}
+  m_PrefabInstance: {fileID: 620971758}
+  m_PrefabAsset: {fileID: 0}
 --- !u!43 &1988146378
 Mesh:
   m_ObjectHideFlags: 0
@@ -4000,6 +4008,7 @@ GameObject:
   - component: {fileID: 2097044951}
   - component: {fileID: 2097044950}
   - component: {fileID: 2097044954}
+  - component: {fileID: 2097044955}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -4076,8 +4085,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097044949}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.11, y: 0.86, z: 1.15}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.11, y: 1.19, z: 1.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 169799723}
@@ -4096,7 +4105,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7483bd384eb27f34a9bd3162db2fae41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radius: 5.88
+  radius: 5.13
+--- !u!195 &2097044955
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097044949}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0.5
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!43 &2139140732
 Mesh:
   m_ObjectHideFlags: 0

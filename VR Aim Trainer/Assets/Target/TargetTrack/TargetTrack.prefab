@@ -4918,7 +4918,9 @@ MonoBehaviour:
   burst: {fileID: 0}
   Current_Mat: {fileID: 2100000, guid: 371a0e0fed845c741a8b9a2de1c47d02, type: 2}
   Charge_Effect: {fileID: 1011973475}
+  startPos: {fileID: 8365054290769710418, guid: a920067c997a26444819aa3355dbe55c, type: 3}
+  endPos: {fileID: 8882011070405903032, guid: 1953ac3197098a0468dc5ce989d7924e, type: 3}
   hitCount: 2
   totalCount: 2
-  repeatable: 0
+  repeatable: 1
   speed: 1

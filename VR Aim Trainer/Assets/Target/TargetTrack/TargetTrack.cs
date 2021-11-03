@@ -13,8 +13,8 @@ public class TargetTrack : Target_Parent
     private float temp_time;
     //vfx info
     public ParticleSystem Charge_Effect = null;
+    public Transform startPos, endPos;
     //private bool changeColor;
-
 
     //tracking time
     public float hitCount = 2.0f;
@@ -23,20 +23,33 @@ public class TargetTrack : Target_Parent
     public bool repeatable = false;
     public float speed = 1.0f;
     float startTime, totalDistance;
-
-
-    void Start()
-    {
+    IEnumerator Start(){
+        startTime = Time.time;
         Current_Mat.color = default_Color;
         temp_time = 0;
         isHighlighted = false;
-    }
+        totalDistance = Vector3.Distance(startPos.position, endPos.position);
+        while(repeatable){
+            yield return RepeatLerp(startPos.position, endPos.position, 3.0f);
+            yield return RepeatLerp(endPos.position, startPos.position, 3.0f);
+            
+        }
+
+    } 
+
+    // void Start()
+    // {
+    //     Current_Mat.color = default_Color;
+    //     temp_time = 0;
+    //     isHighlighted = false;
+    // }
     void Update()
     {
         if (!repeatable)
         {
         float currentDuration = (Time.time - startTime) * speed;
         float journeyFraction = currentDuration / totalDistance;
+        this.transform.position = Vector3.Lerp(startPos.position, endPos.position, journeyFraction);
 
         }
         totalCount+= Time.deltaTime;
@@ -114,6 +127,16 @@ public class TargetTrack : Target_Parent
     public void switchColor(Color c)
     {
         Current_Mat.color = c;
+    }
+
+    public IEnumerator RepeatLerp (Vector3 a, Vector3 b, float time){
+        float i = 0.0f;
+        float rate = (1.0f/time) * speed;
+        while(i<1.0f){
+            i+= Time.deltaTime * rate;
+            this.transform.position = Vector3.Lerp(a,b,i);
+            yield return null;
+        }
     }
     
 }
