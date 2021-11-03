@@ -70,12 +70,18 @@ public class TargetTrack : Target_Parent
                 //update to no longer being highlighted, change color
                 isHighlighted = false;
                 switchColor(default_Color);
+                //Debug.Log("IS NOT HIGHLIGHTED");
+            }
+            else
+            {
+                temp_time = totalCount - hitCount;
             }
         }
         else
         {
             //constantly calculates the difference in time before being highlighted
             temp_time = totalCount - hitCount;
+            //Debug.Log(temp_time);
         }
 
 
@@ -111,6 +117,7 @@ public class TargetTrack : Target_Parent
         {
             switchColor(Highlight_Color);
             isHighlighted = true;
+            //Debug.Log("IS HIGHLIGHTED");
         }
 
     }

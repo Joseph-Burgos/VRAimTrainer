@@ -8,7 +8,9 @@ public class SHOOTTEST : MonoBehaviour
 {
 
     private bool isActive = false;
+    readonly int ammo = 0;
     private Interactable interactable;
+    Transform SkinsTransform; 
 
     [Header("Info for class to function")]
     public GameObject laser;
@@ -26,6 +28,9 @@ public class SHOOTTEST : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get the parent of skins
+        SkinsTransform = GameObject.Find("Skins").transform;
+
         laser.SetActive(false);
         interactable = GetComponent<Interactable>();
     }
@@ -64,6 +69,7 @@ public class SHOOTTEST : MonoBehaviour
             else if (fireAction[source].stateDown)
             {
                 shoot();
+                playAnim();
             }
         }
         //checked if gun is being held AND laser is visible
@@ -83,8 +89,6 @@ public class SHOOTTEST : MonoBehaviour
         }
     }
 
-
-
     private void shoot()
     {
         //run if constant fire is off
@@ -94,15 +98,15 @@ public class SHOOTTEST : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("GlockShot");
 
             //play muzzle particle
-            if (GameManager.Instance.useVFX)
-            {
-                //make sure not already running
-                if (muzzleFlash.isPlaying)
-                {
-                    muzzleFlash.Stop();
-                }
-                muzzleFlash.Play();
-            }
+            // if (GameManager.Instance.useVFX)
+            // {
+            //     //make sure not already running
+            //     if (muzzleFlash.isPlaying)
+            //     {
+            //         muzzleFlash.Stop();
+            //     }
+            //     muzzleFlash.Play();
+            // }
         }
   
         //store raycast information
@@ -125,6 +129,20 @@ public class SHOOTTEST : MonoBehaviour
         {
             bulletTrail.shootTrail();
         }
+        
+    }
+
+    public void playAnim()
+    {
+        //hard coded to hell, needs to check SkinManager to check which index is active
+        for (int i = 0; i < 3; i++)
+        {
+            if (SkinsTransform.GetChild(i).gameObject.activeSelf)
+            {
+                SkinsTransform.GetChild(i).gameObject.GetComponent<Animator>().Play("Fire");
+            }
+        }
+        //play animation at index of currently used skin
         
     }
 
