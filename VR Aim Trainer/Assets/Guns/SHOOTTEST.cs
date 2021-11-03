@@ -8,7 +8,7 @@ public class SHOOTTEST : MonoBehaviour
 {
 
     private bool isActive = false;
-    readonly int ammo = 0;
+    private int ammo = 0;
     private Interactable interactable;
     Transform SkinsTransform; 
 
@@ -66,8 +66,9 @@ public class SHOOTTEST : MonoBehaviour
             {
                 StartCoroutine("ShootEveryFrame");
             }
-            else if (fireAction[source].stateDown)
+            else if (fireAction[source].stateDown && ammo > 0)
             {
+                ammo--;
                 shoot();
                 playAnim();
             }
@@ -150,5 +151,14 @@ public class SHOOTTEST : MonoBehaviour
     {
         shoot();
         yield return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.tag == "Magazine")
+        {
+            Debug.Log("Detected magazine with " +  other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+            ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+        }
     }
 }

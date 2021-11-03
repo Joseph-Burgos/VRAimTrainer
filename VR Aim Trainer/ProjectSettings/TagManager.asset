@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - RandomPoint
+  - Magazine
   layers:
   - Default
   - TransparentFX
