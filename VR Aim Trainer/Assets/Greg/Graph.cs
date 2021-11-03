@@ -14,6 +14,7 @@ public class Graph : MonoBehaviour {
     private RectTransform graphContainerTransform; 
     // References to graph elements
     private Transform horizontalGridMarkerTemplate;
+    private Transform verticalGridMarkerTemplate;
     // private LineRenderer horizontalGridMarkerTemplate;
 
     // data for generating graph
@@ -25,6 +26,7 @@ public class Graph : MonoBehaviour {
         // Retrieve references to necessary game objects
         graphContainerTransform = transform.Find("GraphContainer").GetComponent<RectTransform>();
         horizontalGridMarkerTemplate = graphContainerTransform.Find("HorizontalGridMarkerTemplate"); //.GetComponent<LineRenderer>();
+        verticalGridMarkerTemplate = graphContainerTransform.Find("VerticalGridMarkerTemplate");
         // horizontalGridMarkerTemplate = 
         // set values
         initializeGraphData();
@@ -35,7 +37,7 @@ public class Graph : MonoBehaviour {
 
     public void createGraph() {
         CreateCircle(new Vector2(0, 0));
-        drawGrid(5, 0);
+        drawGrid(5, 5);
     }
 
     private void initializeGraphData() {
@@ -64,6 +66,20 @@ public class Graph : MonoBehaviour {
         }
         // height = previous height + (i * yLength / xGrids)
         // set the parent and draw the divider line
+
+        float currentXValue = 0;
+        for (int i = 0; i < yGrids; i++) {
+            // create new line from the template
+            Transform yGridTransform = Instantiate(verticalGridMarkerTemplate, graphContainerTransform);
+            LineRenderer yGridLineRenderer = yGridTransform.GetComponent<LineRenderer>();
+            // make an array of 2 vector3 elements for endpoints of the line
+            var points = new Vector3[2];
+            points[0] = new Vector3(currentXValue, 0, 0);
+            points[1] = new Vector3(currentXValue, yLength, 0);
+            yGridLineRenderer.SetPositions(points);
+            yGridTransform.gameObject.SetActive(true); // set as active
+            currentXValue += yGridDistance;
+        }
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition) {
