@@ -59,7 +59,7 @@ public class Graph : MonoBehaviour {
             points[0] = new Vector3(0, currentYValue, 0);
             points[1] = new Vector3(xLength, currentYValue, 0);
             xGridLineRenderer.SetPositions(points);
-            xGridTransform.gameObject.SetActive(false); // set as active
+            xGridTransform.gameObject.SetActive(true); // set as active
             currentYValue += xGridDistance;
         }
         // height = previous height + (i * yLength / xGrids)
