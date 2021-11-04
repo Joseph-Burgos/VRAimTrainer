@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,6 +16,7 @@ public class Graph : MonoBehaviour {
     // References to graph elements
     private Transform horizontalGridMarkerTemplate;
     private Transform verticalGridMarkerTemplate;
+    private Transform dotConnection;
     // private LineRenderer horizontalGridMarkerTemplate;
 
     // data for generating graph
@@ -27,17 +29,40 @@ public class Graph : MonoBehaviour {
         graphContainerTransform = transform.Find("GraphContainer").GetComponent<RectTransform>();
         horizontalGridMarkerTemplate = graphContainerTransform.Find("HorizontalGridMarkerTemplate"); //.GetComponent<LineRenderer>();
         verticalGridMarkerTemplate = graphContainerTransform.Find("VerticalGridMarkerTemplate");
+        dotConnection = graphContainerTransform.Find("DotConnection");
         // horizontalGridMarkerTemplate = 
         // set values
         initializeGraphData();
         // Testing
         // List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17 };
-        createGraph();
+        Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
+        createGraph(testNodes);
     }
 
-    public void createGraph() {
+    public void createGraph(Vector2[] nodes) {
+        // Start test
         CreateCircle(new Vector2(0, 0));
         drawGrid(5, 5);
+        // End test
+
+        // Start actual function
+        // for each node in nodes invoke CreateCircle
+        foreach (Vector2 node in nodes) {
+            CreateCircle(node);
+        }
+        // sort Vector2 nodes based on their x value
+        //https://stackoverflow.com/questions/12026344/how-to-use-array-sort-to-sort-an-array-of-structs-by-a-specific-element
+        // with a linerenderer draw a connecting line using nodes
+        LineRenderer dotConnectionRenderer = dotConnection.GetComponent<LineRenderer>();
+        // make an array of 2 vector3 elements for endpoints of the line
+        Vector3[] nodes3 = nodes.Select(node => new Vector3(node.x, node.y, 0)).Cast<Vector3>().ToArray();
+        Debug.Log("Node sent to line:");
+        foreach (Vector3 node in nodes3) {
+            Debug.Log("Node (" + node.x + ", " + node.y + ")");
+        }
+        dotConnectionRenderer.positionCount = nodes3.Length;
+        dotConnectionRenderer.SetPositions(nodes3);
+        dotConnectionRenderer.gameObject.SetActive(true); // set as active
     }
 
     private void initializeGraphData() {
