@@ -40,8 +40,9 @@ public class Graph : MonoBehaviour {
         // Testing
         Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
         createGraph(testNodes);
-        String[] testXLabels = {"string one", "string two"};
-        drawXLabels(testXLabels);
+        String[] testLabels = {"string one", "string two"};
+        drawXLabels(testLabels);
+        drawYLabels(testLabels);
     }
 
     public void createGraph(Vector2[] nodes) {
@@ -124,6 +125,27 @@ public class Graph : MonoBehaviour {
                 xAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
                 // render label
                 xAxisLabel.gameObject.SetActive(true);
+            }
+        }
+        
+    }
+
+    private void drawYLabels(String[] labels) {
+        if (labels.Length > 0) {
+            float spaceInBetween = labels.Length  > 1 ? (yLength / (labels.Length - 1)) : 0;
+            for (int i = 0; i < labels.Length; i++) {
+                String label = labels[i];
+                Transform yAxisLabel = Instantiate(yLabelTemplate, graphContainerTransform);
+                // position label along axis with respect to position of template
+                RectTransform yLabelRectTransform = yAxisLabel.GetComponent<RectTransform>();
+                Vector3 currentPosition = yLabelRectTransform.anchoredPosition3D;
+                float currentYPosition = currentPosition.y;
+                float newYPosition = currentYPosition + (spaceInBetween * i);
+                yLabelRectTransform.anchoredPosition3D = new Vector3(currentPosition.x, newYPosition, currentPosition.z);
+                // set text
+                yAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
+                // render label
+                yAxisLabel.gameObject.SetActive(true);
             }
         }
         
