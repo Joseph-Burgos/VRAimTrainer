@@ -17,6 +17,9 @@ public class Graph : MonoBehaviour {
     private Transform horizontalGridMarkerTemplate;
     private Transform verticalGridMarkerTemplate;
     private Transform dotConnection;
+
+    private Transform xLabelTemplate;
+    private Transform yLabelTemplate;
     // private LineRenderer horizontalGridMarkerTemplate;
 
     // data for generating graph
@@ -30,13 +33,15 @@ public class Graph : MonoBehaviour {
         horizontalGridMarkerTemplate = graphContainerTransform.Find("HorizontalGridMarkerTemplate"); //.GetComponent<LineRenderer>();
         verticalGridMarkerTemplate = graphContainerTransform.Find("VerticalGridMarkerTemplate");
         dotConnection = graphContainerTransform.Find("DotConnection");
-        // horizontalGridMarkerTemplate = 
+        xLabelTemplate = graphContainerTransform.Find("XLabelTemplate");
+        yLabelTemplate = graphContainerTransform.Find("YLabelTemplate");
         // set values
         initializeGraphData();
         // Testing
-        // List<int> valueList = new List<int>() { 5, 98, 56, 45, 30, 22, 17, 15, 13, 17 };
         Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
         createGraph(testNodes);
+        String[] testXLabels = {"string one", "string two"};
+        drawXLabels(testXLabels);
     }
 
     public void createGraph(Vector2[] nodes) {
@@ -56,10 +61,6 @@ public class Graph : MonoBehaviour {
         LineRenderer dotConnectionRenderer = dotConnection.GetComponent<LineRenderer>();
         // make an array of 2 vector3 elements for endpoints of the line
         Vector3[] nodes3 = nodes.Select(node => new Vector3(node.x, node.y, 0)).Cast<Vector3>().ToArray();
-        Debug.Log("Node sent to line:");
-        foreach (Vector3 node in nodes3) {
-            Debug.Log("Node (" + node.x + ", " + node.y + ")");
-        }
         dotConnectionRenderer.positionCount = nodes3.Length;
         dotConnectionRenderer.SetPositions(nodes3);
         dotConnectionRenderer.gameObject.SetActive(true); // set as active
@@ -105,6 +106,27 @@ public class Graph : MonoBehaviour {
             yGridTransform.gameObject.SetActive(true); // set as active
             currentXValue += yGridDistance;
         }
+    }
+
+    private void drawXLabels(String[] labels) {
+        if (labels.Length > 0) {
+            float spaceInBetween = labels.Length  > 1 ? (xLength / (labels.Length - 1)) : 0;
+            for (int i = 0; i < labels.Length; i++) {
+                String label = labels[i];
+                Transform xAxisLabel = Instantiate(xLabelTemplate, graphContainerTransform);
+                // position label along axis with respect to position of template
+                RectTransform xLabelRectTransform = xAxisLabel.GetComponent<RectTransform>();
+                Vector3 currentPosition = xLabelRectTransform.anchoredPosition3D;
+                float currentXPosition = currentPosition.x;
+                float newXPosition = currentXPosition + (spaceInBetween * i);
+                xLabelRectTransform.anchoredPosition3D = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
+                // set text
+                xAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
+                // render label
+                xAxisLabel.gameObject.SetActive(true);
+            }
+        }
+        
     }
 
     private GameObject CreateCircle(Vector2 anchoredPosition) {
