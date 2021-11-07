@@ -9,6 +9,7 @@ public class SHOOTTEST : MonoBehaviour
 
     private bool isActive = false;
     private int ammo = 0;
+    private bool magInserted = false;
     private Interactable interactable;
     Transform SkinsTransform; 
 
@@ -18,6 +19,7 @@ public class SHOOTTEST : MonoBehaviour
     public Transform muzzle;
     public BulletTrail bulletTrail;
     public ParticleSystem muzzleFlash = null;
+    public Transform magazineSlot;
 
     [Header("options for Gun")]
     public float RayCastRange = 100f;
@@ -155,9 +157,16 @@ public class SHOOTTEST : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Magazine")
+        //check if collision with gun is a magazine, and if there is a magazine already present.
+        if (other.tag == "Magazine" && !magInserted)
         {
+            magInserted = true;
+            // make the magazine a child of the gun
+            other.transform.parent = gameObject.transform;
+            // move magazine object to the magazine slot in the gun
+            other.gameObject.transform.Translate(magazineSlot.position.x, magazineSlot.position.y, magazineSlot.position.z);
             Debug.Log("Detected magazine with " +  other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+            // set the ammo in the magazine to the gun
             ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
         }
     }
