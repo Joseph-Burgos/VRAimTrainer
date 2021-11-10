@@ -161,13 +161,31 @@ public class SHOOTTEST : MonoBehaviour
         if (other.tag == "Magazine" && !magInserted)
         {
             magInserted = true;
-            // make the magazine a child of the gun
-            other.transform.parent = gameObject.transform;
+
+            // detach the magazine from hand
+            other.GetComponent<Interactable>().attachedToHand.DetachObject(other.gameObject, false);
+
+            // disable interactable script
+            other.GetComponent<Interactable>().enabled = false;
+            Destroy(other.GetComponent("Throwable"));
+
+            // disable colliders on magazine so that it doesn't collide with weapon
+            other.GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<BoxCollider>().isTrigger = true;
+            
+            // change rotation of mag to magazine slot
+            other.transform.rotation = magazineSlot.rotation;
+            // change position of mag to magazine slot
+            other.transform.position = magazineSlot.position;
+            // make the magazine a child of the gun and change the transform
+            other.transform.SetParent(gameObject.transform);
+            
             // move magazine object to the magazine slot in the gun
-            other.gameObject.transform.Translate(magazineSlot.position.x, magazineSlot.position.y, magazineSlot.position.z);
-            Debug.Log("Detected magazine with " +  other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+            other.gameObject.transform.position = magazineSlot.position;
             // set the ammo in the magazine to the gun
             ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+
+            Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
         }
     }
 }
