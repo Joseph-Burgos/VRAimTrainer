@@ -21,14 +21,17 @@ public class VisualFeedback : MonoBehaviour {
 
     // data members
     public int score;
-    public int accuracy;
+    public double accuracy;
     public int targetsHit;
     public int totalTargets;
     public int gamesPlayed;
 
     private void Awake()
     {
-        // retrieve necessary components
+        score = 0;
+        accuracy = 0;
+        targetsHit = 0;
+        gamesPlayed = 0;
     }
 
     void Start()
@@ -36,12 +39,27 @@ public class VisualFeedback : MonoBehaviour {
         //targetManager = otherGameObject.findComponent<TargetManager>();
         Debug.Log("Visual Feedback - start");
         // TEST
+        gamesPlayed = 1000000000;
         initializeVisualFeedback();
     }
 
     void initializeVisualFeedback() {
         // calling data functions
-        score = GameSystem.GetComponent <ScoreManager>().GetScore();
+        ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
+        score = scoreManager.GetScore();
+        int totalShots = scoreManager.GetShots();
+        Debug.Log("Visual Feedback - totalShots " + totalShots.ToString());
+        targetsHit = scoreManager.GetHits();
+        Debug.Log("Visual Feedback - hits " + targetsHit.ToString());
+        if (totalShots > 0)
+        {
+            accuracy = (double) targetsHit / totalShots;
+        }
+        else
+        {
+            accuracy = 0;
+        }
+        
         // make necessary calculations
         // set each label
         setLabels();
@@ -53,7 +71,11 @@ public class VisualFeedback : MonoBehaviour {
         // score
         ScoreLabel.GetComponent<TMPro.TextMeshPro>().text += score.ToString();
         // accuracy
+        AccuracyLabel.GetComponent<TMPro.TextMeshPro>().text += accuracy.ToString() + "%";
         // targets
+        TargetsHitLabel.GetComponent<TMPro.TextMeshPro>().text += targetsHit.ToString();
+        // games played
+        GamesPlayedLabel.GetComponent<TMPro.TextMeshPro>().text += gamesPlayed.ToString();
     }
 
    
