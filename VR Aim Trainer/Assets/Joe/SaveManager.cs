@@ -5,19 +5,19 @@ using System.IO;
 
 //THIS IS THE SAVE MANAGER. THIS FILE IS MADE TO HANDLE LOADING AND SAVING THE FILE
 //game manager must load the save file on awake() so it doesnt overwrite with an empty list
-public static class SaveManager 
+public class SaveManager 
 {
     //make file saveDirectory specifically save into assets folder -- i specifically chose joe folder for testing
-    public static string saveDirectory = "/Joe/SaveData/";
+    public string saveDirectory = "/Joe/SaveData/";
     //file name with saved data
-    public static string savefileName =  "MyData.txt";
+    public string savefileName =  "MyData.txt";
     //create an empty list to add onto
-    public static SavedDataObject savedDataObject = null;
-    public static List<PlayerScore> playerScoreList = null;
+    public SavedDataObject savedDataObject = null;
+    public List<PlayerScore> playerScoreList = null;
     
 
     // Saves a playerscore to disk.
-    public static void addScore(PlayerScore ss)
+    public void addScore(PlayerScore ss)
     {
         Debug.Log("Add to playerScores");
         // //get saveDirectory of file
@@ -50,7 +50,7 @@ public static class SaveManager
         // File.WriteAllText(dir + savefileName, json);
     }
 
-    public static void Load()
+    public void Load()
     {
         // absolute path to data file 
         string absDataPath = Application.dataPath + saveDirectory + savefileName;
@@ -67,9 +67,9 @@ public static class SaveManager
         }
     }
 
-    public static List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
+    public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
 
-    public static SavedDataObject GetSavedDataObject() { return savedDataObject; }
+    public SavedDataObject GetSavedDataObject() { return savedDataObject; }
 }
 
 //create a class of playerScores so we can save it
