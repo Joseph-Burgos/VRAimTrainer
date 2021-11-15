@@ -151,8 +151,7 @@ public class Graph : MonoBehaviour {
         
     }
 
-    private GameObject CreateCircle(Vector2 anchoredPosition) {
-        Debug.Log("Entering create circle");
+    private GameObject CreateCircle(Vector2 anchoredPosition) { 
         GameObject gameObject = new GameObject("circle", typeof(Image));
         gameObject.transform.SetParent(graphContainerTransform, false);
         gameObject.GetComponent<Image>().sprite = circleSprite;
@@ -163,8 +162,6 @@ public class Graph : MonoBehaviour {
         rectTransform.sizeDelta = new Vector2(0.1f, 0.1f);
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
-        // rectTransform.pivot = new Vector2(0, 0);
-        Debug.Log("LEaving create circle");
         return gameObject;
     }
 
