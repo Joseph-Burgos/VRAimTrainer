@@ -102,14 +102,24 @@ public class VisualFeedback : MonoBehaviour {
         // get the date range (this is the x-axis)
     }
 
-    Tuple<int, int> getScoreHistory() {
+    List<Tuple<float, float>> getScoreHistory() {
+        DateTime oldest = playerScoreList.Min(ps => ps.dateTime);
+        DateTime today = System.DateTime.Now;
+        TimeSpan duration = today - oldest;
         int topScore = playerScoreList.Max(ps => ps.score);
-        Vector2[] scoreHistory = playerScoreList.Select(playerScore => {
-            //int normalizedScore = 
-            new Vector2(playerScore.score, playerScore.dateTime);
-        }).Cast<Vector2>().ToArray();
-        Vector2[] testNodes = { new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f) }; // TEST DATA
-        return testNodes;
+        List<Tuple<float, float>> scoreHistory = new List<Tuple<float, float>>();
+        //Vector2[] scoreHistory = playerScoreList.Select(playerScore => {
+        //    //int normalizedScore = 
+        //    new Vector2(playerScore.score, playerScore.dateTime);
+        //}).Cast<Vector2>().ToArray();
+        //Vector2[] testNodes = { new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f) }; // TEST DATA
+        foreach (PlayerScore playerScore in playerScoreList)
+        {
+            float x = (playerScore.dateTime - oldest).Minutes;
+            float y = playerScore.score;
+            scoreHistory.Add(Tuple.Create(x, y));
+        }
+        return scoreHistory;
     }
 
     List<Tuple<float, float>> getAccuracyHistory()
@@ -118,13 +128,20 @@ public class VisualFeedback : MonoBehaviour {
         DateTime today = System.DateTime.Now;
         TimeSpan duration = today - oldest;
         float xMax = duration.Minutes;
-        List<Tuple<float, float>> accuracyHistory = playerScoreList.Select(playerScore =>
-        {
+        List<Tuple<float, float>> accuracyHistory = new List<Tuple<float, float>>();
+        //= playerScoreList.Select(playerScore =>
+        //{
+        //    float x = (playerScore.dateTime - oldest).Minutes;
+        //    float y = playerScore.accuracy;
+
+        //    return Tuple.Create(x, y);
+        //});
+        //
+        foreach (PlayerScore playerScore in playerScoreList) {
             float x = (playerScore.dateTime - oldest).Minutes;
             float y = playerScore.accuracy;
-
-            return Tuple.Create(x, y);
-        });   
+            accuracyHistory.Add(Tuple.Create(x, y));
+        }
         return accuracyHistory;
     }
 
