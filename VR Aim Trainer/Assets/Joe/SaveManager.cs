@@ -5,7 +5,7 @@ using System.IO;
 
 //THIS IS THE SAVE MANAGER. THIS FILE IS MADE TO HANDLE LOADING AND SAVING THE FILE
 //game manager must load the save file on awake() so it doesnt overwrite with an empty list
-public class SaveManager 
+public class SaveManager : MonoBehaviour
 {
     //make file saveDirectory specifically save into assets folder -- i specifically chose joe folder for testing
     public string saveDirectory = "/Joe/SaveData/";
@@ -14,7 +14,12 @@ public class SaveManager
     //create an empty list to add onto
     public SavedDataObject savedDataObject = null;
     public List<PlayerScore> playerScoreList = null;
-    
+
+    public void Start()
+    {
+        Load();    
+    }
+
 
     // Saves a playerscore to disk.
     public void addScore(PlayerScore ss)
@@ -33,7 +38,7 @@ public class SaveManager
         // SavedDataObject playerScoresList = new SavedDataObject { playerScores = playerScores };
         // //load old SavedDataObject
         // SavedDataObject oldplayerScoresList = Load();
-   
+
         // //check if old SavedDataObject empty
         // if (oldplayerScoresList != null )
         // {
@@ -50,7 +55,7 @@ public class SaveManager
         // File.WriteAllText(dir + savefileName, json);
     }
 
-    public void Load()
+public void Load()
     {
         // absolute path to data file 
         string absDataPath = Application.dataPath + saveDirectory + savefileName;
