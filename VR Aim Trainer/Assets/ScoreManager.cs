@@ -35,4 +35,8 @@ public class ScoreManager : MonoBehaviour
     public void AddToShots() {
         m_Shots++;
     }
+
+    public int GetScore() { return m_Score; }
+
+    public int GetShots() { return m_Shots; }
 }
