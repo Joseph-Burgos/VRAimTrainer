@@ -67,6 +67,11 @@ public class Graph : MonoBehaviour {
         dotConnectionRenderer.gameObject.SetActive(true); // set as active
     }
 
+    public void createGraph(List<Tuple<float, float>> data) {
+        Vector2[] normalizedNodes = NormalizeData(data);
+        createGraph(normalizedNodes);
+    }
+
     private void initializeGraphData() {
         xLength = graphContainerTransform.sizeDelta.x;
         yLength = graphContainerTransform.sizeDelta.y;
@@ -163,6 +168,18 @@ public class Graph : MonoBehaviour {
         rectTransform.anchorMin = new Vector2(0, 0);
         rectTransform.anchorMax = new Vector2(0, 0);
         return gameObject;
+    }
+
+    public Vector2[] NormalizeData(List<Tuple<float, float>> data) {
+        float upperLimitX = data.Max(d => d.Item1); // TODO round up to next round number
+        float upperLimitY = data.Max(d => d.Item2);
+        Vector2[] normalizedData = data.Select( d => {
+                float normalizedXPos = xLength * (d.Item1 / upperLimitX);
+                float normalizedYPos = yLength * (d.Item2 / upperLimitY);
+                return new Vector2(normalizedXPos, normalizedYPos);
+            }).Cast<Vector2>().ToArray();
+
+        return normalizedData;
     }
 
 }
