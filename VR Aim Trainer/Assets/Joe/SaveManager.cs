@@ -67,6 +67,8 @@ public static class SaveManager
         }
     }
 
+    public static List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
+
     public static SavedDataObject GetSavedDataObject() { return savedDataObject; }
 }
 
