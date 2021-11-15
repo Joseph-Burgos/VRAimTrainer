@@ -38,11 +38,11 @@ public class Graph : MonoBehaviour {
         // set values
         initializeGraphData();
         // Testing
-        Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
-        createGraph(testNodes);
-        String[] testLabels = {"string one", "string two"};
-        drawXLabels(testLabels);
-        drawYLabels(testLabels);
+        //Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
+        //createGraph(testNodes);
+        //String[] testLabels = {"string one", "string two"};
+        //drawXLabels(testLabels);
+        //drawYLabels(testLabels);
     }
 
     public void createGraph(Vector2[] nodes) {

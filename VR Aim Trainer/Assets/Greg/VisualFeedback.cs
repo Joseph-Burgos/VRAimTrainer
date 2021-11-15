@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class VisualFeedback : MonoBehaviour {
     // objects to interact with
     [SerializeField] GameObject GameSystem;
-    [SerializeField] GameObject TargetManager;
 
     // labels
     [SerializeField] GameObject ScoreLabel;
@@ -44,13 +43,13 @@ public class VisualFeedback : MonoBehaviour {
     }
 
     void initializeVisualFeedback() {
-        // calling data functions
+        // call data functions, make necessary calculations
         ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
         score = scoreManager.GetScore();
         int totalShots = scoreManager.GetShots();
-        Debug.Log("Visual Feedback - totalShots " + totalShots.ToString());
+       
         targetsHit = scoreManager.GetHits();
-        Debug.Log("Visual Feedback - hits " + targetsHit.ToString());
+        
         if (totalShots > 0)
         {
             accuracy = (double) targetsHit / totalShots;
@@ -59,11 +58,10 @@ public class VisualFeedback : MonoBehaviour {
         {
             accuracy = 0;
         }
-        
-        // make necessary calculations
         // set each label
         setLabels();
         // draw graphs
+        drawGraphs();
     }
 
     void setLabels()
@@ -76,6 +74,18 @@ public class VisualFeedback : MonoBehaviour {
         TargetsHitLabel.GetComponent<TMPro.TextMeshPro>().text += targetsHit.ToString();
         // games played
         GamesPlayedLabel.GetComponent<TMPro.TextMeshPro>().text += gamesPlayed.ToString();
+    }
+
+    void drawGraphs()
+    {
+        //Debug.Log("Visual Feedback - enter draw graphs");
+        Graph scoreGraph = ScoreGraph.GetComponent<Graph>();
+        Graph accuracyGraph = AccuracyGraph.GetComponent<Graph>();
+        Vector2[] testNodes = { new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f) }; // TEST DATA
+        // GET THE ACUTAL DATA FROM SAVE FILES + MOST RECENT GAME
+        scoreGraph.createGraph(testNodes);
+        accuracyGraph.createGraph(testNodes);
+        //Debug.Log("Visual Feedback - exit draw graphs");
     }
 
    
