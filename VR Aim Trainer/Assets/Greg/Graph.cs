@@ -6,9 +6,6 @@ using UnityEngine;
 using UnityEngine.UI;
 // using UnityEngine.IO;
 
-/* 
-* This class is based on a feature developed by Code Monkey (unitycodemonkey.com).
-*/
 public class Graph : MonoBehaviour {
     [SerializeField] private Sprite circleSprite; // node 
     // parent objects
@@ -45,7 +42,33 @@ public class Graph : MonoBehaviour {
         //drawYLabels(testLabels);
     }
 
-    public void createGraph(Vector2[] nodes) {
+    //public void createGraph(Vector2[] nodes) {
+    //    Debug.Log("Graph - enter create graphs");
+    //    // Start test
+    //    CreateCircle(new Vector2(0, 0));
+    //    drawGrid(5, 5);
+    //    // End test
+
+    //    // Start actual function
+    //    // for each node in nodes invoke CreateCircle
+    //    foreach (Vector2 node in nodes) {
+    //        CreateCircle(node);
+    //    }
+    //    // sort Vector2 nodes based on their x value
+    //    //https://stackoverflow.com/questions/12026344/how-to-use-array-sort-to-sort-an-array-of-structs-by-a-specific-element
+    //    // with a linerenderer draw a connecting line using nodes
+    //    LineRenderer dotConnectionRenderer = dotConnection.GetComponent<LineRenderer>();
+    //    // make an array of 2 vector3 elements for endpoints of the line
+    //    Vector3[] nodes3 = nodes.Select(node => new Vector3(node.x, node.y, 0)).Cast<Vector3>().ToArray();
+    //    dotConnectionRenderer.positionCount = nodes3.Length;
+    //    dotConnectionRenderer.SetPositions(nodes3);
+    //    dotConnectionRenderer.gameObject.SetActive(true); // set as active
+    //}
+
+    public void createGraph(List<Tuple<float, float>> data) {
+        Debug.Log("Graph - enter create graphs");
+        Vector2[] normalizedNodes = NormalizeData(data);
+        Debug.Log("Graph - enter create graphs");
         // Start test
         CreateCircle(new Vector2(0, 0));
         drawGrid(5, 5);
@@ -53,7 +76,8 @@ public class Graph : MonoBehaviour {
 
         // Start actual function
         // for each node in nodes invoke CreateCircle
-        foreach (Vector2 node in nodes) {
+        foreach (Vector2 node in normalizedNodes)
+        {
             CreateCircle(node);
         }
         // sort Vector2 nodes based on their x value
@@ -61,15 +85,11 @@ public class Graph : MonoBehaviour {
         // with a linerenderer draw a connecting line using nodes
         LineRenderer dotConnectionRenderer = dotConnection.GetComponent<LineRenderer>();
         // make an array of 2 vector3 elements for endpoints of the line
-        Vector3[] nodes3 = nodes.Select(node => new Vector3(node.x, node.y, 0)).Cast<Vector3>().ToArray();
+        Vector3[] nodes3 = normalizedNodes.Select(node => new Vector3(node.x, node.y, 0)).Cast<Vector3>().ToArray();
         dotConnectionRenderer.positionCount = nodes3.Length;
         dotConnectionRenderer.SetPositions(nodes3);
         dotConnectionRenderer.gameObject.SetActive(true); // set as active
-    }
-
-    public void createGraph(List<Tuple<float, float>> data) {
-        Vector2[] normalizedNodes = NormalizeData(data);
-        createGraph(normalizedNodes);
+        Debug.Log("Graph - exit create graphs");
     }
 
     private void initializeGraphData() {

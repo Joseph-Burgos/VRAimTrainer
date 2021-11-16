@@ -21,7 +21,7 @@ public class VisualFeedback : MonoBehaviour {
 
     // data members
     public int score;
-    public double accuracy;
+    public float accuracy;
     public int targetsHit;
     public int totalTargets;
     public int gamesPlayed;
@@ -49,6 +49,7 @@ public class VisualFeedback : MonoBehaviour {
     }
 
     void initializeVisualFeedback() {
+        Debug.Log("Visual Feedback - enter initializeVisualFeedback");
         // call data functions, make necessary calculations
         ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
         score = scoreManager.GetScore();
@@ -58,7 +59,7 @@ public class VisualFeedback : MonoBehaviour {
         
         if (totalShots > 0)
         {
-            accuracy = (double) targetsHit / totalShots;
+            accuracy = (float) targetsHit / totalShots;
         }
         else
         {
@@ -68,6 +69,7 @@ public class VisualFeedback : MonoBehaviour {
         setLabels();
         // draw graphs
         drawGraphs();
+        Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
     }
 
     void setLabels()
@@ -84,14 +86,16 @@ public class VisualFeedback : MonoBehaviour {
 
     void drawGraphs()
     {
-        //Debug.Log("Visual Feedback - enter draw graphs");
+        Debug.Log("Visual Feedback - enter draw graphs");
         Graph scoreGraph = ScoreGraph.GetComponent<Graph>();
         Graph accuracyGraph = AccuracyGraph.GetComponent<Graph>();
+        //Debug.Log(scoreGraph.createGraph);
+        Debug.Log("Visual Feedback - draw graphs - calling create graph");
         
         // GET THE ACUTAL DATA FROM SAVE FILES + MOST RECENT GAME
         scoreGraph.createGraph(getScoreHistory());
         accuracyGraph.createGraph(getAccuracyHistory());
-        //Debug.Log("Visual Feedback - exit draw graphs");
+        Debug.Log("Visual Feedback - exit draw graphs");
     }
 
     void loadData() {
@@ -108,11 +112,6 @@ public class VisualFeedback : MonoBehaviour {
         TimeSpan duration = today - oldest;
         int topScore = playerScoreList.Max(ps => ps.score);
         List<Tuple<float, float>> scoreHistory = new List<Tuple<float, float>>();
-        //Vector2[] scoreHistory = playerScoreList.Select(playerScore => {
-        //    //int normalizedScore = 
-        //    new Vector2(playerScore.score, playerScore.dateTime);
-        //}).Cast<Vector2>().ToArray();
-        //Vector2[] testNodes = { new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f) }; // TEST DATA
         foreach (PlayerScore playerScore in playerScoreList)
         {
             float x = (playerScore.dateTime - oldest).Minutes;
@@ -129,14 +128,6 @@ public class VisualFeedback : MonoBehaviour {
         TimeSpan duration = today - oldest;
         float xMax = duration.Minutes;
         List<Tuple<float, float>> accuracyHistory = new List<Tuple<float, float>>();
-        //= playerScoreList.Select(playerScore =>
-        //{
-        //    float x = (playerScore.dateTime - oldest).Minutes;
-        //    float y = playerScore.accuracy;
-
-        //    return Tuple.Create(x, y);
-        //});
-        //
         foreach (PlayerScore playerScore in playerScoreList) {
             float x = (playerScore.dateTime - oldest).Minutes;
             float y = playerScore.accuracy;

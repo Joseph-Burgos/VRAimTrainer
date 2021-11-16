@@ -39,9 +39,9 @@ public class ScoreManager : MonoBehaviour
         m_Shots++;
     }
 
-    public int GetScore() { return m_Score; }
+    public int GetScore() { return 9000; } // TODO fix
 
-    public int GetShots() { return m_Shots; }
+    public int GetShots() { return 8000; } // TODO fix
 
     public int GetHits() { return m_Hits; }
 }
