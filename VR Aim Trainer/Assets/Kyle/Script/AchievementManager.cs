@@ -22,7 +22,7 @@ public class AchievementManager : MonoBehaviour
 
     [SerializeField]
     private int m_TargetsHitGoal;
-    private int m_TargetsHit;
+    private int m_TargetsHit = 0;
     private int m_TargetsHitAchieved;
 
     // used for making the object a singleton
@@ -51,18 +51,19 @@ public class AchievementManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
 
         // initialize the text for all TMPs on the achievement canvas
-        if (m_ShootFirstTargetAchieved == 1){
+        if (SceneManager.GetActiveScene().name.Equals("MainHub 1")){
+            if (m_ShootFirstTargetAchieved == 1){
             GameObject.Find( "Shoot First Target TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nCompleted";
-        }
-        else{
-            GameObject.Find( "Shoot First Target TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nIncomplete";
+            }
+            else{
+                GameObject.Find( "Shoot First Target TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nIncomplete";
+            }
+
+            UpdateTargetsHitTMP();
         }
 
         CheckMainHubScore();
         CheckTrackingScore();
-        UpdateTargetsHitTMP();
-
-        
     }
 
     public void IncreaseTargetsHit(){
@@ -100,6 +101,7 @@ public class AchievementManager : MonoBehaviour
 
     private void CheckMainHubScore(){
         Scene currentScene = SceneManager.GetActiveScene();
+        // if not in the Main Hub
         if (!currentScene.name.Equals("MainHub 1")){
             return;
         }
@@ -114,13 +116,15 @@ public class AchievementManager : MonoBehaviour
     }
 
     // still needs to update score variable when in tracking scene
-    private void CheckTrackingScore(){
+    public void CheckTrackingScore(){
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name.Equals("Tracking"))
         {
-            // check and update score                                          FIX ME
-            m_TrackingScore = 0;
+            // check and update score
+            ScoreManager sm = new ScoreManager();
+            m_TrackingScore = sm.GetScore();
 
+            // check if the goal has been reached
             if (m_TrackingScore >= m_TrackingScoreGoal) {
                 PlayerPrefs.SetInt("TrackingScore", 1 );
                 PlayerPrefs.Save();
