@@ -5,15 +5,15 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-[System.Serializable]
-public class OnHitEvent : UnityEvent<int>
-{
-}
+// [System.Serializable]
+// public class OnHitEvent : UnityEvent<int>
+// {
+// }
 
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : Target_Parent
 {
-    public OnHitEvent onHit;
+    //public OnHitEvent onHit;
 
     // Update is called once per frame
     void Update()
@@ -50,7 +50,7 @@ public override void hit()
         //destroy particle upon complete
         Destroy(burstObject, 1f);
 
-        onHit.Invoke(100);
+        //onHit.Invoke(100);
     }
 
 
