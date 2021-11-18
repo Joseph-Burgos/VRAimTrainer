@@ -271,8 +271,8 @@ GameObject:
   - component: {fileID: 766901627}
   - component: {fileID: 766901626}
   - component: {fileID: 766901625}
-  - component: {fileID: 766901624}
   - component: {fileID: 766901623}
+  - component: {fileID: 766901624}
   - component: {fileID: 766901622}
   m_Layer: 0
   m_Name: TestMagazine
@@ -500,7 +500,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39086
+  m_Name: pb_Mesh27216
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -1048,6 +1048,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
+--- !u!1 &1135566166
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1135566167}
+  m_Layer: 0
+  m_Name: MagazineSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1135566167
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135566166}
+  m_LocalRotation: {x: 0.25417584, y: -0.00078359246, z: 0.004527271, w: 0.9671471}
+  m_LocalPosition: {x: -0.0452, y: -0.0115, z: -0.0037}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1316739213}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 29.45, y: 0.052, z: 0.55}
 --- !u!1001 &1255832679
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1667,6 +1697,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7215015784759952004, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
+      propertyPath: magazineSlot
+      value: 
+      objectReference: {fileID: 1135566167}
     - target: {fileID: 7215015784759952005, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
       propertyPath: m_Size.x
       value: 0.041102137
@@ -1691,7 +1725,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh39052
+  m_Name: pb_Mesh27180
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

@@ -9,6 +9,7 @@ public class SHOOTTEST : MonoBehaviour
 
     private bool isActive = false;
     private int ammo = 0;
+    private bool magInserted = false;
     private Interactable interactable;
     Transform SkinsTransform; 
 
@@ -18,6 +19,7 @@ public class SHOOTTEST : MonoBehaviour
     public Transform muzzle;
     public BulletTrail bulletTrail;
     public ParticleSystem muzzleFlash = null;
+    public Transform magazineSlot;
 
     [Header("options for Gun")]
     public float RayCastRange = 100f;
@@ -155,10 +157,35 @@ public class SHOOTTEST : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Magazine")
+        //check if collision with gun is a magazine, and if there is a magazine already present.
+        if (other.tag == "Magazine" && !magInserted)
         {
-            Debug.Log("Detected magazine with " +  other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+            magInserted = true;
+
+            // detach the magazine from hand
+            other.GetComponent<Interactable>().attachedToHand.DetachObject(other.gameObject, false);
+
+            // disable interactable script
+            other.GetComponent<Interactable>().enabled = false;
+            Destroy(other.GetComponent("Throwable"));
+
+            // disable colliders on magazine so that it doesn't collide with weapon
+            other.GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<BoxCollider>().isTrigger = true;
+            
+            // change rotation of mag to magazine slot
+            other.transform.rotation = magazineSlot.rotation;
+            // change position of mag to magazine slot
+            other.transform.position = magazineSlot.position;
+            // make the magazine a child of the gun and change the transform
+            other.transform.SetParent(gameObject.transform);
+            
+            // move magazine object to the magazine slot in the gun
+            other.gameObject.transform.position = magazineSlot.position;
+            // set the ammo in the magazine to the gun
             ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+
+            Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
         }
     }
 }
