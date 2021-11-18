@@ -22,7 +22,7 @@ public class GameflowManager : MonoBehaviour {
     // private PlaytimeHistory playtimeHistory;
 
     void Awake () {
-        Debug.Log("GameflowManager: Awake()");
+        // Debug.Log("GameflowManager: Awake()");
         state = StateType.NOTSTARTED;
         
         // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
@@ -43,7 +43,7 @@ public class GameflowManager : MonoBehaviour {
     void Update () {
         // Debug.Log("GameflowManager: Update()");
         if (!timer.timeLeft()) {
-            Debug.Log("GameflowManager: Update(): Game Over!");
+            // Debug.Log("GameflowManager: Update(): Game Over!");
             state = StateType.FINISHED;
             
             // signal target manager that game is finished
