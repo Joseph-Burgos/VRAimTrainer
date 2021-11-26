@@ -10,7 +10,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerScore
 {
-    public System.DateTime dateTime;
+    public string dateTime;
     public string gameMode;
     public int score;
     public int gameTime;
@@ -19,6 +19,6 @@ public class PlayerScore
 
     public override string ToString()
     {
-        return "Date & time: " + dateTime + "GameMode: " + gameMode + "Score: " + score + "Time: " + gameTime;
+        return "Date & time: " + dateTime + " GameMode: " + gameMode + " Score: " + score + " Time: " + gameTime;
     }
 }
