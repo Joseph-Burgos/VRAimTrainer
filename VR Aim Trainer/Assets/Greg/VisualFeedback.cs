@@ -93,8 +93,15 @@ public class VisualFeedback : MonoBehaviour {
         Debug.Log("Visual Feedback - draw graphs - calling create graph");
         
         // GET THE ACUTAL DATA FROM SAVE FILES + MOST RECENT GAME
-        scoreGraph.createGraph(getScoreHistory());
-        accuracyGraph.createGraph(getAccuracyHistory());
+        Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
+        var tupleList = new List<System.Tuple<float, float>> {
+            Tuple.Create(0f, 0f),
+            Tuple.Create(1f, 0.2f),
+            Tuple.Create(2.0f, 0.6f),
+            Tuple.Create(2.6f, 0.8f)
+        };
+        scoreGraph.createGraph(tupleList); //scoreGraph.createGraph(getScoreHistory());
+        // accuracyGraph.createGraph(getAccuracyHistory());
         Debug.Log("Visual Feedback - exit draw graphs");
     }
 
