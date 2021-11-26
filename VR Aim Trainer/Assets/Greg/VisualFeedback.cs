@@ -107,7 +107,7 @@ public class VisualFeedback : MonoBehaviour {
 
     void loadData() {
         SaveManager saveManager = GameSystem.GetComponent<SaveManager>();
-        List<PlayerScore> playerScoreList = saveManager.GetPlayerScoresList();
+        playerScoreList = saveManager.GetPlayerScoresList();
         // check if the gamesystem exists and has a GameMode enum set
         // if so -> filter the data on the gamemode
         // get the date range (this is the x-axis)
