@@ -1,11 +1,11 @@
-{"scores":
+{"playerScores":
     [
-        {"datetime": "1212-12-24-12-12-12", "gameMode":"Reaction","score":120,"time":54},
-        {"datetime": "2021-10-20-18-05-40", "gameMode":"Reaction","score":246,"time":54},
-        {"datetime": "2021-10-20-18-20-12", "gameMode":"Reaction","score":444,"time":54},
-        {"datetime": "2021-10-21-22-10-12", "gameMode":"Reaction","score":340,"time":54},
-        {"datetime": "2021-10-23-12-12-12", "gameMode":"Reaction","score":500,"time":54},
-        {"datetime": "2021-10-23-12-12-12", "gameMode":"Reaction","score":525,"time":54}
+        {"dateTime": "1212-12-24-12-12-12", "gameMode":"Reaction","score":120,"time":54, "accuracy":0.5},
+        {"dateTime": "2021-10-20-18-05-40", "gameMode":"Reaction","score":246,"time":54, "accuracy":0.5},
+        {"dateTime": "2021-10-20-18-20-12", "gameMode":"Reaction","score":444,"time":54, "accuracy":0.5},
+        {"dateTime": "2021-10-21-22-10-12", "gameMode":"Reaction","score":340,"time":54, "accuracy":0.5},
+        {"dateTime": "2021-10-23-12-12-12", "gameMode":"Reaction","score":500,"time":54, "accuracy":0.5},
+        {"dateTime": "2021-10-23-12-12-12", "gameMode":"Reaction","score":525,"time":54, "accuracy":0.5}
     ]
 }
        

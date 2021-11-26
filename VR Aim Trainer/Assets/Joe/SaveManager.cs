@@ -57,20 +57,24 @@ public class SaveManager : MonoBehaviour
 
 public void Load()
     {
-        
+        Debug.Log("SaveManager - Entering load");
         // absolute path to data file 
         string absDataPath = Application.dataPath + saveDirectory + savefileName;
-
+        Debug.Log("SaveManager - path: " + absDataPath);
         if (File.Exists(absDataPath))
         {
             string json = File.ReadAllText(absDataPath);
             savedDataObject = JsonUtility.FromJson<SavedDataObject>(json);
+            Debug.Log("SaveManager - loaded data");
             playerScoreList = savedDataObject.playerScores;
+            foreach (PlayerScore score in playerScoreList) { Debug.Log("SaveManager - " + score.ToString()); }
         }
         else
         {
             Debug.Log("SAVE FILE DOES NOT EXIST");
         }
+
+        Debug.Log("SaveManager - Leaving load");
     }
 
 public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
