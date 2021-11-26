@@ -57,6 +57,7 @@ public class SaveManager : MonoBehaviour
 
 public void Load()
     {
+        
         // absolute path to data file 
         string absDataPath = Application.dataPath + saveDirectory + savefileName;
 
@@ -72,9 +73,9 @@ public void Load()
         }
     }
 
-    public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
+public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
 
-    public SavedDataObject GetSavedDataObject() { return savedDataObject; }
+public SavedDataObject GetSavedDataObject() { return savedDataObject; }
 }
 
 //create a class of playerScores so we can save it
