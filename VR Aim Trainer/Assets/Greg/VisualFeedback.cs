@@ -29,6 +29,8 @@ public class VisualFeedback : MonoBehaviour {
     // saved data
     private List<PlayerScore> playerScoreList;
 
+    
+
     private void Awake()
     {
         score = 0;
@@ -42,15 +44,15 @@ public class VisualFeedback : MonoBehaviour {
     {
         //targetManager = otherGameObject.findComponent<TargetManager>();
         Debug.Log("Visual Feedback - start");
-        loadData();
-        // TEST
-        gamesPlayed = 1000000000;
-        initializeVisualFeedback();
+        //loadData();
+        
+        
     }
 
-    void initializeVisualFeedback() {
+    public void initializeVisualFeedback() {
         Debug.Log("Visual Feedback - enter initializeVisualFeedback");
         // call data functions, make necessary calculations
+        loadData();
         ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
         score = scoreManager.GetScore();
         int totalShots = scoreManager.GetShots();
@@ -105,16 +107,17 @@ public class VisualFeedback : MonoBehaviour {
             Tuple.Create(2.6f, 0.8f)
         };
         // scoreGraph.createGraph(tupleList); 
-        // var scores = getScoreHistory();
+         var scores = getScoreHistory();
         // Debug.Log("Visual Feedback - draw graphs - retrieved scores");
         // Debug.Log(scores);
-        // scoreGraph.createGraph(scores);
+         scoreGraph.createGraph(scores);
         // accuracyGraph.createGraph(getAccuracyHistory());
         Debug.Log("Visual Feedback - exit draw graphs");
     }
 
     void loadData() {
         SaveManager saveManager = GameSystem.GetComponent<SaveManager>();
+        saveManager.Load();
         playerScoreList = saveManager.GetPlayerScoresList();
         // check if the gamesystem exists and has a GameMode enum set
         // if so -> filter the data on the gamemode

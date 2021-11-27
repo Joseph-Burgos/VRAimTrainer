@@ -14,17 +14,20 @@ public class GameflowManager : MonoBehaviour {
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
 
-    [SerializeField] GameObject VisualFeedback; 
+    [SerializeField] GameObject VisualFeedback;
+    private VisualFeedback VisualFeedbackScript;
     private Timer timer;
     private TargetManager targetManager;
+    // flags
+    private bool menuActive;
     // private ScoreManager scoreManager;
-    
+
     // private PlaytimeHistory playtimeHistory;
 
     void Awake () {
         Debug.Log("GameflowManager: Awake()");
         state = StateType.NOTSTARTED;
-        
+        menuActive = false;
         // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
     }
 
@@ -33,19 +36,21 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("GameflowManager: Start() - grabbing timer");
         // Get the timer from the GameSystem object
         timer = GameSystem.GetComponent<Timer>();
+        VisualFeedbackScript = VisualFeedback.GetComponent<VisualFeedback>();
         // Get the target manager from the GameManager object
         targetManager = TargetManager.GetComponent<TargetManager>();
         timer.StartTimer();
         Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         state = StateType.RUNNING;
+
     }
 
     void Update () {
         // Debug.Log("GameflowManager: Update()");
-        if (!timer.timeLeft()) {
+        if (!timer.timeLeft() && !menuActive) {
             // Debug.Log("GameflowManager: Update(): Game Over!");
             state = StateType.FINISHED;
-            
+            menuActive = true;
             // signal target manager that game is finished
             targetManager.keepUpdating = false;
             // PlaytimeHistory.calculatePlaytimeHistory();
@@ -54,6 +59,8 @@ public class GameflowManager : MonoBehaviour {
             // saveGameData(); // TODO save game data to server and disk
             // TODO expose post game display and menus to player
             VisualFeedback.SetActive(true);
+            VisualFeedbackScript.initializeVisualFeedback();
+            
         }
 
         // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS

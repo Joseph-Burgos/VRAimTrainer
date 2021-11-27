@@ -68,7 +68,6 @@ public class Graph : MonoBehaviour {
     public void createGraph(List<Tuple<float, float>> data) {
         Debug.Log("Graph - enter create graphs");
         Vector2[] normalizedNodes = NormalizeData(data);
-        Debug.Log("Graph - enter create graphs");
         // Start test
         CreateCircle(new Vector2(0, 0));
         drawGrid(5, 5);
@@ -191,6 +190,7 @@ public class Graph : MonoBehaviour {
     }
 
     public Vector2[] NormalizeData(List<Tuple<float, float>> data) {
+        Debug.Log("Graph - Entering NormalizeData");
         float upperLimitX = data.Max(d => d.Item1); // TODO round up to next round number
         float upperLimitY = data.Max(d => d.Item2);
         Vector2[] normalizedData = data.Select( d => {
@@ -198,7 +198,7 @@ public class Graph : MonoBehaviour {
                 float normalizedYPos = yLength * (d.Item2 / upperLimitY);
                 return new Vector2(normalizedXPos, normalizedYPos);
             }).Cast<Vector2>().ToArray();
-
+        Debug.Log("Graph - Exiting NormalizeData");
         return normalizedData;
     }
 

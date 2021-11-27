@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour
     public SavedDataObject savedDataObject = null;
     public List<PlayerScore> playerScoreList = null;
 
-    public void Start()
+    public void Awake()
     {
         Load();    
     }
