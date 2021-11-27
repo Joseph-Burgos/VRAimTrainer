@@ -1701,6 +1701,10 @@ PrefabInstance:
       propertyPath: magazineSlot
       value: 
       objectReference: {fileID: 1135566167}
+    - target: {fileID: 7215015784759952004, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
+      propertyPath: ejectMagAction.actionPath
+      value: /actions/Gun/in/ejectMag
+      objectReference: {fileID: 0}
     - target: {fileID: 7215015784759952005, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
       propertyPath: m_Size.x
       value: 0.041102137
@@ -1712,6 +1716,10 @@ PrefabInstance:
     - target: {fileID: 7215015784759952005, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
       propertyPath: m_Center.y
       value: 0.019896016
+      objectReference: {fileID: 0}
+    - target: {fileID: 7215015784759952007, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
+      propertyPath: hideHandOnAttach
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7557474965666968989, guid: a52622e9d38b71a49b0a1cbe231b48ff, type: 3}
       propertyPath: m_Name
@@ -1913,7 +1921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionSet:
-    actionSetPath: /actions/Gun
+    actionSetPath: /actions/default
   forSources: 0
   disableAllOtherActionSets: 0
   activateOnStart: 1

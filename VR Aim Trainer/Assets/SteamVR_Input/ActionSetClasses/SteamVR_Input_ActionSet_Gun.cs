@@ -24,5 +24,13 @@ namespace Valve.VR
                 return SteamVR_Actions.gun_shoot;
             }
         }
+        
+        public virtual SteamVR_Action_Boolean ejectMag
+        {
+            get
+            {
+                return SteamVR_Actions.gun_ejectMag;
+            }
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class SHOOTTEST : MonoBehaviour
     [Header("Info for class to function")]
     public GameObject laser;
     public SteamVR_Action_Boolean fireAction;
+    public SteamVR_Action_Boolean ejectMagAction;
     public Transform muzzle;
     public BulletTrail bulletTrail;
     public ParticleSystem muzzleFlash = null;
@@ -63,16 +65,26 @@ public class SHOOTTEST : MonoBehaviour
             SteamVR_Input_Sources source = interactable.attachedToHand.handType;
 
             //check if constant fire is true
-            //else if pressing down fire button
             if (constantFire)
             {
                 StartCoroutine("ShootEveryFrame");
             }
+            //else if pressing down fire button and there is ammo in the weapon
             else if (fireAction[source].stateDown && ammo > 0)
             {
                 ammo--;
                 shoot();
                 playAnim();
+            }
+
+            //check if ejectMag button is pressed
+            if(ejectMagAction.stateDown && magInserted == true)
+            {
+                Debug.Log("ejectMagazine activated");
+                //get the insertedMagazine child object in the weapon
+                //FIXME: can only find child objects with the name "TestMagazine", so magazines with different names will not work
+                GameObject insertedMagazine = gameObject.transform.Find("TestMagazine").gameObject;
+                ejectMagazine(insertedMagazine);
             }
         }
         //checked if gun is being held AND laser is visible
@@ -172,14 +184,14 @@ public class SHOOTTEST : MonoBehaviour
             // disable colliders on magazine so that it doesn't collide with weapon
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<BoxCollider>().isTrigger = true;
-            
+
             // change rotation of mag to magazine slot
             other.transform.rotation = magazineSlot.rotation;
             // change position of mag to magazine slot
             other.transform.position = magazineSlot.position;
             // make the magazine a child of the gun and change the transform
             other.transform.SetParent(gameObject.transform);
-            
+
             // move magazine object to the magazine slot in the gun
             other.gameObject.transform.position = magazineSlot.position;
             // set the ammo in the magazine to the gun
@@ -187,5 +199,27 @@ public class SHOOTTEST : MonoBehaviour
 
             Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
         }
+    }
+
+    private void ejectMagazine(GameObject magazine)
+    {
+        magInserted = false;
+
+        // if there is still ammo in the mag before ejecting, let there be one more round left in the weapon
+        // update the ammo on the magazine
+        if (ammo != 0)
+        {
+            magazine.GetComponent<magazineScript>().ammoCount = ammo - 1;
+            ammo = 1;
+        }
+        else
+        {
+            magazine.GetComponent<magazineScript>().ammoCount = 0;
+            ammo = 0;
+        }
+
+        // detach magazine from the parent
+        magazine.transform.parent = null;
+
     }
 }
