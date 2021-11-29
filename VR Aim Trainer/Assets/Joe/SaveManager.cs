@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.Http;
 using UnityEngine;
 using System.IO;
 
@@ -19,49 +20,42 @@ public class SaveManager : MonoBehaviour
     public SavedDataObject savedDataObject = null;
     public List<PlayerScore> playerScoreList = null;
 
-    public void Awake()
-    {
-        Load();    
-    }
-
+    public void Awake() { Load(); }
 
     // Saves a playerscore to disk.
     public void addScore(PlayerScore ss)
     {
         Debug.Log("SaveManager - Enter addScores");
 
+        //get saveDirectory of file
+        string savedDataDirectoryStr = Application.dataPath + saveDirectory;
+        //check if exists
+        if (!Directory.Exists(savedDataDirectoryStr))
+        {
+            Debug.Log("Save file does not exist, creating");
+            Directory.CreateDirectory(savedDataDirectoryStr);
+        }
+
+        // check if playerScoreList is null, if so, load data
+        if (playerScoreList == null) {
+            //creates a new player score board
+            SavedDataObject playerScoresList = new SavedDataObject { playerScores = playerScores };
+            //load old SavedDataObject
+            SavedDataObject oldplayerScoresList = Load();
+        }
+
+        // TODO save score to disk
+        playerScoreList.Add(ss);
+        savedDataObject.playerScores = playerScoreList;
+        string json = JsonUtility.ToJson(playerScoresList);
+        File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
+
+        // TODO send score data to server
+
         Debug.Log("SaveManager - Exit addScores");
-        // //get saveDirectory of file
-        // string dir = Application.dataPath + saveDirectory;
-        // //check if exists
-        // if (!Directory.Exists(dir))
-        // {
-        //     Debug.Log("Save file does not exist, creating");
-        //     Directory.CreateDirectory(dir);
-        // }
-
-        // //creates a new player score board
-        // SavedDataObject playerScoresList = new SavedDataObject { playerScores = playerScores };
-        // //load old SavedDataObject
-        // SavedDataObject oldplayerScoresList = Load();
-
-        // //check if old SavedDataObject empty
-        // if (oldplayerScoresList != null )
-        // {
-        //     //store the old SavedDataObject into the current SavedDataObject
-        //     playerScoresList = oldplayerScoresList;
-        // }
-        // //add into list
-        // playerScoresList.playerScores.Add(ss);
-
-        // //parse save object into json string format
-        // string json = JsonUtility.ToJson(playerScoresList);
-
-        // //save
-        // File.WriteAllText(dir + saveGameData, json);
     }
 
-public void Load()
+    public void Load()
     {
         Debug.Log("SaveManager - Entering load");
         // retrieve data from past games
@@ -88,9 +82,9 @@ public void Load()
         Debug.Log("SaveManager - Leaving load");
     }
 
-public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
+    public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }
 
-public SavedDataObject GetSavedDataObject() { return savedDataObject; }
+    public SavedDataObject GetSavedDataObject() { return savedDataObject; }
 }
 
 //create a class of playerScores so we can save it
