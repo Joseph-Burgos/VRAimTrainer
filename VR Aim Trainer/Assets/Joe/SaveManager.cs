@@ -9,8 +9,12 @@ public class SaveManager : MonoBehaviour
 {
     //make file saveDirectory specifically save into assets folder -- i specifically chose joe folder for testing
     public string saveDirectory = "/Joe/SaveData/";
-    //file name with saved data
-    public string savefileName =  "MyData.txt";
+    //file name with saved datatri
+    public string saveGameData =  "MyData.txt";
+    // File with username
+    public string userNameFile = "Username.txt";
+    // current username
+    public string userName = "Default";
     //create an empty list to add onto
     public SavedDataObject savedDataObject = null;
     public List<PlayerScore> playerScoreList = null;
@@ -24,7 +28,9 @@ public class SaveManager : MonoBehaviour
     // Saves a playerscore to disk.
     public void addScore(PlayerScore ss)
     {
-        Debug.Log("Add to playerScores");
+        Debug.Log("SaveManager - Enter addScores");
+
+        Debug.Log("SaveManager - Exit addScores");
         // //get saveDirectory of file
         // string dir = Application.dataPath + saveDirectory;
         // //check if exists
@@ -52,18 +58,18 @@ public class SaveManager : MonoBehaviour
         // string json = JsonUtility.ToJson(playerScoresList);
 
         // //save
-        // File.WriteAllText(dir + savefileName, json);
+        // File.WriteAllText(dir + saveGameData, json);
     }
 
 public void Load()
     {
         Debug.Log("SaveManager - Entering load");
-        // absolute path to data file 
-        string absDataPath = Application.dataPath + saveDirectory + savefileName;
-        Debug.Log("SaveManager - path: " + absDataPath);
-        if (File.Exists(absDataPath))
+        // retrieve data from past games
+        string saveGameDataPath = Application.dataPath + saveDirectory + saveGameData;
+        Debug.Log("SaveManager - path: " + saveGameDataPath);
+        if (File.Exists(saveGameDataPath))
         {
-            string json = File.ReadAllText(absDataPath);
+            string json = File.ReadAllText(saveGameDataPath);
             savedDataObject = JsonUtility.FromJson<SavedDataObject>(json);
             Debug.Log("SaveManager - loaded data");
             playerScoreList = savedDataObject.playerScores;
@@ -73,7 +79,12 @@ public void Load()
         {
             Debug.Log("SAVE FILE DOES NOT EXIST");
         }
-
+        // retrieve username
+        string userNameDataPath = Application.dataPath + saveDirectory + userNameFile;
+        if (File.Exists(userNameDataPath)) {
+            userName = System.IO.File.ReadAllText(userNameDataPath);
+            Debug.Log("USERNAME: " + userName);
+        }
         Debug.Log("SaveManager - Leaving load");
     }
 
