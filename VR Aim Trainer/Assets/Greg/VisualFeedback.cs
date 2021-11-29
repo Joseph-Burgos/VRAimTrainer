@@ -89,29 +89,12 @@ public class VisualFeedback : MonoBehaviour {
     void drawGraphs()
     {
         Debug.Log("Visual Feedback - enter draw graphs");
-        Debug.Log(playerScoreList);
-        foreach(var ps in playerScoreList) {
-            Debug.Log("SCORE");
-        }
         Graph scoreGraph = ScoreGraph.GetComponent<Graph>();
         Graph accuracyGraph = AccuracyGraph.GetComponent<Graph>();
-        //Debug.Log(scoreGraph.createGraph);
-        Debug.Log("Visual Feedback - draw graphs - calling create graph");
-        
-        // GET THE ACUTAL DATA FROM SAVE FILES + MOST RECENT GAME
-        Vector2[] testNodes = {new Vector2(0, 0), new Vector2(1, 0.2f), new Vector2(2.0f, 0.6f), new Vector2(2.6f, 0.8f)};
-        var tupleList = new List<System.Tuple<float, float>> {
-            Tuple.Create(0f, 0f),
-            Tuple.Create(1f, 0.2f),
-            Tuple.Create(2.0f, 0.6f),
-            Tuple.Create(2.6f, 0.8f)
-        };
-        // scoreGraph.createGraph(tupleList); 
+        // Draw the scores graph
          var scores = getScoreHistory();
-        // Debug.Log("Visual Feedback - draw graphs - retrieved scores");
-        // Debug.Log(scores);
-         scoreGraph.createGraph(scores);
-        // accuracyGraph.createGraph(getAccuracyHistory());
+         scoreGraph.createGraph(scores, false);
+         accuracyGraph.createGraph(getAccuracyHistory(), true);
         Debug.Log("Visual Feedback - exit draw graphs");
     }
 
@@ -129,7 +112,7 @@ public class VisualFeedback : MonoBehaviour {
         DateTime oldest = playerScoreList.Min(ps => DateTime.Parse(ps.dateTime));
         DateTime today = System.DateTime.Now;
         TimeSpan duration = today - oldest;
-        int topScore = playerScoreList.Max(ps => ps.score);
+        //int topScore = playerScoreList.Max(ps => ps.score);
         List<Tuple<float, float>> scoreHistory = new List<Tuple<float, float>>();
         foreach (PlayerScore playerScore in playerScoreList)
         {
