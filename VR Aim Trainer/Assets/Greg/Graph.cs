@@ -15,8 +15,8 @@ public class Graph : MonoBehaviour {
     private Transform verticalGridMarkerTemplate;
     private Transform dotConnection;
 
-    private Transform xLabelTemplate;
-    private Transform yLabelTemplate;
+    private Transform yAxisHigh;
+    private Transform yAxisMid;
     // private LineRenderer horizontalGridMarkerTemplate;
 
     // data for generating graph
@@ -30,8 +30,8 @@ public class Graph : MonoBehaviour {
         horizontalGridMarkerTemplate = graphContainerTransform.Find("HorizontalGridMarkerTemplate"); //.GetComponent<LineRenderer>();
         verticalGridMarkerTemplate = graphContainerTransform.Find("VerticalGridMarkerTemplate");
         dotConnection = graphContainerTransform.Find("DotConnection");
-        xLabelTemplate = graphContainerTransform.Find("XLabelTemplate");
-        yLabelTemplate = graphContainerTransform.Find("YLabelTemplate");
+        yAxisHigh = graphContainerTransform.Find("YAxisHigh");
+        yAxisMid = graphContainerTransform.Find("YAxisMid");
         // set values
         initializeGraphData();
         // Testing
@@ -42,13 +42,11 @@ public class Graph : MonoBehaviour {
         //drawYLabels(testLabels);
     }
 
-    public void createGraph(List<Tuple<float, float>> data) {
+    public void createGraph(List<Tuple<float, float>> data, bool percentageGraph) {
         Debug.Log("Graph - enter create graphs");
-        Vector2[] normalizedNodes = NormalizeData(data);
-        // Start test
-        CreateCircle(new Vector2(0, 0));
+        Vector2[] normalizedNodes = NormalizeData(data, percentageGraph);
+        // Draw grid
         drawGrid(5, 5);
-        // End test
 
         // Start actual function
         // for each node in nodes invoke CreateCircle
@@ -110,47 +108,47 @@ public class Graph : MonoBehaviour {
         }
     }
 
-    private void drawXLabels(String[] labels) {
-        if (labels.Length > 0) {
-            float spaceInBetween = labels.Length  > 1 ? (xLength / (labels.Length - 1)) : 0;
-            for (int i = 0; i < labels.Length; i++) {
-                String label = labels[i];
-                Transform xAxisLabel = Instantiate(xLabelTemplate, graphContainerTransform);
-                // position label along axis with respect to position of template
-                RectTransform xLabelRectTransform = xAxisLabel.GetComponent<RectTransform>();
-                Vector3 currentPosition = xLabelRectTransform.anchoredPosition3D;
-                float currentXPosition = currentPosition.x;
-                float newXPosition = currentXPosition + (spaceInBetween * i);
-                xLabelRectTransform.anchoredPosition3D = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
-                // set text
-                xAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
-                // render label
-                xAxisLabel.gameObject.SetActive(true);
-            }
-        }
+    //private void drawXLabels(String[] labels) {
+    //    if (labels.Length > 0) {
+    //        float spaceInBetween = labels.Length  > 1 ? (xLength / (labels.Length - 1)) : 0;
+    //        for (int i = 0; i < labels.Length; i++) {
+    //            String label = labels[i];
+    //            Transform xAxisLabel = Instantiate(xLabelTemplate, graphContainerTransform);
+    //            // position label along axis with respect to position of template
+    //            RectTransform xLabelRectTransform = xAxisLabel.GetComponent<RectTransform>();
+    //            Vector3 currentPosition = xLabelRectTransform.anchoredPosition3D;
+    //            float currentXPosition = currentPosition.x;
+    //            float newXPosition = currentXPosition + (spaceInBetween * i);
+    //            xLabelRectTransform.anchoredPosition3D = new Vector3(newXPosition, currentPosition.y, currentPosition.z);
+    //            // set text
+    //            xAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
+    //            // render label
+    //            xAxisLabel.gameObject.SetActive(true);
+    //        }
+    //    }
         
-    }
+    //}
 
-    private void drawYLabels(String[] labels) {
-        if (labels.Length > 0) {
-            float spaceInBetween = labels.Length  > 1 ? (yLength / (labels.Length - 1)) : 0;
-            for (int i = 0; i < labels.Length; i++) {
-                String label = labels[i];
-                Transform yAxisLabel = Instantiate(yLabelTemplate, graphContainerTransform);
-                // position label along axis with respect to position of template
-                RectTransform yLabelRectTransform = yAxisLabel.GetComponent<RectTransform>();
-                Vector3 currentPosition = yLabelRectTransform.anchoredPosition3D;
-                float currentYPosition = currentPosition.y;
-                float newYPosition = currentYPosition + (spaceInBetween * i);
-                yLabelRectTransform.anchoredPosition3D = new Vector3(currentPosition.x, newYPosition, currentPosition.z);
-                // set text
-                yAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
-                // render label
-                yAxisLabel.gameObject.SetActive(true);
-            }
-        }
+    //private void drawYLabels(String[] labels) {
+    //    if (labels.Length > 0) {
+    //        float spaceInBetween = labels.Length  > 1 ? (yLength / (labels.Length - 1)) : 0;
+    //        for (int i = 0; i < labels.Length; i++) {
+    //            String label = labels[i];
+    //            Transform yAxisLabel = Instantiate(yLabelTemplate, graphContainerTransform);
+    //            // position label along axis with respect to position of template
+    //            RectTransform yLabelRectTransform = yAxisLabel.GetComponent<RectTransform>();
+    //            Vector3 currentPosition = yLabelRectTransform.anchoredPosition3D;
+    //            float currentYPosition = currentPosition.y;
+    //            float newYPosition = currentYPosition + (spaceInBetween * i);
+    //            yLabelRectTransform.anchoredPosition3D = new Vector3(currentPosition.x, newYPosition, currentPosition.z);
+    //            // set text
+    //            yAxisLabel.GetComponent<TMPro.TextMeshPro>().text = label;
+    //            // render label
+    //            yAxisLabel.gameObject.SetActive(true);
+    //        }
+    //    }
         
-    }
+    //}
 
     private GameObject CreateCircle(Vector2 anchoredPosition) { 
         GameObject gameObject = new GameObject("circle", typeof(Image));
@@ -166,11 +164,18 @@ public class Graph : MonoBehaviour {
         return gameObject;
     }
 
-    public Vector2[] NormalizeData(List<Tuple<float, float>> data) {
+    public Vector2[] NormalizeData(List<Tuple<float, float>> data, bool percentage) {
         Debug.Log("Graph - Entering NormalizeData");
-        float upperLimitX = data.Max(d => d.Item1); // TODO round up to next round number
-        float upperLimitY = data.Max(d => d.Item2);
-        Vector2[] normalizedData = data.Select( d => {
+        float upperLimitX = data.Max(d => d.Item1); 
+        float upperLimitY = percentage ? 1.0f : data.Max(d => d.Item2);
+        if (!percentage) {
+            // round up the Y limit 
+            upperLimitY += 50;
+            while (upperLimitY % 100 != 0) { upperLimitY++; }
+        }
+        yAxisHigh.GetComponent<TMPro.TextMeshPro>().text = upperLimitY.ToString();
+        yAxisMid.GetComponent<TMPro.TextMeshPro>().text = (upperLimitY/2).ToString();
+        Vector2[] normalizedData = data.OrderBy(d => d.Item1).Select( d => {
                 float normalizedXPos = xLength * (d.Item1 / upperLimitX);
                 float normalizedYPos = yLength * (d.Item2 / upperLimitY);
                 return new Vector2(normalizedXPos, normalizedYPos);
