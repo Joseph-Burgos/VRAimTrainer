@@ -15,7 +15,6 @@ public class OnHitEvent : UnityEvent<int>
 public class AITargetOBJ : Target_Parent
 {
     public OnHitEvent onHit;
-    int counter = 0;
 
     // Update is called once per frame
     void Update()
@@ -27,7 +26,6 @@ public class AITargetOBJ : Target_Parent
             time += Time.deltaTime;
             //Debug.Log(time);
         }
-
     }
 
 
@@ -41,8 +39,7 @@ public override void hit()
         //add target to list
         //TargetManager.addTarget(this);
 
-        //counter incremented for how many time player hits target
-        counter++;
+
         //play audio
         //FindObjectOfType<AudioManager>().Play("MetalHit 1");
         //AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
@@ -50,6 +47,8 @@ public override void hit()
 
         //create a particle
         GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
+        //destroy particle upon complete
+        Destroy(burstObject, 1f);
         //destroy particle upon complete
         //Destroy(burstObject, 1f);
 
