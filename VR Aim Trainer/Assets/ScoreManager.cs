@@ -43,7 +43,7 @@ public class ScoreManager : MonoBehaviour
         m_Shots++;
     }
 
-    public int GetShots() { return m_Score; }
+    public int GetShots() { return m_Shots; }
 
     public int GetHits() { return m_Hits; }
 }
