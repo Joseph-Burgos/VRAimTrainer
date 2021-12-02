@@ -50,13 +50,11 @@ public class GameflowManager : MonoBehaviour {
         // Debug.Log("GameflowManager: Update()");
         if (!timer.timeLeft() && !menuActive) {
             // Debug.Log("GameflowManager: Update(): Game Over!");
-            state = StateType.FINISHED;
             menuActive = true;
+            state = StateType.FINISHED;
             // signal target manager that game is finished
             targetManager.keepUpdating = false; 
-            // expose post game display and menus to player
-            VisualFeedback.SetActive(true);
-            VisualFeedbackScript.initializeVisualFeedback();
+            
             // save game data to server and disk
             // get time
             DateTime now = System.DateTime.Now;
@@ -81,6 +79,10 @@ public class GameflowManager : MonoBehaviour {
             };
             // send the playerscore object to the SaveManager
             saveManager.addScore(playerScore);
+
+            // expose post game display and menus to player
+            VisualFeedback.SetActive(true);
+            VisualFeedbackScript.initializeVisualFeedback();
         }
 
         // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS
