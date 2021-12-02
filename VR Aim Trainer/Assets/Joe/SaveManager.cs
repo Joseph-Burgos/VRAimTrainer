@@ -60,16 +60,16 @@ public class SaveManager : MonoBehaviour
             string testID = "6140e1ce698adf17f996fa63"; // TODO replace with username following refactor
             string gameMode = ss.gameMode;
             int thisScore = ss.score;
-            string record = new JavaScriptSerializer().Serialize(new
-                {
-                    userID = testID,
-                    gameMode = ss.gameMode,
-                    points = ss.score
-                });
+            ScoreToServer newScore = new ScoreToServer{
+                userID = testID,
+                gameMode = ss.gameMode,
+                points = ss.score
+            };
+            string record = JsonUtility.ToJson(newScore);
             streamWriter.Write(record);
         }
         // debug information
-        var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse(); // dispatch request to server
+        var httpResponse =  postRequest.GetResponse(); // dispatch request to server (HttpWebResponse)
 
         Debug.Log("SaveManager - Exit addScores");
     }
