@@ -110,9 +110,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 0}
   burst: {fileID: 0}
-  hitCount: 1
-  totalCount: 1
+  Current_Mat: {fileID: 0}
+  Charge_Effect: {fileID: 0}
   startPos: {fileID: 8365054290769710418, guid: a920067c997a26444819aa3355dbe55c, type: 3}
   endPos: {fileID: 8882011070405903032, guid: 1953ac3197098a0468dc5ce989d7924e, type: 3}
+  hitCount: 1
+  totalCount: 1
   repeatable: 1
   speed: 2.77

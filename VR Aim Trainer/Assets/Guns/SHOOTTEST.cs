@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,14 +9,19 @@ public class SHOOTTEST : MonoBehaviour
 {
 
     private bool isActive = false;
+    private int ammo = 0;
+    private bool magInserted = false;
     private Interactable interactable;
+    Transform SkinsTransform; 
 
     [Header("Info for class to function")]
     public GameObject laser;
     public SteamVR_Action_Boolean fireAction;
+    public SteamVR_Action_Boolean ejectMagAction;
     public Transform muzzle;
     public BulletTrail bulletTrail;
     public ParticleSystem muzzleFlash = null;
+    public Transform magazineSlot;
 
     [Header("options for Gun")]
     public float RayCastRange = 100f;
@@ -35,6 +41,9 @@ public class SHOOTTEST : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //get the parent of skins
+        SkinsTransform = GameObject.Find("Skins").transform;
+
         laser.SetActive(false);
         interactable = GetComponent<Interactable>();
     }
@@ -65,14 +74,26 @@ public class SHOOTTEST : MonoBehaviour
             SteamVR_Input_Sources source = interactable.attachedToHand.handType;
 
             //check if constant fire is true
-            //else if pressing down fire button
             if (constantFire)
             {
                 StartCoroutine("ShootEveryFrame");
             }
-            else if (fireAction[source].stateDown)
+            //else if pressing down fire button and there is ammo in the weapon
+            else if (fireAction[source].stateDown && ammo > 0)
             {
+                ammo--;
                 shoot();
+                playAnim();
+            }
+
+            //check if ejectMag button is pressed
+            if(ejectMagAction.stateDown && magInserted == true)
+            {
+                Debug.Log("ejectMagazine activated");
+                //get the insertedMagazine child object in the weapon
+                //FIXME: can only find child objects with the name "TestMagazine", so magazines with different names will not work
+                GameObject insertedMagazine = gameObject.transform.Find("TestMagazine").gameObject;
+                ejectMagazine(insertedMagazine);
             }
         }
         //checked if gun is being held AND laser is visible
@@ -92,8 +113,6 @@ public class SHOOTTEST : MonoBehaviour
         }
     }
 
-
-
     private void shoot()
     {
         scoreManager.AddToShots();
@@ -104,15 +123,15 @@ public class SHOOTTEST : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("GlockShot");
 
             //play muzzle particle
-            if (GameManager.Instance.useVFX)
-            {
-                //make sure not already running
-                if (muzzleFlash.isPlaying)
-                {
-                    muzzleFlash.Stop();
-                }
-                muzzleFlash.Play();
-            }
+            // if (GameManager.Instance.useVFX)
+            // {
+            //     //make sure not already running
+            //     if (muzzleFlash.isPlaying)
+            //     {
+            //         muzzleFlash.Stop();
+            //     }
+            //     muzzleFlash.Play();
+            // }
         }
   
         //store raycast information
@@ -138,9 +157,79 @@ public class SHOOTTEST : MonoBehaviour
         
     }
 
+    public void playAnim()
+    {
+        //hard coded to hell, needs to check SkinManager to check which index is active
+        for (int i = 0; i < 3; i++)
+        {
+            if (SkinsTransform.GetChild(i).gameObject.activeSelf)
+            {
+                SkinsTransform.GetChild(i).gameObject.GetComponent<Animator>().Play("Fire");
+            }
+        }
+        //play animation at index of currently used skin
+        
+    }
+
     IEnumerator ShootEveryFrame()
     {
         shoot();
         yield return null;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //check if collision with gun is a magazine, and if there is a magazine already present.
+        if (other.tag == "Magazine" && !magInserted)
+        {
+            magInserted = true;
+
+            // detach the magazine from hand
+            other.GetComponent<Interactable>().attachedToHand.DetachObject(other.gameObject, false);
+
+            // disable interactable script
+            other.GetComponent<Interactable>().enabled = false;
+            Destroy(other.GetComponent("Throwable"));
+
+            // disable colliders on magazine so that it doesn't collide with weapon
+            other.GetComponent<Rigidbody>().isKinematic = true;
+            other.GetComponent<BoxCollider>().isTrigger = true;
+
+            // change rotation of mag to magazine slot
+            other.transform.rotation = magazineSlot.rotation;
+            // change position of mag to magazine slot
+            other.transform.position = magazineSlot.position;
+            // make the magazine a child of the gun and change the transform
+            other.transform.SetParent(gameObject.transform);
+
+            // move magazine object to the magazine slot in the gun
+            other.gameObject.transform.position = magazineSlot.position;
+            // set the ammo in the magazine to the gun
+            ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+
+            Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+        }
+    }
+
+    private void ejectMagazine(GameObject magazine)
+    {
+        magInserted = false;
+
+        // if there is still ammo in the mag before ejecting, let there be one more round left in the weapon
+        // update the ammo on the magazine
+        if (ammo != 0)
+        {
+            magazine.GetComponent<magazineScript>().ammoCount = ammo - 1;
+            ammo = 1;
+        }
+        else
+        {
+            magazine.GetComponent<magazineScript>().ammoCount = 0;
+            ammo = 0;
+        }
+
+        // detach magazine from the parent
+        magazine.transform.parent = null;
+
     }
 }

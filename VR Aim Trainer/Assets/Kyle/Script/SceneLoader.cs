@@ -8,4 +8,8 @@ public class SceneLoader : MonoBehaviour
     public void LoadLevel(string level){
         SceneManager.LoadScene(level);
     }
+
+    public string GetSceneName(){
+        return SceneManager.GetActiveScene().name;
+    }
 }

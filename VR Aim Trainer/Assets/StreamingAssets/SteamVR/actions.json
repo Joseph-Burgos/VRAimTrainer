@@ -95,6 +95,10 @@
     {
       "name": "/actions/Gun/in/shoot",
       "type": "boolean"
+    },
+    {
+      "name": "/actions/Gun/in/ejectMag",
+      "type": "boolean"
     }
   ],
   "action_sets": [
@@ -190,7 +194,8 @@
       "/actions/default/in/SnapTurnRight": "Snap Turn (Right)",
       "/actions/Gun/in/shoot": "shoot",
       "/actions/default/in/Move": "Move",
-      "/actions/default/in/Sprint": "Sprint"
+      "/actions/default/in/Sprint": "Sprint",
+      "/actions/Gun/in/ejectMag": "ejectMag"
     }
   ]
 }
