@@ -5788,6 +5788,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: VisualFeedback
       objectReference: {fileID: 0}
+    - target: {fileID: 3196549193612212071, guid: da5a6e1e495d34d84b76bd5109e087ef, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da5a6e1e495d34d84b76bd5109e087ef, type: 3}
 --- !u!224 &721023932 stripped
