@@ -12,6 +12,7 @@ public class GameflowManager : MonoBehaviour {
         FINISHED // Game is over, time has expired
     };
     public StateType state;
+    public string gamemode;
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
     [SerializeField] GameObject VisualFeedback;
@@ -70,8 +71,6 @@ public class GameflowManager : MonoBehaviour {
                 accuracy = hits / shots;
             } 
             
-            // get gamemode
-            string gamemode = "temp"; // todo retrieve from script
             // create the playerscore object
             PlayerScore playerScore = new PlayerScore{
                 dateTime = dateTime,
