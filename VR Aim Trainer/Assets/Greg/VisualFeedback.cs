@@ -58,7 +58,10 @@ public class VisualFeedback : MonoBehaviour {
         int totalShots = scoreManager.GetShots();
        
         targetsHit = scoreManager.GetHits();
-        
+        Debug.Log("Visual Feedback - totalshots:"+totalShots);
+        Debug.Log("Visual Feedback - targetshit:"+targetsHit);
+        targetsHit = 7;
+        totalShots = 10;
         if (totalShots > 0)
         {
             accuracy = (float) targetsHit / totalShots;
@@ -71,6 +74,7 @@ public class VisualFeedback : MonoBehaviour {
         setLabels();
         // draw graphs
         drawGraphs();
+        
         Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
     }
 
@@ -102,6 +106,7 @@ public class VisualFeedback : MonoBehaviour {
         SaveManager saveManager = GameSystem.GetComponent<SaveManager>();
         saveManager.Load();
         playerScoreList = saveManager.GetPlayerScoresList();
+        gamesPlayed = playerScoreList.Count + 1;
         // check if the gamesystem exists and has a GameMode enum set
         // if so -> filter the data on the gamemode
         // get the date range (this is the x-axis)
