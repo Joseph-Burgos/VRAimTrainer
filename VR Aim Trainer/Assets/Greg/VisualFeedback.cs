@@ -43,14 +43,14 @@ public class VisualFeedback : MonoBehaviour {
     void Start()
     {
         //targetManager = otherGameObject.findComponent<TargetManager>();
-        Debug.Log("Visual Feedback - start");
+        // Debug.Log("Visual Feedback - start");
         //loadData();
         
         
     }
 
     public void initializeVisualFeedback() {
-        Debug.Log("Visual Feedback - enter initializeVisualFeedback");
+        // Debug.Log("Visual Feedback - enter initializeVisualFeedback");
         // call data functions, make necessary calculations
         loadData();
         ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
@@ -58,8 +58,8 @@ public class VisualFeedback : MonoBehaviour {
         int totalShots = scoreManager.GetShots();
        
         targetsHit = scoreManager.GetHits();
-        Debug.Log("Visual Feedback - totalshots:"+totalShots);
-        Debug.Log("Visual Feedback - targetshit:"+targetsHit);
+        // Debug.Log("Visual Feedback - totalshots:"+totalShots);
+        // Debug.Log("Visual Feedback - targetshit:"+targetsHit);
         if (totalShots > 0)
         {
             accuracy = (float) targetsHit / totalShots;
@@ -73,7 +73,7 @@ public class VisualFeedback : MonoBehaviour {
         // draw graphs
         drawGraphs();
         
-        Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
+        // Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
     }
 
     void setLabels()
@@ -90,14 +90,14 @@ public class VisualFeedback : MonoBehaviour {
 
     void drawGraphs()
     {
-        Debug.Log("Visual Feedback - enter draw graphs");
+        // Debug.Log("Visual Feedback - enter draw graphs");
         Graph scoreGraph = ScoreGraph.GetComponent<Graph>();
         Graph accuracyGraph = AccuracyGraph.GetComponent<Graph>();
         // Draw the scores graph
          var scores = getScoreHistory();
          scoreGraph.createGraph(scores, false);
          accuracyGraph.createGraph(getAccuracyHistory(), true);
-        Debug.Log("Visual Feedback - exit draw graphs");
+        // Debug.Log("Visual Feedback - exit draw graphs");
     }
 
     void loadData() {
@@ -111,7 +111,7 @@ public class VisualFeedback : MonoBehaviour {
     }
 
     List<Tuple<float, float>> getScoreHistory() {
-        Debug.Log("Visual Feedback - enter getScoreHistory");
+        // Debug.Log("Visual Feedback - enter getScoreHistory");
         DateTime oldest = playerScoreList.Min(ps => DateTime.Parse(ps.dateTime));
         DateTime today = System.DateTime.Now;
         TimeSpan duration = today - oldest;
@@ -123,7 +123,7 @@ public class VisualFeedback : MonoBehaviour {
             float y = playerScore.score;
             scoreHistory.Add(Tuple.Create(x, y));
         }
-        Debug.Log("Visual Feedback - exiting getScoreHistory");
+        // Debug.Log("Visual Feedback - exiting getScoreHistory");
         return scoreHistory;
     }
 

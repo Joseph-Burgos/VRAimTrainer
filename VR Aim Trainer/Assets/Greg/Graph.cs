@@ -43,7 +43,7 @@ public class Graph : MonoBehaviour {
     }
 
     public void createGraph(List<Tuple<float, float>> data, bool percentageGraph) {
-        Debug.Log("Graph - enter create graphs");
+        // Debug.Log("Graph - enter create graphs");
         Vector2[] normalizedNodes = NormalizeData(data, percentageGraph);
         // Draw grid
         drawGrid(5, 5);
@@ -63,7 +63,7 @@ public class Graph : MonoBehaviour {
         dotConnectionRenderer.positionCount = nodes3.Length;
         dotConnectionRenderer.SetPositions(nodes3);
         dotConnectionRenderer.gameObject.SetActive(true); // set as active
-        Debug.Log("Graph - exit create graphs");
+        // Debug.Log("Graph - exit create graphs");
     }
 
     private void initializeGraphData() {
@@ -165,7 +165,7 @@ public class Graph : MonoBehaviour {
     }
 
     public Vector2[] NormalizeData(List<Tuple<float, float>> data, bool percentage) {
-        Debug.Log("Graph - Entering NormalizeData");
+        // Debug.Log("Graph - Entering NormalizeData");
         float upperLimitX = data.Max(d => d.Item1); 
         float upperLimitY = percentage ? 1.0f : data.Max(d => d.Item2);
         if (!percentage) {
@@ -180,7 +180,7 @@ public class Graph : MonoBehaviour {
                 float normalizedYPos = yLength * (d.Item2 / upperLimitY);
                 return new Vector2(normalizedXPos, normalizedYPos);
             }).Cast<Vector2>().ToArray();
-        Debug.Log("Graph - Exiting NormalizeData");
+        // Debug.Log("Graph - Exiting NormalizeData");
         return normalizedData;
     }
 

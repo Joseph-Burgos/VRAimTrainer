@@ -27,14 +27,14 @@ public class SaveManager : MonoBehaviour
     // Saves a playerscore to disk.
     public void addScore(PlayerScore ss)
     {
-        Debug.Log("SaveManager - Enter addScores");
+        // Debug.Log("SaveManager - Enter addScores");
 
         //get saveDirectory of file
         string savedDataDirectoryStr = Application.dataPath + saveDirectory;
         //check if exists
         if (!Directory.Exists(savedDataDirectoryStr))
         {
-            Debug.Log("Save file does not exist, creating");
+            // Debug.Log("Save file does not exist, creating");
             Directory.CreateDirectory(savedDataDirectoryStr);
         }
 
@@ -49,12 +49,12 @@ public class SaveManager : MonoBehaviour
         savedDataObject.playerScores = playerScoreList;
         string json = JsonUtility.ToJson(savedDataObject);
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
-        Debug.Log("SaveManager - 1");
+        // Debug.Log("SaveManager - 1");
         // send score data to server
         var postRequest = (HttpWebRequest)WebRequest.Create("http://localhost:3456/scores/add");
         postRequest.ContentType = "application/json";
         postRequest.Method = "POST";
-        Debug.Log("SaveManager - 2");
+        // Debug.Log("SaveManager - 2");
         // build string to send to body
         // write to the http request stream
         using (var streamWriter = new StreamWriter(postRequest.GetRequestStream())) {
@@ -67,41 +67,41 @@ public class SaveManager : MonoBehaviour
             };
             
             string record = JsonUtility.ToJson(newScore);
-            Debug.Log("SaveManager - 3 1234\n" + record);
+            // Debug.Log("SaveManager - 3 1234\n" + record);
             streamWriter.Write(record);
         }
         // debug information
-        Debug.Log("\nSaveManager - 4");
+        // Debug.Log("\nSaveManager - 4");
         var httpResponse =  postRequest.GetResponse(); // dispatch request to server (HttpWebResponse)
 
-        Debug.Log("SaveManager - Exit addScores");
+        // Debug.Log("SaveManager - Exit addScores");
     }
 
     public void Load()
     {
-        Debug.Log("SaveManager - Entering load");
+        // Debug.Log("SaveManager - Entering load");
         // retrieve data from past games
         string saveGameDataPath = Application.dataPath + saveDirectory + saveGameData;
-        Debug.Log("SaveManager - path: " + saveGameDataPath);
+        // Debug.Log("SaveManager - path: " + saveGameDataPath);
         if (File.Exists(saveGameDataPath))
         {
             string json = File.ReadAllText(saveGameDataPath);
             savedDataObject = JsonUtility.FromJson<SavedDataObject>(json);
-            Debug.Log("SaveManager - loaded data");
+            // Debug.Log("SaveManager - loaded data");
             playerScoreList = savedDataObject.playerScores;
-            foreach (PlayerScore score in playerScoreList) { Debug.Log("SaveManager - " + score.ToString()); }
+            // foreach (PlayerScore score in playerScoreList) { Debug.Log("SaveManager - " + score.ToString()); }
         }
         else
         {
-            Debug.Log("SAVE FILE DOES NOT EXIST");
+            // Debug.Log("SAVE FILE DOES NOT EXIST");
         }
         // retrieve username
         string userNameDataPath = Application.dataPath + saveDirectory + userNameFile;
         if (File.Exists(userNameDataPath)) {
             userName = System.IO.File.ReadAllText(userNameDataPath);
-            Debug.Log("USERNAME: " + userName);
+            // Debug.Log("USERNAME: " + userName);
         }
-        Debug.Log("SaveManager - Leaving load");
+        // Debug.Log("SaveManager - Leaving load");
     }
 
     public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }

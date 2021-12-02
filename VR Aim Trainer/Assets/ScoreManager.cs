@@ -9,7 +9,7 @@ public class ScoreManager : MonoBehaviour
     private GameObject CurrentScore = null;
 
     void Start(){
-        //Debug.Log("Start - enter");
+        // Debug.Log("Start - enter");
         CurrentScore = GameObject.Find("Score");
         
         if (!CurrentScore){
@@ -34,9 +34,9 @@ public class ScoreManager : MonoBehaviour
             m_Score += scoreToBeAdded;
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }
-        Debug.Log("AddToScore - current  OBJECT score is " + CurrentScore);
-        Debug.Log("AddToScore - current score is " + m_Score.ToString());
-        Debug.Log("AddToScore - exit");
+        // Debug.Log("AddToScore - current  OBJECT score is " + CurrentScore);
+        // Debug.Log("AddToScore - current score is " + m_Score.ToString());
+        // Debug.Log("AddToScore - exit");
     }
 
     public void AddToShots() {

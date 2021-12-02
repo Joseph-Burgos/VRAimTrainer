@@ -26,13 +26,13 @@ public class GameflowManager : MonoBehaviour {
  
 
     void Awake () {
-        Debug.Log("GameflowManager: Awake()");
+        // Debug.Log("GameflowManager: Awake()");
         state = StateType.NOTSTARTED;
         menuActive = false;
     }
 
     void Start () {
-        Debug.Log("GameflowManager: Start() - grabbing timer");
+        // Debug.Log("GameflowManager: Start() - grabbing timer");
         // Get the timer from the GameSystem object
         timer = GameSystem.GetComponent<Timer>();
         VisualFeedbackScript = VisualFeedback.GetComponent<VisualFeedback>();
@@ -41,15 +41,15 @@ public class GameflowManager : MonoBehaviour {
         // Get the target manager from the GameManager object
         targetManager = TargetManager.GetComponent<TargetManager>();
         timer.StartTimer();
-        Debug.Log("GameflowManager: Start() - successfully grabbed timer");
+        // Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         state = StateType.RUNNING;
 
     }
 
     void Update () {
-        // Debug.Log("GameflowManager: Update()");
+        // // Debug.Log("GameflowManager: Update()");
         if (!timer.timeLeft() && !menuActive) {
-            // Debug.Log("GameflowManager: Update(): Game Over!");
+            // // Debug.Log("GameflowManager: Update(): Game Over!");
             menuActive = true;
             state = StateType.FINISHED;
             // signal target manager that game is finished
@@ -93,7 +93,7 @@ public class GameflowManager : MonoBehaviour {
     }
 
     void Pause () {
-        Debug.Log("We are in the Pause() function. Game state is " + state);
+        // Debug.Log("We are in the Pause() function. Game state is " + state);
         if (state == StateType.RUNNING) {
             state = StateType.PAUSED;
             timer.StopTimer();
@@ -108,7 +108,7 @@ public class GameflowManager : MonoBehaviour {
     }
 
     public void saveGameData () {
-        Debug.Log("We are in the saveGameData function.");
+        // Debug.Log("We are in the saveGameData function.");
         // string userName = User.getUserName();
         // int score = ScoreManager.getScore();
         // string mode = "default"; // TODO handle modes
