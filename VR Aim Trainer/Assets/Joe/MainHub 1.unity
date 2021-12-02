@@ -33366,6 +33366,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: m_Hits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: m_Score
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: m_Shots
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
       propertyPath: CurrentScore
       value: 
       objectReference: {fileID: 1773802876}
