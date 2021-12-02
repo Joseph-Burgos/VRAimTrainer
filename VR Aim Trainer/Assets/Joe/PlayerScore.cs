@@ -14,7 +14,6 @@ public class PlayerScore
     public string gameMode;
     public int score;
     public int gameTime;
-    // TODO add fields for accuracy, etc.
     public float accuracy;
 
     public override string ToString()
