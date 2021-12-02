@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using System.Collections;
+using UnityEngine;
 
 
 
@@ -13,9 +14,10 @@ public class GameflowManager : MonoBehaviour {
     public StateType state;
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
-
     [SerializeField] GameObject VisualFeedback;
     private VisualFeedback VisualFeedbackScript;
+    private SaveManager saveManager;
+    private ScoreManager scoreManager;
     private Timer timer;
     private TargetManager targetManager;
     // flags
@@ -28,15 +30,15 @@ public class GameflowManager : MonoBehaviour {
         Debug.Log("GameflowManager: Awake()");
         state = StateType.NOTSTARTED;
         menuActive = false;
-        // playtimeHistory = otherGameObject.GetComponent<PlaytimeHistory>();
     }
 
     void Start () {
-        // TODO add and start a countdown timer
         Debug.Log("GameflowManager: Start() - grabbing timer");
         // Get the timer from the GameSystem object
         timer = GameSystem.GetComponent<Timer>();
         VisualFeedbackScript = VisualFeedback.GetComponent<VisualFeedback>();
+        saveManager = GameSystem.GetComponent<SaveManager>();
+        scoreManager = GameSystem.GetComponent<ScoreManager>();
         // Get the target manager from the GameManager object
         targetManager = TargetManager.GetComponent<TargetManager>();
         timer.StartTimer();
@@ -52,15 +54,32 @@ public class GameflowManager : MonoBehaviour {
             state = StateType.FINISHED;
             menuActive = true;
             // signal target manager that game is finished
-            targetManager.keepUpdating = false;
-            // PlaytimeHistory.calculatePlaytimeHistory();
-            // var scoreHistory = PlaytimeHistory.generateScoreData();
-            // var accHistory = PlaytimeHistory.generateAccuracyData();
-            // saveGameData(); // TODO save game data to server and disk
-            // TODO expose post game display and menus to player
+            targetManager.keepUpdating = false; 
+            // expose post game display and menus to player
             VisualFeedback.SetActive(true);
             VisualFeedbackScript.initializeVisualFeedback();
-            
+            // save game data to server and disk
+            // get time
+            DateTime now = System.DateTime.Now;
+            string dateTime = now.ToString("s");
+            // get score
+            int score = scoreManager.GetScore();
+            // get accuracy
+            float shots = (float)scoreManager.GetShots();
+            float hits = (float)scoreManager.GetHits();
+            float accuracy = hits / shots;
+            // get gamemode
+            string gamemode = "temp"; // todo retrieve from script
+            // create the playerscore object
+            PlayerScore playerScore = new PlayerScore{
+                dateTime = dateTime,
+                gameMode = gamemode,
+                score = score,
+                gameTime = 54,
+                accuracy = accuracy
+            };
+            // send the playerscore object to the SaveManager
+            saveManager.addScore(playerScore);
         }
 
         // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS
