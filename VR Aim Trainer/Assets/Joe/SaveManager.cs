@@ -58,11 +58,10 @@ public class SaveManager : MonoBehaviour
         // build string to send to body
         // write to the http request stream
         using (var streamWriter = new StreamWriter(postRequest.GetRequestStream())) {
-            string testID = "6140e1ce698adf17f996fa63"; // TODO replace with username following refactor
             string gameMode = ss.gameMode;
             int thisScore = ss.score;
             ScoreToServer newScore = new ScoreToServer{
-                userID = testID,
+                userID = userName,
                 gameMode = ss.gameMode,
                 points = ss.score
             };
