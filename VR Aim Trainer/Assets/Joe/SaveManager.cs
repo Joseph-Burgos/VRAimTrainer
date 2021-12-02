@@ -47,13 +47,14 @@ public class SaveManager : MonoBehaviour
         // TODO save score to disk
         playerScoreList.Add(ss);
         savedDataObject.playerScores = playerScoreList;
-        string json = JsonUtility.ToJson(playerScoreList);
+        string json = JsonUtility.ToJson(savedDataObject);
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
-
+        Debug.Log("SaveManager - 1");
         // TODO send score data to server
         var postRequest = (HttpWebRequest)WebRequest.Create("http://localhost:3456/scores/add");
         postRequest.ContentType = "application/json";
         postRequest.Method = "POST";
+        Debug.Log("SaveManager - 2");
         // build string to send to body
         // write to the http request stream
         using (var streamWriter = new StreamWriter(postRequest.GetRequestStream())) {
@@ -65,10 +66,13 @@ public class SaveManager : MonoBehaviour
                 gameMode = ss.gameMode,
                 points = ss.score
             };
+            
             string record = JsonUtility.ToJson(newScore);
+            Debug.Log("SaveManager - 3 1234\n" + newScore.userID);
             streamWriter.Write(record);
         }
         // debug information
+        Debug.Log("\nSaveManager - 4");
         var httpResponse =  postRequest.GetResponse(); // dispatch request to server (HttpWebResponse)
 
         Debug.Log("SaveManager - Exit addScores");
