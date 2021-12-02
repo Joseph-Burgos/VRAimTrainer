@@ -22,9 +22,7 @@ public class GameflowManager : MonoBehaviour {
     private TargetManager targetManager;
     // flags
     private bool menuActive;
-    // private ScoreManager scoreManager;
-
-    // private PlaytimeHistory playtimeHistory;
+ 
 
     void Awake () {
         Debug.Log("GameflowManager: Awake()");
