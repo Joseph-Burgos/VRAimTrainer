@@ -12,7 +12,7 @@ public class GetPoint : MonoBehaviour
 
     private void Awake ()
     {
-        Instance = this;
+        Instance = this;//what ever object is connected to this script
     }
 
     bool RandomPoint (Vector3 center, float range, out Vector3 result)
@@ -20,36 +20,36 @@ public class GetPoint : MonoBehaviour
 
         for (int i = 0; i < 30; i++)
         {
-            Vector3 randomPoint = center + Random.insideUnitSphere * range;
+            Vector3 randomPoint = center + Random.insideUnitSphere * range;// gets random point in given area
             NavMeshHit hit;
-            if (NavMesh.SamplePosition (randomPoint, out hit, 1.0f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition (randomPoint, out hit, 1.0f, NavMesh.AllAreas))//checks the NavMeshObject if it reaches the random point
             {
                 result = hit.position;
-                return true;
+                return true;// moves on to get a new position
             }
         }
 
-        result = Vector3.zero;
+        result = Vector3.zero;// resets to default 0,0,0 if can not reach certain point
 
         return false;
     }
 
-    public Vector3 GetRandomPoint (Transform point = null, float radius = 0)
+    public Vector3 GetRandomPoint (Transform point = null, float radius = 0)//gets called into the Ai.cs script to be given random positions
     {
-        Vector3 _point;
+        Vector3 _point;// empty Vector3
 
-        if (RandomPoint (point == null?transform.position : point.position, radius == 0 ? Range : radius, out _point))
+        if (RandomPoint (point == null?transform.position : point.position, radius == 0 ? Range : radius, out _point))//checks to see if the RandomPoint function has a real position
         {
-            Debug.DrawRay (_point, Vector3.up, Color.black, 1);
+            Debug.DrawRay (_point, Vector3.up, Color.black, 1); //draws out random positions of where the NavMeshObject could go to
 
             return _point;
         }
 
-        return point == null? Vector3.zero : point.position;
+        return point == null? Vector3.zero : point.position; // returns a default Vector3 position 0,0,0
     }
 
 #if UNITY_EDITOR
-    private void OnDrawGizmos ()
+    private void OnDrawGizmos ()//draws a visual representation on the given area of where the object can go
     {
         Gizmos.DrawWireSphere (transform.position, Range);
     }
