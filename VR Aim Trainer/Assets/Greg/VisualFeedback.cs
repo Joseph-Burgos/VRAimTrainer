@@ -60,8 +60,6 @@ public class VisualFeedback : MonoBehaviour {
         targetsHit = scoreManager.GetHits();
         Debug.Log("Visual Feedback - totalshots:"+totalShots);
         Debug.Log("Visual Feedback - targetshit:"+targetsHit);
-        targetsHit = 7;
-        totalShots = 10;
         if (totalShots > 0)
         {
             accuracy = (float) targetsHit / totalShots;

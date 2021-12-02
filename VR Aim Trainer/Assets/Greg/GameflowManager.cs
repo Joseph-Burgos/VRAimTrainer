@@ -65,7 +65,11 @@ public class GameflowManager : MonoBehaviour {
             // get accuracy
             float shots = (float)scoreManager.GetShots();
             float hits = (float)scoreManager.GetHits();
-            float accuracy = hits / shots;
+            float accuracy = 0;
+            if (shots > 0) {
+                accuracy = hits / shots;
+            } 
+            
             // get gamemode
             string gamemode = "temp"; // todo retrieve from script
             // create the playerscore object
