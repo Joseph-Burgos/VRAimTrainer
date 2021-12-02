@@ -544,6 +544,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5579889538826335798, guid: 822013435bd723b48b561c7e52b841a5, type: 3}
   m_PrefabInstance: {fileID: 5579889538892743715}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &206684462 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3196549193612212071, guid: da5a6e1e495d34d84b76bd5109e087ef, type: 3}
+  m_PrefabInstance: {fileID: 721023931}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &207291274
 GameObject:
   m_ObjectHideFlags: 0
@@ -13151,7 +13156,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1427481770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13165,9 +13170,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  GameSystem: {fileID: 0}
-  TargetManager: {fileID: 0}
-  VisualFeedback: {fileID: 0}
+  GameSystem: {fileID: 1339540872}
+  TargetManager: {fileID: 2008705050}
+  VisualFeedback: {fileID: 206684462}
 --- !u!4 &1427481771
 Transform:
   m_ObjectHideFlags: 0
