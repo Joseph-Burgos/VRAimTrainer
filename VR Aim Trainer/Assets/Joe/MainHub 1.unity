@@ -11537,6 +11537,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   timerDisplay: {fileID: 1114401957}
   initialTime: 10
+--- !u!114 &1339540874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339540872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfea9223c72a22f4b9ef75c48f472bed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveDirectory: /Joe/SaveData/
+  saveGameData: MyData.txt
+  userNameFile: Username.txt
+  userName: Default
+  playerScoreList: []
 --- !u!114 &1339540875 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2748113562246786927, guid: 0435810d721f859448227823fb6ed184, type: 3}
