@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Net.Http;
+using System.Net;
+using System.Web;
 using UnityEngine;
 using System.IO;
 
@@ -39,15 +41,13 @@ public class SaveManager : MonoBehaviour
         // check if playerScoreList is null, if so, load data
         if (playerScoreList == null) {
             //creates a new player score board
-            SavedDataObject playerScoresList = new SavedDataObject { playerScores = playerScores };
-            //load old SavedDataObject
-            SavedDataObject oldplayerScoresList = Load();
+            playerScoreList = new List<PlayerScore>();
         }
 
         // TODO save score to disk
         playerScoreList.Add(ss);
         savedDataObject.playerScores = playerScoreList;
-        string json = JsonUtility.ToJson(playerScoresList);
+        string json = JsonUtility.ToJson(playerScoreList);
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
 
         // TODO send score data to server
@@ -56,17 +56,20 @@ public class SaveManager : MonoBehaviour
         postRequest.Method = "POST";
         // build string to send to body
         // write to the http request stream
-        using (car streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) {
-            string testID = "6140e1ce698adf17f996fa63";
+        using (var streamWriter = new StreamWriter(postRequest.GetRequestStream())) {
+            string testID = "6140e1ce698adf17f996fa63"; // TODO replace with username following refactor
             string gameMode = ss.gameMode;
-            string thisScore = ss.score;
-            string record = "{\"userID\":\"" + testID + "\"," +
-                            "\"points\":\"" + score + "\"," +
-                            "\"gameMode\":\"" + gameMode + "\"}";
+            int thisScore = ss.score;
+            string record = new JavaScriptSerializer().Serialize(new
+                {
+                    userID = testID,
+                    gameMode = ss.gameMode,
+                    points = ss.score
+                });
             streamWriter.Write(record);
         }
         // debug information
-        var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
+        var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse(); // dispatch request to server
 
         Debug.Log("SaveManager - Exit addScores");
     }
