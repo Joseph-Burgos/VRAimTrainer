@@ -44,13 +44,13 @@ public class SaveManager : MonoBehaviour
             playerScoreList = new List<PlayerScore>();
         }
 
-        // TODO save score to disk
+        // save score to disk
         playerScoreList.Add(ss);
         savedDataObject.playerScores = playerScoreList;
         string json = JsonUtility.ToJson(savedDataObject);
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
         Debug.Log("SaveManager - 1");
-        // TODO send score data to server
+        // send score data to server
         var postRequest = (HttpWebRequest)WebRequest.Create("http://localhost:3456/scores/add");
         postRequest.ContentType = "application/json";
         postRequest.Method = "POST";

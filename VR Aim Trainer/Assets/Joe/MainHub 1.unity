@@ -13160,6 +13160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
+  gamemode: MainHub
   GameSystem: {fileID: 1339540872}
   TargetManager: {fileID: 2008705050}
   VisualFeedback: {fileID: 206684462}
