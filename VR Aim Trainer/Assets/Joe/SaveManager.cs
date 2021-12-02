@@ -68,7 +68,7 @@ public class SaveManager : MonoBehaviour
             };
             
             string record = JsonUtility.ToJson(newScore);
-            Debug.Log("SaveManager - 3 1234\n" + newScore.userID);
+            Debug.Log("SaveManager - 3 1234\n" + record);
             streamWriter.Write(record);
         }
         // debug information
@@ -116,10 +116,11 @@ public class SavedDataObject
     public List<PlayerScore> playerScores;
 }
 
-public class ScoreToServer {
+public class ScoreToServer 
+{
     // omitting constructors for unity
     // properties
-    public string userID { get; set; }
-    public int points { get; set; }
-    public string gameMode { get; set; }
+    public string userID;
+    public int points;
+    public string gameMode;
 }
