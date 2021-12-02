@@ -51,6 +51,22 @@ public class SaveManager : MonoBehaviour
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
 
         // TODO send score data to server
+        var postRequest = (HttpWebRequest)WebRequest.Create("http://localhost:3456/scores/add");
+        postRequest.ContentType = "application/json";
+        postRequest.Method = "POST";
+        // build string to send to body
+        // write to the http request stream
+        using (car streamWriter = new StreamWriter(httpWebRequest.GetRequestStream())) {
+            string testID = "6140e1ce698adf17f996fa63";
+            string gameMode = ss.gameMode;
+            string thisScore = ss.score;
+            string record = "{\"userID\":\"" + testID + "\"," +
+                            "\"points\":\"" + score + "\"," +
+                            "\"gameMode\":\"" + gameMode + "\"}";
+            streamWriter.Write(record);
+        }
+        // debug information
+        var httpResponse = (HttpWebResponse) httpWebRequest.GetResponse();
 
         Debug.Log("SaveManager - Exit addScores");
     }
@@ -91,4 +107,12 @@ public class SaveManager : MonoBehaviour
 public class SavedDataObject
 {
     public List<PlayerScore> playerScores;
+}
+
+public class ScoreToServer {
+    // omitting constructors for unity
+    // properties
+    public string userID { get; set; }
+    public int points { get; set; }
+    public string gameMode { get; set; }
 }
