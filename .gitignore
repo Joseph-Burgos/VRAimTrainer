@@ -59,6 +59,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 VR Aim Trainer/ProjectSettings/
-# VR Aim Trainer/UserSettings/
+VR Aim Trainer/UserSettings/
 VR Aim Trainer/Assets/Oculus/
 VR Aim Trainer/unityProject.vrmanifest
