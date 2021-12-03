@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -73,7 +74,10 @@ public class HighscoreTable : MonoBehaviour
             //entryTransform.Find("gameText").GetComponent<Text>().text = mode.ToString();
             string name = currentScore.userName;
             entryTransform.Find("nameText").GetComponent<Text>().text = name;
-            entryTransform.Find("timeText").GetComponent<Text>().text = "12:34";
+            // TODO get date string, parse to datetime, and extract the mm/dd/yyyy
+            DateTime scoreDateTime = DateTime.Parse(currentScore.date);
+            string dateString = scoreDateTime.Month + "/" + scoreDateTime.Day + "/" + scoreDateTime.Year;
+            entryTransform.Find("timeText").GetComponent<Text>().text = dateString;
         }
     }
 }
