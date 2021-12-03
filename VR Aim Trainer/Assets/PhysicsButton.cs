@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.SceneManagement;
 using System;
 
 public class PhysicsButton : MonoBehaviour
@@ -13,9 +12,6 @@ public class PhysicsButton : MonoBehaviour
     private bool _isPressed;
     private Vector3 _startPos;
     private ConfigurableJoint _joint;
-
-    // Used to change Scenes
-    public string loadLevel;
 
     public UnityEvent onPressed, onReleased;
     // Start is called before the first frame update
@@ -29,12 +25,11 @@ public class PhysicsButton : MonoBehaviour
     void Update(){
         // checks if button is pressed
         if (!_isPressed && GetValue() + threshold >= 1){
-            // Pressed();
-            SceneManager.LoadScene(loadLevel);
+            Pressed();
         }
         // checks if button is released
         if (_isPressed && GetValue() - threshold <= 0){
-            // Released();
+            Released();
         }
     }
 
@@ -53,12 +48,12 @@ public class PhysicsButton : MonoBehaviour
     private void Pressed(){
         _isPressed = true;
         onPressed.Invoke();
-        Debug.Log("Pressed");
+        // Debug.Log("Pressed");
     }
 
     private void Released(){
         _isPressed = false;
         onReleased.Invoke();
-        Debug.Log("Released");
+        // Debug.Log("Released");
     }
 }
