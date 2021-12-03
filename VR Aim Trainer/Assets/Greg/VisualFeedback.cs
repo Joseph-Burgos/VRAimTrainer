@@ -44,7 +44,7 @@ public class VisualFeedback : MonoBehaviour {
     {
         //targetManager = otherGameObject.findComponent<TargetManager>();
         // Debug.Log("Visual Feedback - start");
-        //loadData();
+        loadData();
         
         
     }
@@ -52,7 +52,7 @@ public class VisualFeedback : MonoBehaviour {
     public void initializeVisualFeedback() {
         // Debug.Log("Visual Feedback - enter initializeVisualFeedback");
         // call data functions, make necessary calculations
-        loadData();
+        // loadData();
         ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
         score = scoreManager.GetScore();
         int totalShots = scoreManager.GetShots();
