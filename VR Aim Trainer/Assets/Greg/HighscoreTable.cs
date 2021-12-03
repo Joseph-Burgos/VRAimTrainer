@@ -14,7 +14,6 @@ public class HighscoreTable : MonoBehaviour
 
     private async Task Awake()
     {
-        // Debug.Log("Starting the leaderboard retrieval process");
         client = new HttpClient();
         string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=5"); 
 
@@ -35,19 +34,13 @@ public class HighscoreTable : MonoBehaviour
 
         for(int i = 0; i < highScores.Count; i++)
         {
-            
-            
             Transform entryTransform = Instantiate(entryTemplate, entryContainer);
-            // Debug.Log(entryTransform);
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-            // Debug.Log("about to get a new vector to move");
-            // Debug.Log(entryRectTransform);
             
             entryRectTransform.anchoredPosition3D = new Vector3(templateX, templateY, templateZ);
             templateY = templateY + Yinterval;
-            // Debug.Log("the vector seemed to work");
+            
             entryTransform.gameObject.SetActive(true);
-            // Debug.Log(string.Format("Successfully loaded the leaderboard {0}", i));
 
             int rank = i + 1;
             string rankString;
@@ -61,14 +54,11 @@ public class HighscoreTable : MonoBehaviour
 
             Score currentScore = highScores[i];
 
-            //entryTransform.Find("postText").GetComponent<Text>().text = rankString;
             int score = currentScore.points;
             entryTransform.Find("scoreText").GetComponent<Text>().text = score.ToString();
-            //string mode = currentScore.gameMode;
-            //entryTransform.Find("gameText").GetComponent<Text>().text = mode.ToString();
             string name = currentScore.userName;
             entryTransform.Find("nameText").GetComponent<Text>().text = name;
-            // TODO get date string, parse to datetime, and extract the mm/dd/yyyy
+            // get date string, parse to datetime, and extract the mm/dd/yyyy
             DateTime scoreDateTime = DateTime.Parse(currentScore.date);
             string dateString = scoreDateTime.Month + "/" + scoreDateTime.Day + "/" + scoreDateTime.Year;
             entryTransform.Find("timeText").GetComponent<Text>().text = dateString;
