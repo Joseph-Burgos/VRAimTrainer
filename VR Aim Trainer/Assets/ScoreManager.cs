@@ -39,6 +39,14 @@ public class ScoreManager : MonoBehaviour
         // Debug.Log("AddToScore - exit");
     }
 
+    public void SetScore(int score){
+        CurrentScore = GameObject.Find("Score");
+        if (score > 0){
+            m_Score = score;
+            CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
+        }
+    }
+
     public void AddToShots() {
         m_Shots++;
     }

@@ -46,6 +46,8 @@ public class TargetMover : MonoBehaviour
         TargetMoving = false;
     }
 
+    // Moves the target from one point to another
+    // seconds is how long it takes to move from one point to another
     public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
     {
         float elapsedTime = 0;
