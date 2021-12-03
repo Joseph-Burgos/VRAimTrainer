@@ -145,8 +145,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48b98eb77dc7bb742b7f314dfd73c042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitSound: {fileID: 0}
-  burst: {fileID: 0}
+  hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
+  burst: {fileID: 8851961140035495971, guid: 802269b4ed8a30f40a9b0f89016bf7dc, type: 3}
   onHit:
     m_PersistentCalls:
       m_Calls: []
