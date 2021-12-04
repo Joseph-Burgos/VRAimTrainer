@@ -4,19 +4,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// This class defines the behaviour of a countdown timer that limits the amount of time a 
+// player may be active in any given stage. Time allowed can be set from the Unity Editor.
 public class Timer : MonoBehaviour
 {
     bool active = false; // Indicates timer is running (game has been started and is not paused or finished)
     float currentTime = 0f; // Time that will be displayed in the timer
 
     [SerializeField] GameObject timerDisplay; // object containing TMPro component 
-    [SerializeField] float initialTime = 10f; // FIXME can this be a parameter somehow?
+    [SerializeField] float initialTime = 10f; // default initial time
 
     void Awake() {
         // Debug.Log("Timer: Awake()");
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         // Debug.Log("Timer: Start()" + currentTime.ToString("0"));
@@ -25,7 +26,6 @@ public class Timer : MonoBehaviour
         timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0");
     }
 
-    // Update is called once per frame
     void Update()
     {
         // Debug.Log("Timer - Update(): current time is " + currentTime.ToString("0"));
@@ -41,17 +41,19 @@ public class Timer : MonoBehaviour
         }
     }
 
-    // This method allows other objects to poll 
+    // This method allows other objects to poll remaining time
     public bool timeLeft() {
         bool response = true;
         if (currentTime <= 0) { response = false; }
         return response;
     }
 
+    // Getter for current time remaining in stage.
     public float getTimeRemaining() {
         return currentTime;
     }
 
+    // Getter for the initial time defined from Editor.
     public float getInitialTime() {
         return initialTime;
     }
