@@ -1,10 +1,13 @@
 using System;
-﻿using System.Collections;
+using System.Collections;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// This class defines the behavior of the Visual Feedback prefab.
+// This prefab is designed to be displayed to user after a game to apprise them 
+// of their progress within the game.
 public class VisualFeedback : MonoBehaviour {
     // objects to interact with
     [SerializeField] GameObject GameSystem;
@@ -33,6 +36,7 @@ public class VisualFeedback : MonoBehaviour {
 
     private void Awake()
     {
+        // initial members to zero
         score = 0;
         accuracy = 0;
         targetsHit = 0;
@@ -44,6 +48,7 @@ public class VisualFeedback : MonoBehaviour {
     {
         //targetManager = otherGameObject.findComponent<TargetManager>();
         // Debug.Log("Visual Feedback - start");
+        // Load data for the players history from the SaveManager
         loadData();
         
         
@@ -68,14 +73,15 @@ public class VisualFeedback : MonoBehaviour {
         {
             accuracy = 0;
         }
-        // set each label
+        // set each label in menu
         setLabels();
-        // draw graphs
+        // draw graphs on menu
         drawGraphs();
         
         // Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
     }
 
+    // This function sets the labels on the menu.
     void setLabels()
     {
         // score
@@ -88,6 +94,7 @@ public class VisualFeedback : MonoBehaviour {
         GamesPlayedLabel.GetComponent<TMPro.TextMeshPro>().text += gamesPlayed.ToString();
     }
 
+    // This function draws graphs on the menu.
     void drawGraphs()
     {
         // Debug.Log("Visual Feedback - enter draw graphs");
@@ -100,6 +107,7 @@ public class VisualFeedback : MonoBehaviour {
         // Debug.Log("Visual Feedback - exit draw graphs");
     }
 
+    // This function loads data form the SvaeManager
     void loadData() {
         SaveManager saveManager = GameSystem.GetComponent<SaveManager>();
         saveManager.Load();
@@ -110,25 +118,31 @@ public class VisualFeedback : MonoBehaviour {
         // get the date range (this is the x-axis)
     }
 
+    // This function orders the player history by date and extracts data to represent each played game as a node on the graphs.
     List<Tuple<float, float>> getScoreHistory() {
         // Debug.Log("Visual Feedback - enter getScoreHistory");
-        DateTime oldest = playerScoreList.Min(ps => DateTime.Parse(ps.dateTime));
-        DateTime today = System.DateTime.Now;
+        // DateTime defines the X Axis of each graph
+        // All X values will be relative to the length of time the player has played the game.
+        DateTime oldest = playerScoreList.Min(ps => DateTime.Parse(ps.dateTime)); // x origin
+        DateTime today = System.DateTime.Now; // x extrema
         TimeSpan duration = today - oldest;
         //int topScore = playerScoreList.Max(ps => ps.score);
         List<Tuple<float, float>> scoreHistory = new List<Tuple<float, float>>();
         foreach (PlayerScore playerScore in playerScoreList)
         {
             float x = (DateTime.Parse(playerScore.dateTime) - oldest).Minutes; // gets the timeframe in the unit of minutes
-            float y = playerScore.score;
+            float y = playerScore.score; 
             scoreHistory.Add(Tuple.Create(x, y));
         }
         // Debug.Log("Visual Feedback - exiting getScoreHistory");
         return scoreHistory;
     }
 
+    // This function orders the player history by date and extracts data to represent each played game as a node on the graphs.
     List<Tuple<float, float>> getAccuracyHistory()
     {
+        // DateTime defines the X Axis of each graph
+        // All X values will be relative to the length of time the player has played the game.
         DateTime oldest = playerScoreList.Min(ps => DateTime.Parse(ps.dateTime));
         DateTime today = System.DateTime.Now;
         TimeSpan duration = today - oldest;
