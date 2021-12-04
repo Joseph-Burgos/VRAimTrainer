@@ -3,8 +3,9 @@ using System.Collections;
 using UnityEngine;
 
 
-
+// This class handles auxiliary tasks required to play a time-limited stage.
 public class GameflowManager : MonoBehaviour {
+    // Defines current state of the game
     public enum StateType {
         NOTSTARTED, // Game hasn't yet started
         RUNNING, // Game is active, time remains on the clock, and we are not PAUSED
@@ -12,36 +13,38 @@ public class GameflowManager : MonoBehaviour {
         FINISHED // Game is over, time has expired
     };
     public StateType state;
-    public string gamemode;
+    public string gamemode; // store reference to current gamemode (set in Unity Editor)
+    // GameObjects (set in Unity to access components)
     [SerializeField] GameObject GameSystem;
     [SerializeField] GameObject TargetManager;
     [SerializeField] GameObject VisualFeedback;
+    // GameObject components we will actually interact with
     private VisualFeedback VisualFeedbackScript;
     private SaveManager saveManager;
     private ScoreManager scoreManager;
     private Timer timer;
     private TargetManager targetManager;
     // flags
-    private bool menuActive;
+    private bool menuActive; // is the VisualFeedback menu active?
  
 
     void Awake () {
         // Debug.Log("GameflowManager: Awake()");
+        // Initialize game state
         state = StateType.NOTSTARTED;
         menuActive = false;
     }
 
     void Start () {
         // Debug.Log("GameflowManager: Start() - grabbing timer");
-        // Get the timer from the GameSystem object
+        // Get the class/behavioural components from their parent GameSystem objects
         timer = GameSystem.GetComponent<Timer>();
         VisualFeedbackScript = VisualFeedback.GetComponent<VisualFeedback>();
         saveManager = GameSystem.GetComponent<SaveManager>();
         scoreManager = GameSystem.GetComponent<ScoreManager>();
-        // Get the target manager from the GameManager object
         targetManager = TargetManager.GetComponent<TargetManager>();
+        // start timer and set game state to RUNNING
         timer.StartTimer();
-        // Debug.Log("GameflowManager: Start() - successfully grabbed timer");
         state = StateType.RUNNING;
 
     }
@@ -92,6 +95,7 @@ public class GameflowManager : MonoBehaviour {
         }
     }
 
+    // This function can be called to pause a RUNNING game
     void Pause () {
         // Debug.Log("We are in the Pause() function. Game state is " + state);
         if (state == StateType.RUNNING) {
@@ -107,6 +111,7 @@ public class GameflowManager : MonoBehaviour {
         }
     }
 
+    // This function handles saving data from a FINISHED game
     public void saveGameData () {
         // Debug.Log("We are in the saveGameData function.");
         // string userName = User.getUserName();
