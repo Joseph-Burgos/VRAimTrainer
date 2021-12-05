@@ -6731,6 +6731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2784f75029c09b41b0bc78b14b052ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ammo: 0
   laser: {fileID: 7438521605951013701}
   fireAction:
     actionPath: /actions/Gun/in/shoot
@@ -6742,6 +6743,7 @@ MonoBehaviour:
   bulletTrail: {fileID: 1411221368975465948}
   muzzleFlash: {fileID: 3285484315486759023}
   magazineSlot: {fileID: 223505821714511196}
+  magazineToSpawn: {fileID: 3852347114705037613, guid: e826f69ab322e874ab9c5a016c87af22, type: 3}
   RayCastRange: 100
   useBulletTrail: 1
   useLaser: 1
