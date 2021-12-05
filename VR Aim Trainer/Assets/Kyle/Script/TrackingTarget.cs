@@ -7,7 +7,7 @@ public class TrackingTarget : Target_Parent
 {
     private float m_TotalTimeHit = 0;
     // used for when the timer is active
-    public bool m_TimeEnabled = true;
+    private bool m_TimeEnabled = false;
 
     [SerializeField] private GameObject m_GameSystem;
 
@@ -28,6 +28,7 @@ public class TrackingTarget : Target_Parent
     }
 
     public void SetTimeEnable(){
+        Debug.Log("Time Enabled Tracking Target");
         m_TimeEnabled = true;
         m_TotalTimeHit = 0;
         // resets the score on start of a session

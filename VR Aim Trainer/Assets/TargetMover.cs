@@ -47,17 +47,14 @@ public class TargetMover : MonoBehaviour
 
     public void SetDifficultyEasy(){
         m_Speed = 5;
-        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
     }
 
     public void SetDifficultyMedium(){
         m_Speed = 8;
-        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
     }
 
     public void SetDifficultyHard(){
         m_Speed = 10;
-        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
     }
 
     // Editor Visualization

@@ -39,7 +39,7 @@ public class Timer : MonoBehaviour
             if (currentTime <= 0)
             {
                 currentTime = 0;
-                active = false;  // Game is over
+                StopTimer();  // Game is over
             }
         }
     }
@@ -61,10 +61,12 @@ public class Timer : MonoBehaviour
         return initialTime;
     }
 
+    // resets the timer
     private void ResetTimer(){
         currentTime = initialTime;
     }
 
+    // starts the countdown and resets score to 0
     public void StartTimer () {
         ResetTimer();
         active = true;
@@ -72,6 +74,7 @@ public class Timer : MonoBehaviour
         TimerStart.Invoke();
     }
 
+    // stops countdown
     public void StopTimer () { 
         active = false; 
         TimerStop.Invoke();
