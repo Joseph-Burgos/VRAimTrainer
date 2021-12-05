@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Events;
 
 public class Timer : MonoBehaviour
 {
     bool active = false; // Indicates timer is running (game has been started and is not paused or finished)
     float currentTime = 0f; // Time that will be displayed in the timer
+
+    public UnityEvent TimerStart, TimerStop;
 
     [SerializeField] GameObject timerDisplay; // object containing TMPro component 
     [SerializeField] float initialTime = 10f; // FIXME can this be a parameter somehow?
@@ -56,9 +59,19 @@ public class Timer : MonoBehaviour
         return initialTime;
     }
 
-    public void StopTimer () { active = false; }
+    private void ResetTimer(){
+        currentTime = initialTime;
+    }
 
-    public void StartTimer () { active = true; }
+    public void StartTimer () {
+        ResetTimer();
+        active = true;
+        this.gameObject.GetComponent<ScoreManager>().SetScore((int)0);
+        TimerStart.Invoke();
+    }
 
-
+    public void StopTimer () { 
+        active = false; 
+        TimerStop.Invoke();
+    }
 }

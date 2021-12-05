@@ -8,8 +8,10 @@ public class TargetMover : MonoBehaviour
     private GameObject m_Target;
     [SerializeField]
     private float m_Speed;
-
-    public GameObject m_Gun;
+    [SerializeField]
+    private float m_Seconds;
+    [SerializeField]
+    private GameObject m_GameSystem;
 
     [Tooltip("Location of center of cube to spawn targets")]
     public Transform center;
@@ -18,19 +20,16 @@ public class TargetMover : MonoBehaviour
 
     private bool TargetMoving = false;
 
+    private bool m_TimeEnabled = false;
+
     // Update is called once per frame
     void Update()
     {
-        if (!TargetMoving){
+        if (!TargetMoving && m_TimeEnabled){
             Vector3 NextPosition = center.position + 
                 new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
             StartCoroutine(MoveOverSpeed(m_Target, NextPosition, m_Speed));
         }
-    }
-
-    public void hit()
-    {
-        // todo fill this function
     }
 
     // Moves the target from one point to another
@@ -46,19 +45,19 @@ public class TargetMover : MonoBehaviour
         TargetMoving = false;
     }
 
-    // Moves the target from one point to another
-    // seconds is how long it takes to move from one point to another
-    public IEnumerator MoveOverSeconds (GameObject objectToMove, Vector3 end, float seconds)
-    {
-        float elapsedTime = 0;
-        Vector3 startingPos = objectToMove.transform.position;
-        while (elapsedTime < seconds)
-        {
-            objectToMove.transform.position = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
-            elapsedTime += Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-        }
-        objectToMove.transform.position = end;
+    public void SetDifficultyEasy(){
+        m_Speed = 5;
+        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
+    }
+
+    public void SetDifficultyMedium(){
+        m_Speed = 8;
+        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
+    }
+
+    public void SetDifficultyHard(){
+        m_Speed = 10;
+        m_GameSystem.GetComponent<ScoreManager>().SetScore(0);
     }
 
     // Editor Visualization
@@ -68,5 +67,15 @@ public class TargetMover : MonoBehaviour
         Gizmos.color = new Color(1, 0, 0, 0.5F);
         //size and location of gizmo
         Gizmos.DrawCube(center.position, size);
+    }
+
+    public void SetTimeEnable(){
+        Debug.Log("Time Enabled TargetMover");
+        m_TimeEnabled = true;
+    }
+
+    public void SetTimeDisable(){
+        Debug.Log("Time Disabled TargetMover");
+        m_TimeEnabled = false;
     }
 }

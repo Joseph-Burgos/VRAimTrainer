@@ -23,9 +23,9 @@ public class ScoreManager : MonoBehaviour
         CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
     }
 
-   public int GetScore(){
-       return m_Score;
-   }
+    public int GetScore(){
+        return m_Score;
+    }
 
     public void AddToScore(int scoreToBeAdded){
         m_Hits = m_Hits + 1;

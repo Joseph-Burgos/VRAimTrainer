@@ -6,25 +6,36 @@ using UnityEngine;
 public class TrackingTarget : Target_Parent
 {
     private float m_TotalTimeHit = 0;
+    // used for when the timer is active
     public bool m_TimeEnabled = true;
-    public float m_Time = 0;
 
-    public GameObject m_GameSystem;
+    [SerializeField] private GameObject m_GameSystem;
 
-    void Update(){
-
-    }
-
+    // Updates the score when a target is being tracked
     public override void hit()
     {
-        m_TotalTimeHit += Time.deltaTime;
-        Debug.Log(m_TotalTimeHit);
-        m_GameSystem.GetComponent<ScoreManager>().SetScore((int)Math.Round(100 * m_TotalTimeHit, 0));
+        if (m_TimeEnabled){
+            m_TotalTimeHit += Time.deltaTime;
+            // Debug.Log(m_TotalTimeHit);
+            m_GameSystem.GetComponent<ScoreManager>().SetScore((int)Math.Round(1000 * m_TotalTimeHit, 0));
+        }
     }
 
+    // returns the total time tracked
     public float GetTotalTime()
     {
         return m_TotalTimeHit;
+    }
+
+    public void SetTimeEnable(){
+        m_TimeEnabled = true;
+        m_TotalTimeHit = 0;
+        // resets the score on start of a session
+        m_GameSystem.GetComponent<ScoreManager>().SetScore( (int)0 );
+    }
+
+    public void SetTimeDisable(){
+        m_TimeEnabled = false;
     }
 
 }
