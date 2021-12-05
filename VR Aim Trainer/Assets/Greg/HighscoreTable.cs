@@ -4,57 +4,52 @@ using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-//using System.Web.Script.Serialization;
+
+// This class defines the behaviour for the leaderboard table prefab.
 public class HighscoreTable : MonoBehaviour
 {
-    private Transform entryContainer;
+    // transforms that will be used to render each record on the leaderboard
+    private Transform entryContainer; 
     private Transform entryTemplate;
-    private HttpClient client; // FIXME should this be 'static' and 'readonly'???
+    // http client to request scores from server
+    private HttpClient client;
+    // instance of 'scoreboard' class
+    // used to parse json from server into a list of 'score' objects
     private Scoreboard sb;
 
     private async Task Awake()
     {
-        Debug.Log("Starting the leaderboard retrieval process");
+        // request scores from server
         client = new HttpClient();
-        string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=5"); // TODO handle no connection
-
-        Debug.Log("original response");
-        Debug.Log(responseString);
+        string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=5"); 
+        // insert received data into a json string
+        // this is a work around to adapt Unity to communicate with a Node.js server
         string formattedResponse = "{\"scores\":" + responseString + "}";
-        Debug.Log("formatted response");
-        Debug.Log(formattedResponse);
+        // load resultant list into the scoreboard object
         sb = JsonUtility.FromJson<Scoreboard>(formattedResponse);
-        Debug.Log("Retrieved objects from server successfully");
-        Debug.Log(sb.ToString());
+        // extract the scores list from the scoreboard
+        List<Score> highScores = sb.scores; // leaderboard scores
 
-        List<Score> highScores = sb.scores;
-
-        
+        // bind gameobjects that comprise the leaderboard prefab
         entryContainer = transform.Find("highscoreEntryContainer");
         entryTemplate = entryContainer.Find("HighscoreEntryTemplate");
         entryTemplate.gameObject.SetActive(false);
-
+        // define offsets to position each element iteratively
         float templateX = -0.6f;
         float templateZ = 0.5f;
         float templateY = -0.2f;
         float Yinterval = -0.5f;
-
+        // create each record and insert it into the game space
         for(int i = 0; i < highScores.Count; i++)
         {
-            
-            
             Transform entryTransform = Instantiate(entryTemplate, entryContainer);
-            Debug.Log(entryTransform);
             RectTransform entryRectTransform = entryTransform.GetComponent<RectTransform>();
-            Debug.Log("about to get a new vector to move");
-            Debug.Log(entryRectTransform);
-            
+            // position current element
             entryRectTransform.anchoredPosition3D = new Vector3(templateX, templateY, templateZ);
-            templateY = templateY + Yinterval;
-            Debug.Log("the vector seemed to work");
+            templateY = templateY + Yinterval; // update Y position of next element
+            
             entryTransform.gameObject.SetActive(true);
-            Debug.Log(string.Format("Successfully loaded the leaderboard {0}", i));
-
+            // write rank strings
             int rank = i + 1;
             string rankString;
             switch (rank)
@@ -66,15 +61,12 @@ public class HighscoreTable : MonoBehaviour
             }
 
             Score currentScore = highScores[i];
-
-            //entryTransform.Find("postText").GetComponent<Text>().text = rankString;
+            // set text fields
             int score = currentScore.points;
             entryTransform.Find("scoreText").GetComponent<Text>().text = score.ToString();
-            //string mode = currentScore.gameMode;
-            //entryTransform.Find("gameText").GetComponent<Text>().text = mode.ToString();
             string name = currentScore.userName;
             entryTransform.Find("nameText").GetComponent<Text>().text = name;
-            // TODO get date string, parse to datetime, and extract the mm/dd/yyyy
+            // get date string, parse to datetime, and extract the mm/dd/yyyy
             DateTime scoreDateTime = DateTime.Parse(currentScore.date);
             string dateString = scoreDateTime.Month + "/" + scoreDateTime.Day + "/" + scoreDateTime.Year;
             entryTransform.Find("timeText").GetComponent<Text>().text = dateString;
@@ -82,7 +74,8 @@ public class HighscoreTable : MonoBehaviour
     }
 }
 
-//create a class of scores so we can save it
+// This class is used to load a list of score objects. 
+// These are received from the server in json format.
 public class Scoreboard
 {
     public List<Score> scores;
@@ -98,6 +91,7 @@ public class Scoreboard
     }
 }
 
+// This class is used to load json for individual score records
 [System.Serializable]
 public class Score {
     public string userName;

@@ -13,7 +13,7 @@ public class TargetManager : MonoBehaviour
     //current number of targets on scene
     public static int currentTargets = 0;
     //list of targets to calculate score
-    public static List<Target> targets = new List<Target>();
+    public static List<Target_Parent> targets = new List<Target_Parent>();//changed from Target Obj
     //whether the game should be keeping track of the targets or not
     public static bool isRecording = false;
 
@@ -54,7 +54,7 @@ public class TargetManager : MonoBehaviour
     }
 
     //when target is no longer needed, add to array in target  manager for score
-    public static void addTarget(Target target)
+    public static void addTarget(Target_Parent target)//changed from Target Obj
     {
         //add target to list of targets hit, only if target manager wants to record
         if (isRecording)

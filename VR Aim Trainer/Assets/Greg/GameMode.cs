@@ -2,8 +2,9 @@ using UnityEngine;
 using System.Collections;
 
 
-
+// This class designates an enum to keep track of the current game mode.
 public class GameMode : MonoBehaviour {
+    // Current game modes. Subject to change.
     public enum Mode {
         REACTION,
         TRACKING,

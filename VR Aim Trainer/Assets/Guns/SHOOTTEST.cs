@@ -9,12 +9,13 @@ public class SHOOTTEST : MonoBehaviour
 {
 
     private bool isActive = false;
-    private int ammo = 0;
+    [SerializeField] private int ammo = 0;
     private bool magInserted = false;
     private Interactable interactable;
+    private GameObject insertedMag;
     Transform SkinsTransform; 
 
-    [Header("Info for class to function")]
+    [Header("Required References")]
     public GameObject laser;
     public SteamVR_Action_Boolean fireAction;
     public SteamVR_Action_Boolean ejectMagAction;
@@ -22,14 +23,16 @@ public class SHOOTTEST : MonoBehaviour
     public BulletTrail bulletTrail;
     public ParticleSystem muzzleFlash = null;
     public Transform magazineSlot;
+    [Tooltip("The Magazine GameObject that will spawn when the ejectMag button is pressed")]
+    public GameObject magazineToSpawn;
 
-    [Header("options for Gun")]
+    [Header("Gun Options")]
     public float RayCastRange = 100f;
     public bool useBulletTrail;
     public bool useLaser = true;
     public bool constantFire = false;
 
-    [Header("game environment objects")]
+    [Header("Game Environment Objects")]
     [SerializeField] GameObject GameSystem;
     private ScoreManager scoreManager;
 
@@ -87,13 +90,10 @@ public class SHOOTTEST : MonoBehaviour
             }
 
             //check if ejectMag button is pressed
-            if(ejectMagAction.stateDown && magInserted == true)
+            if(ejectMagAction[source].stateDown && magInserted)
             {
                 Debug.Log("ejectMagazine activated");
-                //get the insertedMagazine child object in the weapon
-                //FIXME: can only find child objects with the name "TestMagazine", so magazines with different names will not work
-                GameObject insertedMagazine = gameObject.transform.Find("TestMagazine").gameObject;
-                ejectMagazine(insertedMagazine);
+                ejectMagazine(insertedMag);
             }
         }
         //checked if gun is being held AND laser is visible
@@ -179,35 +179,48 @@ public class SHOOTTEST : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //check if collision with gun is a magazine, and if there is a magazine already present.
-        if (other.tag == "Magazine" && !magInserted)
+        //check if collision with gun is a magazine, if there is no magazine present, and if the magazine is not newly spawned.
+        if (other.tag == "Magazine" && !magInserted && !other.GetComponent<magazineScript>().newlySpawned)
         {
             magInserted = true;
 
-            // detach the magazine from hand
+            //store the inserted magazine game object
+            insertedMag = other.gameObject;
+
+            //detach the magazine from hand
             other.GetComponent<Interactable>().attachedToHand.DetachObject(other.gameObject, false);
 
-            // disable interactable script
+            //disable interactable script
             other.GetComponent<Interactable>().enabled = false;
             Destroy(other.GetComponent("Throwable"));
 
-            // disable colliders on magazine so that it doesn't collide with weapon
+            //disable colliders on magazine so that it doesn't collide with weapon
             other.GetComponent<Rigidbody>().isKinematic = true;
             other.GetComponent<BoxCollider>().isTrigger = true;
 
-            // change rotation of mag to magazine slot
+            //change rotation of mag to magazine slot
             other.transform.rotation = magazineSlot.rotation;
-            // change position of mag to magazine slot
+            //change position of mag to magazine slot
             other.transform.position = magazineSlot.position;
-            // make the magazine a child of the gun and change the transform
+            //make the magazine a child of the gun and change the transform
             other.transform.SetParent(gameObject.transform);
 
-            // move magazine object to the magazine slot in the gun
+            //move magazine object to the magazine slot in the gun
             other.gameObject.transform.position = magazineSlot.position;
-            // set the ammo in the magazine to the gun
+            //set the ammo in the magazine to the gun
             ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
 
             Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        //checks if the magazine is a newly spawned magazine
+        if(other.tag == "Magazine" && other.GetComponent<magazineScript>().newlySpawned)
+        {
+            //when the magazine leaves the collider area, the mag is no longer newly spawned
+            other.GetComponent<magazineScript>().newlySpawned = false;
         }
     }
 
@@ -215,21 +228,27 @@ public class SHOOTTEST : MonoBehaviour
     {
         magInserted = false;
 
-        // if there is still ammo in the mag before ejecting, let there be one more round left in the weapon
-        // update the ammo on the magazine
+        //destroy the magazine object
+        Destroy(magazine);
+        //spawn a new magazine
+        GameObject spawnedMag = Instantiate(magazineToSpawn);
+        //set magazine to newly spawned, so that it does not go back into the gun when it collides with gun.
+        spawnedMag.GetComponent<magazineScript>().newlySpawned = true;
+        //move the mag to the magazineslot
+        spawnedMag.transform.position = magazineSlot.transform.position;
+
+        //*simulating a bullet in the chamber*
+        //if there is still ammo in the mag before ejecting, let there be one more round left in the weapon
+        //update the ammo on the magazine
         if (ammo != 0)
         {
-            magazine.GetComponent<magazineScript>().ammoCount = ammo - 1;
+            spawnedMag.GetComponent<magazineScript>().ammoCount = ammo - 1;
             ammo = 1;
         }
         else
         {
-            magazine.GetComponent<magazineScript>().ammoCount = 0;
+            spawnedMag.GetComponent<magazineScript>().ammoCount = 0;
             ammo = 0;
         }
-
-        // detach magazine from the parent
-        magazine.transform.parent = null;
-
     }
 }
