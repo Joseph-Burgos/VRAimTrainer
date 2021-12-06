@@ -782,7 +782,6 @@ MonoBehaviour:
   m_Target: {fileID: 3488593011126242688}
   m_Speed: 5
   m_Seconds: 3
-  m_GameSystem: {fileID: 0}
   center: {fileID: 201602565}
   size: {x: 19, y: 4, z: 15.55}
 --- !u!4 &201602565
@@ -2960,7 +2959,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   timerDisplay: {fileID: 739637093}
-  initialTime: 2
+  initialTime: 60
 --- !u!1001 &1553005463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4175,7 +4174,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: 0.0000000021022108, y: 1.5833315, z: -0.0000016146123}
+  m_ConnectedAnchor: {x: 0.0000000021022108, y: 1.5833315, z: -0.0000016146122}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
@@ -4856,6 +4855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 0}
   burst: {fileID: 0}
+  m_TimeEnabled: 1
   m_GameSystem: {fileID: 1521236064}
 --- !u!135 &4318371511097045709
 SphereCollider:
@@ -5187,7 +5187,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000026887278, y: 1.5833309, z: 0.0000005020561}
+  m_ConnectedAnchor: {x: -0.0000026887278, y: 1.5833309, z: 0.000000502056}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0
