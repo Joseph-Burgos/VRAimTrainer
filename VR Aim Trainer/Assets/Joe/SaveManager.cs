@@ -27,7 +27,7 @@ public class SaveManager : MonoBehaviour
     // Saves a playerscore to disk.
     public void addScore(PlayerScore ss)
     {
-        // Debug.Log("SaveManager - Enter addScores");
+        Debug.Log("SaveManager - Enter addScores");
 
         //get saveDirectory of file
         string savedDataDirectoryStr = Application.dataPath + saveDirectory;
@@ -74,12 +74,12 @@ public class SaveManager : MonoBehaviour
         // Debug.Log("\nSaveManager - 4");
         var httpResponse =  postRequest.GetResponse(); // dispatch request to server (HttpWebResponse)
 
-        // Debug.Log("SaveManager - Exit addScores");
+        Debug.Log("SaveManager - Exit addScores");
     }
 
     public void Load()
     {
-        // Debug.Log("SaveManager - Entering load");
+        Debug.Log("SaveManager - Entering load");
         // retrieve data from past games
         string saveGameDataPath = Application.dataPath + saveDirectory + saveGameData;
         // Debug.Log("SaveManager - path: " + saveGameDataPath);
@@ -93,7 +93,7 @@ public class SaveManager : MonoBehaviour
         }
         else
         {
-            // Debug.Log("SAVE FILE DOES NOT EXIST");
+            Debug.Log("SAVE FILE DOES NOT EXIST");
         }
         // retrieve username
         string userNameDataPath = Application.dataPath + saveDirectory + userNameFile;
@@ -101,7 +101,7 @@ public class SaveManager : MonoBehaviour
             userName = System.IO.File.ReadAllText(userNameDataPath);
             // Debug.Log("USERNAME: " + userName);
         }
-        // Debug.Log("SaveManager - Leaving load");
+        Debug.Log("SaveManager - Leaving load");
     }
 
     public List<PlayerScore> GetPlayerScoresList() { return playerScoreList;  }

@@ -55,7 +55,7 @@ public class GameflowManager : MonoBehaviour {
     void Update () {
         // // Debug.Log("GameflowManager: Update()");
         if (!timer.timeLeft() && !menuActive) {
-            // // Debug.Log("GameflowManager: Update(): Game Over!");
+            Debug.Log("GameflowManager: Update(): Game Over!");
             menuActive = true;
             state = StateType.FINISHED;
             
@@ -81,7 +81,7 @@ public class GameflowManager : MonoBehaviour {
 
             // expose post game display and menus to player
             VisualFeedback.SetActive(true);
-            VisualFeedbackScript.initializeVisualFeedback();
+            VisualFeedbackScript.initializeVisualFeedback(score, accuracy);
         }
 
         // TESTER CODE - TEST FUNCTIONS ON KEYBOARD PRESS
