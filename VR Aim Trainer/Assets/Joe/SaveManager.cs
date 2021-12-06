@@ -6,22 +6,23 @@ using System.Web;
 using UnityEngine;
 using System.IO;
 
-//THIS IS THE SAVE MANAGER. THIS FILE IS MADE TO HANDLE LOADING AND SAVING THE FILE
-//game manager must load the save file on awake() so it doesnt overwrite with an empty list
+// This class is performs operations that backs up data from played games.
 public class SaveManager : MonoBehaviour
 {
-    //make file saveDirectory specifically save into assets folder -- i specifically chose joe folder for testing
+    // directory for saving data 
     public string saveDirectory = "/Joe/SaveData/";
-    //file name with saved datatri
+    // name of file to store data
     public string saveGameData =  "MyData.txt";
-    // File with username
+    // name of file with player's username
     public string userNameFile = "Username.txt";
     // current username
     public string userName = "Default";
-    //create an empty list to add onto
+    // most recently loaded SavedDataObject
     public SavedDataObject savedDataObject = null;
+    // current list of playerScores
     public List<PlayerScore> playerScoreList = null;
 
+    // Upon loading of class, start loading data from disk.
     public void Awake() { Load(); }
 
     // Saves a playerscore to disk.
@@ -55,8 +56,7 @@ public class SaveManager : MonoBehaviour
         postRequest.ContentType = "application/json";
         postRequest.Method = "POST";
         // Debug.Log("SaveManager - 2");
-        // build string to send to body
-        // write to the http request stream
+        // build string to send data in request body, write to the http request stream
         using (var streamWriter = new StreamWriter(postRequest.GetRequestStream())) {
             string gameMode = ss.gameMode;
             int thisScore = ss.score;
@@ -65,24 +65,23 @@ public class SaveManager : MonoBehaviour
                 gameMode = ss.gameMode,
                 points = ss.score
             };
-            
             string record = JsonUtility.ToJson(newScore);
-            // Debug.Log("SaveManager - 3 1234\n" + record);
             streamWriter.Write(record);
         }
         // debug information
         // Debug.Log("\nSaveManager - 4");
-        var httpResponse =  postRequest.GetResponse(); // dispatch request to server (HttpWebResponse)
+        var httpResponse =  postRequest.GetResponse(); // dispatch request to server, ignore response
 
         // Debug.Log("SaveManager - Exit addScores");
     }
 
+    // Loads data from disk.
     public void Load()
     {
         // Debug.Log("SaveManager - Entering load");
-        // retrieve data from past games
+        // constructs absolute path to data file
         string saveGameDataPath = Application.dataPath + saveDirectory + saveGameData;
-        // Debug.Log("SaveManager - path: " + saveGameDataPath);
+        // if file exists, proceed to load, otherwise open a new file
         if (File.Exists(saveGameDataPath))
         {
             string json = File.ReadAllText(saveGameDataPath);
@@ -95,7 +94,7 @@ public class SaveManager : MonoBehaviour
         {
             // Debug.Log("SAVE FILE DOES NOT EXIST");
         }
-        // retrieve username
+        // retrieve username, if one exists, otherwise will default to "default"
         string userNameDataPath = Application.dataPath + saveDirectory + userNameFile;
         if (File.Exists(userNameDataPath)) {
             userName = System.IO.File.ReadAllText(userNameDataPath);
@@ -109,17 +108,16 @@ public class SaveManager : MonoBehaviour
     public SavedDataObject GetSavedDataObject() { return savedDataObject; }
 }
 
-//create a class of playerScores so we can save it
+// This class is used to load the saved data file from a json format.
 public class SavedDataObject
 {
     public List<PlayerScore> playerScores;
 }
 
+// This class is used to write relevant game data into a json format.
 public class ScoreToServer 
 {
-    // omitting constructors for unity
-    // properties
-    public string userID;
-    public int points;
+    public string userID; // user name
+    public int points; // score
     public string gameMode;
 }
