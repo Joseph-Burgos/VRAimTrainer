@@ -781,7 +781,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Target: {fileID: 3488593011126242688}
   m_Speed: 5
-  m_Seconds: 3
+  m_GameSystem: {fileID: 0}
   center: {fileID: 201602565}
   size: {x: 19, y: 4, z: 15.55}
 --- !u!4 &201602565
@@ -2022,7 +2022,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2365352823111790295, guid: 16d00e06b6f78114f8dd1e9321c615e8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 5.009
+      value: 5.286
       objectReference: {fileID: 0}
     - target: {fileID: 2365352823111790295, guid: 16d00e06b6f78114f8dd1e9321c615e8, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4855,7 +4855,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 0}
   burst: {fileID: 0}
-  m_TimeEnabled: 1
   m_GameSystem: {fileID: 1521236064}
 --- !u!135 &4318371511097045709
 SphereCollider:
