@@ -47,33 +47,43 @@ public class VisualFeedback : MonoBehaviour {
     void Start()
     {
         //targetManager = otherGameObject.findComponent<TargetManager>();
-        Debug.Log("Visual Feedback - start");
+        // Debug.Log("Visual Feedback - start");
         // Load data for the players history from the SaveManager
         loadData();
-        // ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
-        Debug.Log("Visual Feedback - exit start");
+        
+        
     }
 
-    public void initializeVisualFeedback(int newscore, float acc) {
-        Debug.Log("Visual Feedback - enter initializeVisualFeedback");
+    public void initializeVisualFeedback() {
+        // Debug.Log("Visual Feedback - enter initializeVisualFeedback");
         // call data functions, make necessary calculations
         // loadData();
-        // ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
-        Debug.Log("Visual Feedback - got scoremanager");
-        score = newscore;
-        accuracy = acc;
+        ScoreManager scoreManager = GameSystem.GetComponent<ScoreManager>();
+        score = scoreManager.GetScore();
+        int totalShots = scoreManager.GetShots();
+       
+        targetsHit = scoreManager.GetHits();
+        // Debug.Log("Visual Feedback - totalshots:"+totalShots);
+        // Debug.Log("Visual Feedback - targetshit:"+targetsHit);
+        if (totalShots > 0)
+        {
+            accuracy = (float) targetsHit / totalShots;
+        }
+        else
+        {
+            accuracy = 0;
+        }
         // set each label in menu
         setLabels();
         // draw graphs on menu
         drawGraphs();
         
-        Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
+        // Debug.Log("Visual Feedback - exiting initializeVisualFeedback");
     }
 
     // This function sets the labels on the menu.
     void setLabels()
     {
-        Debug.Log("Visual Feedback - enter setLabels");
         // score
         ScoreLabel.GetComponent<TMPro.TextMeshPro>().text += score.ToString();
         // accuracy
@@ -82,25 +92,23 @@ public class VisualFeedback : MonoBehaviour {
         TargetsHitLabel.GetComponent<TMPro.TextMeshPro>().text += targetsHit.ToString();
         // games played
         GamesPlayedLabel.GetComponent<TMPro.TextMeshPro>().text += gamesPlayed.ToString();
-        Debug.Log("Visual Feedback - exit setLabels");
     }
 
     // This function draws graphs on the menu.
     void drawGraphs()
     {
-        Debug.Log("Visual Feedback - enter draw graphs");
+        // Debug.Log("Visual Feedback - enter draw graphs");
         Graph scoreGraph = ScoreGraph.GetComponent<Graph>();
         Graph accuracyGraph = AccuracyGraph.GetComponent<Graph>();
         // Draw the scores graph
          var scores = getScoreHistory();
          scoreGraph.createGraph(scores, false);
          accuracyGraph.createGraph(getAccuracyHistory(), true);
-        Debug.Log("Visual Feedback - exit draw graphs");
+        // Debug.Log("Visual Feedback - exit draw graphs");
     }
 
     // This function loads data form the SvaeManager
     void loadData() {
-        Debug.Log("Visual Feedback - enter load");
         SaveManager saveManager = GameSystem.GetComponent<SaveManager>();
         saveManager.Load();
         playerScoreList = saveManager.GetPlayerScoresList();
@@ -108,7 +116,6 @@ public class VisualFeedback : MonoBehaviour {
         // check if the gamesystem exists and has a GameMode enum set
         // if so -> filter the data on the gamemode
         // get the date range (this is the x-axis)
-        Debug.Log("Visual Feedback - exit load");
     }
 
     // This function orders the player history by date and extracts data to represent each played game as a node on the graphs.
