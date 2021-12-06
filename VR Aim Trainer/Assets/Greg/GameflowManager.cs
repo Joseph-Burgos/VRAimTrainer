@@ -16,14 +16,14 @@ public class GameflowManager : MonoBehaviour {
     public string gamemode; // store reference to current gamemode (set in Unity Editor)
     // GameObjects (set in Unity to access components)
     [SerializeField] GameObject GameSystem;
+    [SerializeField] GameObject TargetManager;
     [SerializeField] GameObject VisualFeedback;
-    [SerializeField] GameObject TrackingTargetObject;
     // GameObject components we will actually interact with
     private VisualFeedback VisualFeedbackScript;
     private SaveManager saveManager;
     private ScoreManager scoreManager;
     private Timer timer;
-    private TargetTrack targetTrack;
+    private TargetManager targetManager;
     // flags
     private bool menuActive; // is the VisualFeedback menu active?
  
@@ -33,11 +33,6 @@ public class GameflowManager : MonoBehaviour {
         // Initialize game state
         state = StateType.NOTSTARTED;
         menuActive = false;
-        if (gamemode == "tracking") {
-            targetTrack = TrackingTargetObject.GetComponent<TargetTrack>();
-        } else {
-            targetTrack = null;
-        }
     }
 
     void Start () {
@@ -47,9 +42,11 @@ public class GameflowManager : MonoBehaviour {
         VisualFeedbackScript = VisualFeedback.GetComponent<VisualFeedback>();
         saveManager = GameSystem.GetComponent<SaveManager>();
         scoreManager = GameSystem.GetComponent<ScoreManager>();
+        targetManager = TargetManager.GetComponent<TargetManager>();
         // start timer and set game state to RUNNING
         timer.StartTimer();
         state = StateType.RUNNING;
+
     }
 
     void Update () {
@@ -58,6 +55,8 @@ public class GameflowManager : MonoBehaviour {
             // // Debug.Log("GameflowManager: Update(): Game Over!");
             menuActive = true;
             state = StateType.FINISHED;
+            // signal target manager that game is finished
+            targetManager.keepUpdating = false; 
             
             // save game data to server and disk
             // get time
@@ -66,7 +65,12 @@ public class GameflowManager : MonoBehaviour {
             // get score
             int score = scoreManager.GetScore();
             // get accuracy
-            float accuracy = getAccuracy();
+            float shots = (float)scoreManager.GetShots();
+            float hits = (float)scoreManager.GetHits();
+            float accuracy = 0;
+            if (shots > 0) {
+                accuracy = hits / shots;
+            } 
             
             // create the playerscore object
             PlayerScore playerScore = new PlayerScore{
@@ -97,9 +101,13 @@ public class GameflowManager : MonoBehaviour {
         if (state == StateType.RUNNING) {
             state = StateType.PAUSED;
             timer.StopTimer();
+        //     targetManager.pause(); 
+            // TODO pause targets
         } else if (state == StateType.PAUSED) {
             state = StateType.RUNNING;
             timer.StartTimer();
+            // targetManager.Resume();
+            // TODO unpause targets
         }
     }
 
@@ -111,25 +119,6 @@ public class GameflowManager : MonoBehaviour {
         // string mode = "default"; // TODO handle modes
         // int time = timer.getInitialTime();
         // SaveManager.saveScore(score, userName, time, mode);
-    }
-
-    public float getAccuracy() {
-        float accuracy = 0;
-        if (gamemode == "reaction") {
-            float shots = (float)scoreManager.GetShots();
-            float hits = (float)scoreManager.GetHits();
-            if (shots > 0) {
-                accuracy = hits / shots;
-            } 
-        } else if (gamemode == "tracking" && targetTrack != null) {
-            // total time hit over initial time
-            float hits = (float) targetTrack.hitCount;
-            float total = (float) targetTrack.totalCount;
-            if (total > 0) {
-                accuracy = hits / total;
-            }
-        }
-        return accuracy;
     }
 
 }
