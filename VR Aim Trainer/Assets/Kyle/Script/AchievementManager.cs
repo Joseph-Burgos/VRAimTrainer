@@ -14,8 +14,7 @@ public class AchievementManager : MonoBehaviour
     // Tracking
     private int m_TrackingScoreAchieved;
     private int m_TrackingScore;
-    [SerializeField]
-    private int m_TrackingScoreGoal;
+    private int m_TrackingScoreGoal = 40_000;
 
     // Misc.
     private int m_ShootFirstTargetAchieved;

@@ -7363,7 +7363,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-600182
+  m_Name: pb_Mesh-611834
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -10652,6 +10652,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 112001916391005250, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: timerDisplay
+      value: 
+      objectReference: {fileID: 567979324}
+    - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: CurrentScore
+      value: 
+      objectReference: {fileID: 1489977696}
     - target: {fileID: 6363470064638221324, guid: 0435810d721f859448227823fb6ed184, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -25403,13 +25411,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5579889538826335799, guid: 822013435bd723b48b561c7e52b841a5, type: 3}
       propertyPath: m_Name
-      value: CurrentScore
+      value: CurrentScoreCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 822013435bd723b48b561c7e52b841a5, type: 3}
 --- !u!4 &1489977695 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5579889538826335798, guid: 822013435bd723b48b561c7e52b841a5, type: 3}
+  m_PrefabInstance: {fileID: 1489977694}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1489977696 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5579889538196885855, guid: 822013435bd723b48b561c7e52b841a5, type: 3}
   m_PrefabInstance: {fileID: 1489977694}
   m_PrefabAsset: {fileID: 0}
 --- !u!43 &1490521792
@@ -27559,6 +27572,10 @@ PrefabInstance:
     - target: {fileID: 4705614043435873676, guid: 4b9572a2d9f1cbb4aa2dab9fb56c4f10, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6258144897195836194, guid: 4b9572a2d9f1cbb4aa2dab9fb56c4f10, type: 3}
+      propertyPath: m_TrackingScoreGoal
+      value: 40000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4b9572a2d9f1cbb4aa2dab9fb56c4f10, type: 3}

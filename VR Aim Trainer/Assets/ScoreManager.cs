@@ -6,11 +6,12 @@ public class ScoreManager : MonoBehaviour
     private int m_Score;
     private int m_Shots;
     private int m_Hits;
+    [SerializeField]
     private GameObject CurrentScore = null;
 
     void Start(){
         // Debug.Log("Start - enter");
-        CurrentScore = GameObject.Find("Score");
+        // CurrentScore = GameObject.Find("Score");
         
         if (!CurrentScore){
             return;
