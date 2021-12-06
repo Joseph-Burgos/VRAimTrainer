@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//THIS IS A PLAYERSCORE CLASS. IT CAN BE USED TO CREATE A TEXT FILE
 
-// Used to record key aspects of a played game.
-// A player is assigned a score.
 // This class is used to structure data that will be written to and read from disk when calculating VisualFeedback.
+// It is used to record key aspects of a played game.
 [System.Serializable]
 public class PlayerScore
 {
