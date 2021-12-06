@@ -131,14 +131,9 @@ public class AchievementManager : MonoBehaviour
         }
         else if (!currentScene.name.Equals("MainHub 1"))
         {
-            return;
-        }
-
-        if (m_TrackingScoreAchieved == 1){
-            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nCompleted";
-        }
-        else{
-            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nIncomplete";
+            if (m_TrackingScoreAchieved == 1){
+                GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nCompleted";
+            }
         }
     }
 }

@@ -5,10 +5,10 @@ using UnityEngine;
 using UnityEngine.Events;
 
 
-// [System.Serializable]
-// public class OnHitEvent : UnityEvent<int>
-// {
-// }
+[System.Serializable]
+public class OnHitEvent : UnityEvent<int>
+{
+}
 
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : Target_Parent
@@ -38,18 +38,16 @@ public class Target : Target_Parent
         TargetManager.addTarget(this);
 
         //play audio
-        //FindObjectOfType<AudioManager>().Play("MetalHit 1");
-        //AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
+        FindObjectOfType<AudioManager>().Play("MetalHit 1");
+        AudioSource.PlayClipAtPoint(hitSound, this.transform.position);
 
         //create a particle
         GameObject burstObject = Instantiate(burst, this.transform.position, Quaternion.identity);
         //destroy particle upon complete
         Destroy(burstObject, 1f);
 
-        // onHit.Invoke(100);
+        onHit.Invoke(100);
     }
-
-
 
     ////when target is no longer needed, add to array in target  manager for score
     //protected void addTarget()

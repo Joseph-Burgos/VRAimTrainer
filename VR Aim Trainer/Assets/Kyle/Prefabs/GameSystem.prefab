@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6363470064638221323}
   - component: {fileID: 6363470064638221322}
   - component: {fileID: 2748113562246786927}
+  - component: {fileID: 4675735014571379038}
   m_Layer: 0
   m_Name: GameSystem
   m_TagString: Untagged
@@ -71,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bebfd01a033a5a34780ee24578952946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentScore: {fileID: 0}
 --- !u!114 &2748113562246786927
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83,3 +85,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 318d7b4963666b442b092bc8a66de1f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4675735014571379038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6363470064638221326}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d88a1dcd91a34285987849e26d087ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerStart:
+    m_PersistentCalls:
+      m_Calls: []
+  TimerStop:
+    m_PersistentCalls:
+      m_Calls: []
+  timerDisplay: {fileID: 0}
+  initialTime: 10

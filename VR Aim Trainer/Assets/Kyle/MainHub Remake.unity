@@ -10656,6 +10656,10 @@ PrefabInstance:
       propertyPath: timerDisplay
       value: 
       objectReference: {fileID: 567979324}
+    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: timerDisplay
+      value: 
+      objectReference: {fileID: 567979324}
     - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
       propertyPath: CurrentScore
       value: 

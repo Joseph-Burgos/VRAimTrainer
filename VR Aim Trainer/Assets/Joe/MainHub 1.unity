@@ -3187,7 +3187,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 16
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 71.51, y: -270, z: -270}
 --- !u!43 &491455112
 Mesh:
@@ -10782,26 +10782,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6363470064638221326, guid: 0435810d721f859448227823fb6ed184, type: 3}
   m_PrefabInstance: {fileID: 6363470064774482055}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1339540873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339540872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d88a1dcd91a34285987849e26d087ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimerStart:
-    m_PersistentCalls:
-      m_Calls: []
-  TimerStop:
-    m_PersistentCalls:
-      m_Calls: []
-  timerDisplay: {fileID: 1114401957}
-  initialTime: 10
 --- !u!114 &1339540874
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14782,11 +14762,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Reach a Score of 10,000 in the Tracking mode:
+  m_text: 'Reach a Score of 40,000 in the Tracking mode:
 
-    Incomplete
-
-'
+    Incomplete'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -18278,6 +18256,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+      propertyPath: timerDisplay
+      value: 
+      objectReference: {fileID: 1114401957}
     - target: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
       propertyPath: m_Hits
       value: 0
@@ -19826,7 +19808,7 @@ Transform:
   - {fileID: 341629003}
   - {fileID: 1033748096}
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &8542227663245311096
 GameObject:
