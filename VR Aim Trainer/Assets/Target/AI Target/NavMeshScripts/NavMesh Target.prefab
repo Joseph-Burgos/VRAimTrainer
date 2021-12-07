@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5464560992039356987}
   - component: {fileID: 8117452460587595483}
   - component: {fileID: 4717064301547638138}
-  - component: {fileID: 4318371509310410442}
   - component: {fileID: 4906183823892873408}
   - component: {fileID: 8953084145861418086}
   - component: {fileID: -3908472308299381489}
+  - component: {fileID: -8117334698055276508}
   m_Layer: 0
   m_Name: NavMesh Target
   m_TagString: Untagged
@@ -85,19 +85,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &4318371509310410442
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3488593011251704199}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!195 &4906183823892873408
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -147,6 +134,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitSound: {fileID: 8300000, guid: 51f706a43881a9643ae8bc8112b83a37, type: 3}
   burst: {fileID: 8851961140035495971, guid: 802269b4ed8a30f40a9b0f89016bf7dc, type: 3}
-  onHit:
-    m_PersistentCalls:
-      m_Calls: []
+--- !u!135 &-8117334698055276508
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3488593011251704199}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
