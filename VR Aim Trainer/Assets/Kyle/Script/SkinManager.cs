@@ -35,6 +35,7 @@ public class SkinManager : MonoBehaviour
         if (!skinIsActive){
             m_Skins[0].SetActive(true);
         }
+        GameManager.Instance.currentSkinIndex = indexOfCurrentSkin;//update GameManager of skin index
 
     }
 
@@ -55,6 +56,7 @@ public class SkinManager : MonoBehaviour
         m_SkinPref = m_Skins[indexOfCurrentSkin].name;
         PlayerPrefs.SetString("GlockSkin", m_SkinPref);
         PlayerPrefs.Save();
+        GameManager.Instance.currentSkinIndex = indexOfCurrentSkin;//update GameManager of skin index
     }
 
     public void SetPreviouSkin(){
@@ -74,6 +76,7 @@ public class SkinManager : MonoBehaviour
         m_SkinPref = m_Skins[indexOfCurrentSkin].name;
         PlayerPrefs.SetString("GlockSkin", m_SkinPref);
         PlayerPrefs.Save();
+        GameManager.Instance.currentSkinIndex = indexOfCurrentSkin;//update GameManager of skin index
     }
 
     public int GetIndexOfCurrentSkin(){

@@ -9,8 +9,6 @@ public class TargetMover : MonoBehaviour
     [SerializeField]
     private float m_Speed;
     [SerializeField]
-    private float m_Seconds;
-    [SerializeField]
     private GameObject m_GameSystem;
 
     [Tooltip("Location of center of cube to spawn targets")]

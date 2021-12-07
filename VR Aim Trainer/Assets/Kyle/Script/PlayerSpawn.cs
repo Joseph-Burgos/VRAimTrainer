@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +9,14 @@ public class PlayerSpawn : MonoBehaviour
 
     void Awake()
     {
-        _player = GameObject.Find("Player");
-        _player.transform.position = gameObject.transform.position;
+        try 
+        {
+            _player = GameObject.Find("Player");
+            _player.transform.position = gameObject.transform.position;
+        }
+        catch (Exception e)
+        {
+            Debug.Log("Player Object Not Found");
+        }
     }
 }

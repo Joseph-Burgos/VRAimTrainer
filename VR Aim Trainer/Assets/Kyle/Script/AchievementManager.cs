@@ -14,8 +14,7 @@ public class AchievementManager : MonoBehaviour
     // Tracking
     private int m_TrackingScoreAchieved;
     private int m_TrackingScore;
-    [SerializeField]
-    private int m_TrackingScoreGoal;
+    private int m_TrackingScoreGoal = 40_000;
 
     // Misc.
     private int m_ShootFirstTargetAchieved;
@@ -132,14 +131,9 @@ public class AchievementManager : MonoBehaviour
         }
         else if (!currentScene.name.Equals("MainHub 1"))
         {
-            return;
-        }
-
-        if (m_TrackingScoreAchieved == 1){
-            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nCompleted";
-        }
-        else{
-            GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nIncomplete";
+            if (m_TrackingScoreAchieved == 1){
+                GameObject.Find( "Tracking Score TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Reach a Score of " + m_TrackingScoreGoal + "in Tracking Mode:\nCompleted";
+            }
         }
     }
 }
