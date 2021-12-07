@@ -47,6 +47,7 @@ public class PhysicsButton : MonoBehaviour
     // updates _isPressed
     private void Pressed(){
         _isPressed = true;
+
         onPressed.Invoke();
         // Debug.Log("Pressed");
     }
