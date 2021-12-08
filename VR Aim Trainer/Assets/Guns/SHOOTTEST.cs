@@ -208,7 +208,15 @@ public class SHOOTTEST : MonoBehaviour
             //move magazine object to the magazine slot in the gun
             other.gameObject.transform.position = magazineSlot.position;
             //set the ammo in the magazine to the gun
-            ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+            if(ammo > 0)//means there is a bullet in the chamber
+            {
+                ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+                ammo++;
+            }
+            else
+            {
+                ammo = other.gameObject.GetComponent<magazineScript>().ammoCount;
+            }
 
             Debug.Log("Detected magazine with " + other.gameObject.GetComponent<magazineScript>().ammoCount.ToString() + " ammo.");
         }
