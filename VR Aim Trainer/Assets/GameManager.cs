@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public bool useVFX;
+    public int currentSkinIndex;
 
     void Awake()
     {

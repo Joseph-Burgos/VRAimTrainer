@@ -16,6 +16,10 @@ public class ScoreManager : MonoBehaviour
         // Find the current 'score' display, if it exists
         // Otherwise, fail silently.
         CurrentScore = GameObject.Find("Score");
+<<<<<<< HEAD
+=======
+
+>>>>>>> c22c1414c58dd36f8adba9bbdaaced4750355822
         
         if (!CurrentScore){
             return;
