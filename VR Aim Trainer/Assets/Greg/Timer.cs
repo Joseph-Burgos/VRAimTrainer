@@ -25,6 +25,7 @@ public class Timer : MonoBehaviour
     {
         // Debug.Log("Timer: Start()" + currentTime.ToString("0"));
         currentTime = initialTime; // set the length of game
+        
         // retrieve the countdownText from the timerDisplay and update it
         timerDisplay.GetComponent<TMPro.TextMeshPro>().text = currentTime.ToString("0");
     }
