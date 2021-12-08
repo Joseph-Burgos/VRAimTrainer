@@ -36,11 +36,16 @@ public class TargetManager : MonoBehaviour
     void Start()
     {
         // spawnTarget();
-
+        currentTargets = 0;
+        foreach(Target_Parent target in targets){
+            // target.GetComponent<Target>().hit();
+            Destroy(target.gameObject);
+        }
     }
 
     public void EnableTargetSpawn(){
         keepUpdating = true;
+        Debug.Log(keepUpdating);
     }
 
     public void DisableTargetSpawn(){

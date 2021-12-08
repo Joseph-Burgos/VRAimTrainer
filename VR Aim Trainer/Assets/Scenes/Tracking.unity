@@ -1275,6 +1275,105 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!1 &509893271
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 509893273}
+  - component: {fileID: 509893272}
+  m_Layer: 0
+  m_Name: Timer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &509893272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509893271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d88a1dcd91a34285987849e26d087ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TimerStart:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488593011126242689}
+        m_TargetAssemblyTypeName: TrackingTarget, Assembly-CSharp
+        m_MethodName: SetTimeEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 201602564}
+        m_TargetAssemblyTypeName: TargetMover, Assembly-CSharp
+        m_MethodName: SetTimeEnable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  TimerStop:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3488593011126242689}
+        m_TargetAssemblyTypeName: TrackingTarget, Assembly-CSharp
+        m_MethodName: SetTimeDisable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 201602564}
+        m_TargetAssemblyTypeName: TargetMover, Assembly-CSharp
+        m_MethodName: SetTimeDisable
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  timerDisplay: {fileID: 739637093}
+  initialTime: 60
+--- !u!4 &509893273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 509893271}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -4.479384, y: -8.6041155, z: -5.210511}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &557091709
 Mesh:
   m_ObjectHideFlags: 0
@@ -2315,119 +2414,119 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: initialTime
       value: 60
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: timerDisplay
       value: 
       objectReference: {fileID: 739637093}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.size
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3488593011126242689}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 201602564}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 3488593011126242689}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 201602564}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetTimeDisable
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetTimeDisable
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetTimeEnable
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
       value: SetTimeEnable
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TrackingTarget, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TargetMover, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: TrackingTarget, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
       value: TargetMover, Assembly-CSharp
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStop.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    - target: {fileID: 0}
       propertyPath: TimerStart.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
@@ -2479,8 +2578,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameSystem
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4675735014571379038, guid: 0435810d721f859448227823fb6ed184, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0435810d721f859448227823fb6ed184, type: 3}
 --- !u!114 &1521236063 stripped
 MonoBehaviour:
@@ -2498,74 +2596,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6363470064638221326, guid: 0435810d721f859448227823fb6ed184, type: 3}
   m_PrefabInstance: {fileID: 1521236062}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1521236065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1521236064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d88a1dcd91a34285987849e26d087ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TimerStart:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3488593011126242689}
-        m_TargetAssemblyTypeName: TrackingTarget, Assembly-CSharp
-        m_MethodName: SetTimeEnable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 201602564}
-        m_TargetAssemblyTypeName: TargetMover, Assembly-CSharp
-        m_MethodName: SetTimeEnable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  TimerStop:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3488593011126242689}
-        m_TargetAssemblyTypeName: TrackingTarget, Assembly-CSharp
-        m_MethodName: SetTimeDisable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 201602564}
-        m_TargetAssemblyTypeName: TargetMover, Assembly-CSharp
-        m_MethodName: SetTimeDisable
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  timerDisplay: {fileID: 739637093}
-  initialTime: 60
 --- !u!1001 &1553005463
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4092,11 +4122,15 @@ PrefabInstance:
     - target: {fileID: 2860553940264234555, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1521236065}
+      objectReference: {fileID: 509893272}
     - target: {fileID: 2860553940264234555, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 201602564}
+    - target: {fileID: 2860553940264234555, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTimer
+      objectReference: {fileID: 0}
     - target: {fileID: 2860553941870056261, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -4104,7 +4138,11 @@ PrefabInstance:
     - target: {fileID: 2860553941870056261, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
-      objectReference: {fileID: 1521236065}
+      objectReference: {fileID: 509893272}
+    - target: {fileID: 2860553941870056261, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: StartTimer
+      objectReference: {fileID: 0}
     - target: {fileID: 9101341622820617106, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -4168,11 +4206,15 @@ PrefabInstance:
     - target: {fileID: 9101341623691119365, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1521236065}
+      objectReference: {fileID: 509893272}
     - target: {fileID: 9101341623691119365, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
       propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 201602564}
+    - target: {fileID: 9101341623691119365, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
+      propertyPath: onPressed.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTimer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11b5261700aa0cc40913013177463ab3, type: 3}
 --- !u!1 &3488593011126242688
