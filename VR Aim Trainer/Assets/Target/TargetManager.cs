@@ -17,6 +17,8 @@ public class TargetManager : MonoBehaviour
     //whether the game should be keeping track of the targets or not
     public static bool isRecording = false;
 
+    private List<GameObject> LiveTarget = new List<GameObject>();
+
     //location and size of where target will be spawned
     [Tooltip("Location of center of cube to spawn targets")]
     public Transform center;
@@ -29,16 +31,25 @@ public class TargetManager : MonoBehaviour
     public GameObject target;
 
     [Tooltip("If ON: taret manager will continuously update")]
-    public bool keepUpdating = true;
+    public bool keepUpdating = false;
     // Start is called before the first frame update
     void Start()
     {
-        spawnTarget();
+        // spawnTarget();
+
     }
+
+    public void EnableTargetSpawn(){
+        keepUpdating = true;
+    }
+
+    public void DisableTargetSpawn(){
+        keepUpdating = false;
+    }
+
 
     void Update()
     {
-        
         //only spawn more if game manager wants to keep spawning more
         if (keepUpdating)
         {
@@ -49,8 +60,6 @@ public class TargetManager : MonoBehaviour
                 //Debug.Log(targets.Count);
             }
         }
-
-
     }
 
     //when target is no longer needed, add to array in target  manager for score
@@ -75,9 +84,19 @@ public class TargetManager : MonoBehaviour
         //create new random position within the size of the square
         Vector3 newPos = center.position + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
         //create a target at the new position
-        Instantiate(target, newPos, Quaternion.identity);
+        LiveTarget.Add((GameObject)Instantiate(target, newPos, Quaternion.identity));
         //update amount of targets on screen
         currentTargets = currentTargets + 1;
+
+        
+    }
+
+    public void DestroyAllTargets(){
+        keepUpdating = false;
+        foreach(GameObject target in LiveTarget){
+            // target.GetComponent<Target>().hit();
+            Destroy(target.gameObject);
+        }
     }
 
     //visual volume of size of box where objects will be spawned.

@@ -13,13 +13,9 @@ public class ScoreManager : MonoBehaviour
 
     void Start(){
         // Debug.Log("Start - enter");
-<<<<<<< HEAD
-        // CurrentScore = GameObject.Find("Score");
-=======
         // Find the current 'score' display, if it exists
         // Otherwise, fail silently.
         CurrentScore = GameObject.Find("Score");
->>>>>>> 782ede94be2fd78bedcef84bef5428118b150887
         
         if (!CurrentScore){
             return;

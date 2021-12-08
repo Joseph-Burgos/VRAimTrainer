@@ -13,7 +13,7 @@ public class OnHitEvent : UnityEvent<int>
 //object spawns, waits 2 seconds, and invokes addTarget which adds itself to a list of the game manager and destroys itself
 public class Target : Target_Parent
 {
-    //public OnHitEvent onHit;
+    public OnHitEvent onHit;
 
     // Update is called once per frame
     void Update()
