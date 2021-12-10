@@ -5,7 +5,7 @@ using System;
 // It also interfaces with the 'score' display in order to update that.
 public class ScoreManager : MonoBehaviour
 {
-    private int m_Score;
+    private static int m_Score = 0;
     private int m_Shots;
     private int m_Hits;
     [SerializeField]
@@ -27,6 +27,7 @@ public class ScoreManager : MonoBehaviour
         m_Hits = 0;
         // initialize the display
         CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
+
     }
 
     public int GetScore(){
@@ -42,7 +43,7 @@ public class ScoreManager : MonoBehaviour
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }
         // Debug.Log("AddToScore - current  OBJECT score is " + CurrentScore);
-        // Debug.Log("AddToScore - current score is " + m_Score.ToString());
+        Debug.Log("AddToScore - current score is " + m_Score.ToString());
         // Debug.Log("AddToScore - exit");
     }
 
@@ -50,7 +51,7 @@ public class ScoreManager : MonoBehaviour
     // Update the score display with to reflect this change.
     public void SetScore(int score){
         CurrentScore = GameObject.Find("Score");
-        if (score > 0){
+        if (score >= 0){
             m_Score = score;
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }

@@ -26,6 +26,7 @@ public class SkinManager : MonoBehaviour
             if (skinObject.name.Equals(m_SkinPref)){
                 skinObject.SetActive(true);
                 skinIsActive = true;
+                GameManager.Instance.currentSkinIndex = i;//update GameManager of skin index
             }
             else{
                 skinObject.SetActive(false);
@@ -35,7 +36,7 @@ public class SkinManager : MonoBehaviour
         if (!skinIsActive){
             m_Skins[0].SetActive(true);
         }
-        GameManager.Instance.currentSkinIndex = indexOfCurrentSkin;//update GameManager of skin index
+        
 
     }
 

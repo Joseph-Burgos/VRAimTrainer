@@ -87,6 +87,7 @@ public class SHOOTTEST : MonoBehaviour
                 ammo--;
                 shoot();
                 playAnim();
+                playVfx();
             }
 
             //check if ejectMag button is pressed
@@ -116,24 +117,7 @@ public class SHOOTTEST : MonoBehaviour
     private void shoot()
     {
         scoreManager.AddToShots();
-        //run if constant fire is off
-        if (!constantFire)
-        {  
-            //play audio
-            FindObjectOfType<AudioManager>().Play("GlockShot");
 
-            //play muzzle particle
-            // if (GameManager.Instance.useVFX)
-            // {
-            //     //make sure not already running
-            //     if (muzzleFlash.isPlaying)
-            //     {
-            //         muzzleFlash.Stop();
-            //     }
-            //     muzzleFlash.Play();
-            // }
-        }
-  
         //store raycast information
         RaycastHit hit;
         if(Physics.Raycast(muzzle.transform.position, muzzle.transform.forward, out hit, RayCastRange))
@@ -157,6 +141,23 @@ public class SHOOTTEST : MonoBehaviour
         
     }
 
+
+    public void playVfx()
+    {
+        //play audio
+        FindObjectOfType<AudioManager>().Play("GlockShot");
+
+        ///play muzzle particle
+        if (GameManager.Instance.useVFX)
+        {
+            //make sure not already running
+            if (muzzleFlash.isPlaying)
+            {
+                muzzleFlash.Stop();
+            }
+            muzzleFlash.Play();
+        }
+    }
     public void playAnim()
     {
         //hard coded to hell, needs to check SkinManager to check which index is active
