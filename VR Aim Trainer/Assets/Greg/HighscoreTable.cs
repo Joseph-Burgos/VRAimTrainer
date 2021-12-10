@@ -21,7 +21,7 @@ public class HighscoreTable : MonoBehaviour
     {
         // request scores from server
         client = new HttpClient();
-        string responseString = await client.GetStringAsync("http://localhost:3456/scores?topScores=5"); 
+        string responseString = await client.GetStringAsync("https://vr-aim-trainer.herokuapp.com/scores?topScores=5"); 
         // insert received data into a json string
         // this is a work around to adapt Unity to communicate with a Node.js server
         string formattedResponse = "{\"scores\":" + responseString + "}";

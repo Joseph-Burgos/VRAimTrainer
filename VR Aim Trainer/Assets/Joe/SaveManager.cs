@@ -52,7 +52,7 @@ public class SaveManager : MonoBehaviour
         File.WriteAllText(savedDataDirectoryStr + saveGameData, json);
         // Debug.Log("SaveManager - 1");
         // send score data to server
-        var postRequest = (HttpWebRequest)WebRequest.Create("http://localhost:3456/scores/add");
+        var postRequest = (HttpWebRequest)WebRequest.Create("http://vr-aim-trainer.herokuapp.com/scores/add");
         postRequest.ContentType = "application/json";
         postRequest.Method = "POST";
         // Debug.Log("SaveManager - 2");
