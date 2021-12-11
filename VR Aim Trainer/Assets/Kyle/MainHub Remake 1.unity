@@ -24188,7 +24188,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1460738472
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27573,6 +27573,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6258144897195836194, guid: 4b9572a2d9f1cbb4aa2dab9fb56c4f10, type: 3}
+      propertyPath: m_GameSystem
+      value: 
+      objectReference: {fileID: 634282860}
     - target: {fileID: 6258144897195836194, guid: 4b9572a2d9f1cbb4aa2dab9fb56c4f10, type: 3}
       propertyPath: m_TrackingScoreGoal
       value: 40000

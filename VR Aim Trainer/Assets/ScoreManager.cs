@@ -47,7 +47,7 @@ public class ScoreManager : MonoBehaviour
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }
         // Debug.Log("AddToScore - current  OBJECT score is " + CurrentScore);
-        Debug.Log("AddToScore - current score is " + m_Score.ToString());
+        // Debug.Log("AddToScore - current score is " + m_Score.ToString());
         // Debug.Log("AddToScore - exit");
     }
 
