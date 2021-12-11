@@ -1508,7 +1508,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8717786799541752953, guid: 2c7f3f55f0b0bc543b2aa1a0cf978a3a, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2c7f3f55f0b0bc543b2aa1a0cf978a3a, type: 3}
@@ -2197,7 +2197,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
       propertyPath: sounds.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
       propertyPath: sounds.Array.data[1].clip
@@ -2208,11 +2208,27 @@ PrefabInstance:
       value: GlockShot
       objectReference: {fileID: 0}
     - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
+      propertyPath: sounds.Array.data[2].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: ed89dbf5735bb334ebcf4ee407032aab, type: 3}
+    - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
+      propertyPath: sounds.Array.data[2].name
+      value: Buzzer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
       propertyPath: sounds.Array.data[1].pitch
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
+      propertyPath: sounds.Array.data[2].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
       propertyPath: sounds.Array.data[1].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4584362136180331872, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
+      propertyPath: sounds.Array.data[2].volume
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4584362136180331873, guid: eed90ebbf01fe224ea026e7608e2ce28, type: 3}
@@ -4375,6 +4391,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 2069895238}
+        m_TargetAssemblyTypeName: ScoreManager, Assembly-CSharp
+        m_MethodName: ResetScore
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   TimerStop:
     m_PersistentCalls:
       m_Calls:
@@ -4709,6 +4737,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 586e8734ded02d74b813b9d66c3b4159, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2069895238 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6363470064638221322, guid: 0435810d721f859448227823fb6ed184, type: 3}
+  m_PrefabInstance: {fileID: 2069895233}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069895236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bebfd01a033a5a34780ee24578952946, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2079171059
@@ -7041,7 +7080,7 @@ ConfigurableJoint:
   m_Anchor: {x: 0, y: 0, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.0000026887278, y: 1.5833309, z: 0.0000005020561}
+  m_ConnectedAnchor: {x: -0.0000026887278, y: 1.5833309, z: 0.000000502056}
   serializedVersion: 2
   m_SecondaryAxis: {x: 0, y: 1, z: 0}
   m_XMotion: 0

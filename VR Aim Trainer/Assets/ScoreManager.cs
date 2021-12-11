@@ -30,6 +30,10 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    void Awake(){
+        ResetScore();
+    }
+
     public int GetScore(){
         return m_Score;
     }
@@ -55,6 +59,12 @@ public class ScoreManager : MonoBehaviour
             m_Score = score;
             CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
         }
+    }
+
+    public void ResetScore(){
+        CurrentScore = GameObject.Find("Score");
+        m_Score = 0;
+        CurrentScore.GetComponent<TMPro.TextMeshPro>().text = Convert.ToString(m_Score);
     }
 
     // Increment shots counter.

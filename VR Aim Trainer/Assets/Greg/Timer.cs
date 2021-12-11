@@ -81,5 +81,6 @@ public class Timer : MonoBehaviour
     public void StopTimer () { 
         active = false; 
         TimerStop.Invoke();
+        FindObjectOfType<AudioManager>().Play("Buzzer");
     }
 }
