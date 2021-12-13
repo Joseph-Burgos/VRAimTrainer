@@ -53,21 +53,6 @@ public class AchievementManager : MonoBehaviour
             return;
         }
         DontDestroyOnLoad(gameObject);
-
-        // initialize the text for all TMPs on the achievement canvas
-        // if (SceneManager.GetActiveScene().name.Equals(m_MainHubName) || SceneManager.GetActiveScene().name.Equals(m_MainHubNameLoop)){
-        //     Debug.Log("Shoot First Achieved Awake: " + m_ShootFirstTargetAchieved);
-        //     if (m_ShootFirstTargetAchieved != -1){
-        //         GameObject.Find( "Shoot First Target TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nCompleted";
-        //     }
-        //     else{
-        //         GameObject.Find( "Shoot First Target TMP" ).GetComponent<TMPro.TextMeshProUGUI>().text = "Shoot First Target:\nIncomplete";
-        //     }
-
-        //     UpdateTargetsHitTMP();
-        // }
-
-        // CheckMainHubScore();
     }
 
     void Update(){
