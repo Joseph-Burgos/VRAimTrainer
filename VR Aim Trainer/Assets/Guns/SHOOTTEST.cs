@@ -28,8 +28,6 @@ public class SHOOTTEST : MonoBehaviour
 
     [Header("Gun Options")]
     public float RayCastRange = 100f;
-    public bool useBulletTrail;
-    public bool useLaser = true;
     public bool constantFire = false;
 
     [Header("Game Environment Objects")]
@@ -53,11 +51,7 @@ public class SHOOTTEST : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //for testing---------
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            shoot();
-        }
+        //Debug.Log(GameManager.Instance.useLaser);
         if (constantFire)
         {
             StartCoroutine("ShootEveryFrame");
@@ -68,11 +62,13 @@ public class SHOOTTEST : MonoBehaviour
         if (interactable.attachedToHand != null)
         {
             //if laser is off, turn on
-            if (!isActive)
+            if (GameManager.Instance.useLaser)
             {
+
                 //Debug.Log("Turn On");
-                toggleLaser(true);
+                toggleLaser(GameManager.Instance.useLaser);
             }
+
             //access which hand is holding
             SteamVR_Input_Sources source = interactable.attachedToHand.handType;
 
@@ -98,7 +94,7 @@ public class SHOOTTEST : MonoBehaviour
             }
         }
         //checked if gun is being held AND laser is visible
-        else if(interactable.attachedToHand == null && isActive)
+        else if(interactable.attachedToHand == null)
         {
             //Debug.Log("=====================LET GO====================================");
             toggleLaser(false);
@@ -107,11 +103,10 @@ public class SHOOTTEST : MonoBehaviour
 
     private void toggleLaser(bool toggle)
     {
-        if (useLaser)
-        {
-            isActive = toggle;
-            laser.SetActive(toggle);
-        }
+
+        isActive = toggle;
+        laser.SetActive(toggle);
+
     }
 
     private void shoot()
@@ -134,7 +129,7 @@ public class SHOOTTEST : MonoBehaviour
         //show debug of where its shooting
         Debug.DrawLine(muzzle.transform.position, muzzle.transform.position + muzzle.transform.forward * 100, Color.green ,3f);
         //fire bullet trail
-        if (useBulletTrail && !constantFire)
+        if (GameManager.Instance.useTrail && !constantFire)
         {
             bulletTrail.shootTrail();
         }

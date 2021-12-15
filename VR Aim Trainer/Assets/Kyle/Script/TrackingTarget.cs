@@ -28,7 +28,7 @@ public class TrackingTarget : Target_Parent
     }
 
     public void SetTimeEnable(){
-        Debug.Log("Time Enabled Tracking Target");
+        //Debug.Log("Time Enabled Tracking Target");
         m_TimeEnabled = true;
         m_TotalTimeHit = 0;
         // resets the score on start of a session
